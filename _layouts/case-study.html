@@ -1,0 +1,28 @@
+---
+layout: default
+active_nav: case-studies
+---
+<section class="hero hero-compact">
+    <div class="hero-content">
+        {% if page.client %}<span class="eyebrow">{{ page.client }}</span>{% endif %}
+        <h1>{{ page.title }}</h1>
+        {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
+    </div>
+</section>
+
+<article class="article">
+    {% if page.results %}
+    <div class="feature-list" style="margin-bottom: 2.5rem;">
+        {% for result in page.results %}
+        <div class="feature-list-item">
+            <h3>{{ result.stat }}</h3>
+            <p>{{ result.label }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {{ content }}
+
+    <p style="margin-top: 3rem;"><a href="{{ '/case-studies.html' | relative_url }}" class="card-link">← Back to case studies</a></p>
+</article>

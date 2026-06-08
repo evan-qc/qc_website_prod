@@ -1,0 +1,30 @@
+---
+layout: default
+title: Blog
+description: "Notes, guides, and ideas on analytics, automation, and AI for small and mid-sized businesses."
+active_nav: blog
+---
+<section class="hero hero-compact">
+    <div class="hero-content">
+        <span class="eyebrow">Blog</span>
+        <h1>Notes from <span class="accent-word">Quantify</span>.</h1>
+        <p class="lead">Guides and ideas on analytics, automation, and AI for businesses that have outgrown Excel.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="card-grid">
+            {% for post in site.posts %}
+            <article class="card">
+                <div class="card-body">
+                    <div class="card-meta">{{ post.date | date: "%b %-d, %Y" }}</div>
+                    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+                    {% if post.subtitle %}<p class="muted">{{ post.subtitle }}</p>{% endif %}
+                    <a href="{{ post.url | relative_url }}" class="card-link">Read more</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>

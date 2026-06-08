@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} — {{ site.title }} Consulting{% else %}{{ site.title }} Consulting{% endif %}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <link rel="icon" type="image/png" href="{{ '/assets/qc_logo_only_blank_on_trans.png' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/css/shared.css' | relative_url }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-header-inner">
+            <a href="{{ '/index.html' | relative_url }}" class="site-logo">
+                <img src="{{ '/assets/qc_logo_black_on_transparent.png' | relative_url }}" alt="Quantify" height="32" />
+            </a>
+            <nav class="site-nav">
+                <a href="{{ '/data-analytics.html' | relative_url }}"{% if page.active_nav == 'analytics' %} class="active"{% endif %}>Reporting & Analytics</a>
+                <a href="{{ '/business-process-automation.html' | relative_url }}"{% if page.active_nav == 'automation' %} class="active"{% endif %}>Process Automation</a>
+                <a href="{{ '/case-studies.html' | relative_url }}"{% if page.active_nav == 'case-studies' %} class="active"{% endif %}>Case Studies</a>
+                <a href="{{ '/about.html' | relative_url }}"{% if page.active_nav == 'about' %} class="active"{% endif %}>Our Team</a>
+                <a href="{{ '/blog.html' | relative_url }}"{% if page.active_nav == 'blog' %} class="active"{% endif %}>Blog</a>
+                <a href="{{ '/contact-us.html' | relative_url }}"{% if page.active_nav == 'contact' %} class="active"{% endif %}>Contact</a>
+                <a href="{{ '/contact-us.html' | relative_url }}" class="cta">Free Consultation</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>{{ content }}</main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="{{ '/index.html' | relative_url }}" class="site-logo">
+                        <img src="{{ '/assets/qc_logo_black_on_transparent.png' | relative_url }}" alt="Quantify" height="28" />
+                    </a>
+                    <p>Helping businesses unlock the power of their data through analytics, automation, and AI.</p>
+                </div>
+                <div>
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="{{ '/data-analytics.html' | relative_url }}">Reporting & Analytics</a></li>
+                        <li><a href="{{ '/business-process-automation.html' | relative_url }}">Process Automation</a></li>
+                        <li><a href="{{ '/case-studies.html' | relative_url }}">Case Studies</a></li>
+                        <li><a href="{{ '/about.html' | relative_url }}">About</a></li>
+                        <li><a href="{{ '/blog.html' | relative_url }}">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="{{ '/contact-us.html' | relative_url }}">Get Started</a></li>
+                        <li><a href="mailto:evan@quantify-consulting.com">evan@quantify-consulting.com</a></li>
+                        <li><a href="tel:+13154863742">(315) 486-3742</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/evan-jennings/">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © {{ 'now' | date: "%Y" }} Quantify Consulting · <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

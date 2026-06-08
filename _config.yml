@@ -1,3 +1,22 @@
 title: Quantify
-description: We're a systems integrator for SMBs - meaning we help small and mid-sized businesses get the tools they already own to actually work together. Most of our clients are drowning in spreadsheets, forms, and disconnected software, doing the same work three times because nothing is connected. We embed with one team, figure out how the work really happens, redesign it, and automate the repetitive parts using whatever tools fit best - Airtable, BigQuery, Zapier, Tableau. What we sell is leverage: more output, more consistency, no extra headcount. We're the 5-to-10-year answer for businesses that have outgrown Excel but aren't ready to drop six figures on enterprise software.
-baseurl: "/website"   # ONLY if this is a project site, not username.github.io
+description: "We're a systems integrator for SMBs - meaning we help small and mid-sized businesses get the tools they already own to actually work together. Most of our clients are drowning in spreadsheets, forms, and disconnected software, doing the same work three times because nothing is connected. We embed with one team, figure out how the work really happens, redesign it, and automate the repetitive parts using whatever tools fit best - Airtable, BigQuery, Zapier, Tableau. What we sell is leverage: more output, more consistency, no extra headcount. We're the 5-to-10-year answer for businesses that have outgrown Excel but aren't ready to drop six figures on enterprise software."
+baseurl: ""   # served at the root of the custom domain (quantify.fyi)
+
+# Collections
+collections:
+  case_studies:
+    output: true
+    permalink: /case-studies/:name/
+
+# Default layouts per content type
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: case_studies
+    values:
+      layout: case-study
