@@ -1,5 +1,5 @@
 /* =========================================================
-   Quantify Consulting — Iris Theme (Dark only)
+   Quantify Consulting — Iris Theme (Light)
    Shared stylesheet for all pages
    ========================================================= */
 
@@ -27,36 +27,37 @@
     --cta-amber: #D9952B;
     --cta-amber-hover: #C58420;
 
-    /* Surfaces */
-    --surface-1: #0E0A1C;
-    --surface-2: #161028;
-    --surface-3: #1F1838;
+    /* Surfaces (light) */
+    --surface-1: #FFFFFF;
+    --surface-2: #F5F3ED;
+    --surface-3: #ECE8DE;
 
     --bg-page: var(--surface-1);
     --bg-surface: var(--surface-2);
     --bg-card: var(--surface-2);
     --bg-card-elevated: var(--surface-3);
-    --bg-header: #0a0716;
-    --bg-nav: #11091f;
-    --bg-nav-hover: rgba(139, 123, 232, 0.18);
+    --bg-header: #FFFFFF;
+    --bg-nav: #FFFFFF;
+    --bg-nav-hover: rgba(91, 75, 204, 0.10);
 
-    --text-primary: #F4F1EA;
-    --text-secondary: rgba(244, 241, 234, 0.72);
-    --text-muted: rgba(244, 241, 234, 0.55);
-    --text-heading: var(--brand-linen);
+    --text-primary: #1B1A2E;
+    --text-secondary: rgba(27, 26, 46, 0.72);
+    --text-muted: rgba(27, 26, 46, 0.55);
+    --text-heading: var(--brand-charcoal);
     --text-on-brand: var(--brand-white);
 
-    --border-subtle: rgba(244, 241, 234, 0.08);
+    --border-subtle: rgba(14, 17, 22, 0.10);
     --border-soft: var(--border-subtle);
-    --border-strong: rgba(244, 241, 234, 0.16);
+    --border-strong: rgba(14, 17, 22, 0.16);
 
     --accent: var(--brand-iris);
-    --accent-hover: #7666e0;
-    --accent-warm: var(--brand-amber);
+    --accent-hover: #4a3bb5;
+    /* darker amber for legible text/accents on light surfaces */
+    --accent-warm: #9C5D00;
 
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.6);
+    --shadow-sm: 0 2px 8px rgba(14, 17, 22, 0.08);
+    --shadow: 0 10px 30px rgba(14, 17, 22, 0.12);
+    --shadow-lg: 0 20px 50px rgba(14, 17, 22, 0.16);
 
     --hero-gradient: linear-gradient(135deg,
         var(--hero-purple-edge) 0%,
@@ -64,7 +65,7 @@
         var(--hero-purple-deep) 100%);
     --hero-glow: radial-gradient(50% 60% at 80% 20%, rgba(244, 184, 96, 0.15), transparent 70%);
 
-    --img-placeholder-bg: linear-gradient(135deg, #1c1635 0%, #2a2070 100%);
+    --img-placeholder-bg: linear-gradient(135deg, #ECE8F7 0%, #D8CFF0 100%);
 }
 
 /* ---------- Base ---------- */
@@ -94,7 +95,7 @@ img {
 /* ---------- Site header ---------- */
 .site-header {
     background: var(--bg-header);
-    color: var(--text-on-brand);
+    color: var(--text-primary);
     border-bottom: 1px solid var(--border-strong);
     position: sticky;
     top: 0;
@@ -137,7 +138,7 @@ img {
 }
 
 .site-nav a {
-    color: var(--text-on-brand);
+    color: var(--text-primary);
     text-decoration: none;
     padding: 0.45rem 0.85rem;
     font-size: 0.85rem;
@@ -150,7 +151,7 @@ img {
 .site-nav a:hover,
 .site-nav a.active {
     background: var(--bg-nav-hover);
-    color: var(--brand-amber);
+    color: var(--accent);
 }
 
 .site-nav .cta {
@@ -887,7 +888,7 @@ textarea {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    color: var(--brand-amber);
+    color: var(--accent-warm);
     margin-bottom: 1rem;
 }
 
@@ -903,7 +904,7 @@ textarea {
 }
 
 .footer-grid a:hover {
-    color: var(--brand-amber);
+    color: var(--accent-warm);
     border-bottom-color: transparent;
 }
 
