@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" role="img" aria-label="Placeholder inline image">
+  <rect width="800" height="480" fill="#e5e7eb"/>
+  <rect x="2" y="2" width="796" height="476" fill="none" stroke="#9ca3af" stroke-width="3" stroke-dasharray="10 10"/>
+  <text x="400" y="230" fill="#6b7280" font-family="system-ui, sans-serif" font-size="34" font-weight="700" text-anchor="middle">Inline Image</text>
+  <text x="400" y="275" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="20" text-anchor="middle">800 × 480 placeholder</text>
+</svg>

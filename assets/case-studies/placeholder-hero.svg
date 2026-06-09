@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-label="Placeholder hero image">
+  <rect width="1200" height="600" fill="#1f2937"/>
+  <rect x="2" y="2" width="1196" height="596" fill="none" stroke="#4b5563" stroke-width="4" stroke-dasharray="12 12"/>
+  <text x="600" y="290" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="48" font-weight="700" text-anchor="middle">Case Study Hero</text>
+  <text x="600" y="345" fill="#6b7280" font-family="system-ui, sans-serif" font-size="26" text-anchor="middle">1200 × 600 placeholder — replace with a real image</text>
+</svg>

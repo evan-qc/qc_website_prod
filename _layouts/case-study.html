@@ -11,6 +11,10 @@ active_nav: outcomes
 </section>
 
 <article class="article">
+    {% if page.hero_image %}
+    <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_image_alt | default: page.title }}" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 2.5rem;">
+    {% endif %}
+
     {% if page.results %}
     <div class="feature-list" style="margin-bottom: 2.5rem;">
         {% for result in page.results %}
