@@ -1,6 +1,7 @@
 ---
 title: "North Country Handymen: Automating the Busywork Away"
 client: "North Country Handymen"
+sector: private
 summary: "We redesigned and automated North Country Handymen's intake, invoicing, and project-tracking workflows, freeing the owner from 12–15 hours of weekly busywork."
 description: "How Quantify helped North Country Handymen, an upstate New York construction and handyman company, automate intake, invoicing, and project tracking — saving 12–15 hours a week and collapsing manual paperwork into automated steps."
 

@@ -637,6 +637,12 @@ a:hover {
     gap: 1.5rem;
 }
 
+/* Case-study listing: cap card width so a lone card doesn't stretch full-width */
+.case-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 360px));
+    justify-content: start;
+}
+
 .card {
     background: var(--bg-card);
     border-radius: 12px;
