@@ -13,25 +13,40 @@ active_nav: outcomes
     </div>
 </section>
 
-<!-- Case study grid -->
+<!-- Case study grid, broken out by sector -->
 <section class="section">
     <div class="container">
+        {% assign public_studies = site.case_studies | where: "sector", "public" %}
+        {% assign private_studies = site.case_studies | where: "sector", "private" %}
+        {% assign untagged_studies = site.case_studies | where_exp: "study", "study.sector == nil" %}
+
         {% if site.case_studies.size > 0 %}
-        <div class="card-grid">
-            {% for study in site.case_studies %}
-            <article class="card">
-                <a href="{{ study.url | relative_url }}" class="card-image"{% unless study.hero_image %} data-label="Client photo"{% endunless %}>
-                    {% if study.hero_image %}<img src="{{ study.hero_image | relative_url }}" alt="{{ study.hero_image_alt | default: study.title }}">{% endif %}
-                </a>
-                <div class="card-body">
-                    {% if study.client %}<div class="card-meta">{{ study.client }}</div>{% endif %}
-                    <h3>{{ study.title }}</h3>
-                    {% if study.summary %}<p class="muted">{{ study.summary }}</p>{% endif %}
-                    <a href="{{ study.url | relative_url }}" class="card-link">Learn more</a>
-                </div>
-            </article>
-            {% endfor %}
-        </div>
+            {% if public_studies.size > 0 %}
+            <div class="section-heading">
+                <h2>Public Sector</h2>
+            </div>
+            <div class="card-grid">
+                {% for study in public_studies %}{% include case-study-card.html study=study %}{% endfor %}
+            </div>
+            {% endif %}
+
+            {% if private_studies.size > 0 %}
+            <div class="section-heading"{% if public_studies.size > 0 %} style="margin-top: 3rem;"{% endif %}>
+                <h2>Private Sector</h2>
+            </div>
+            <div class="card-grid">
+                {% for study in private_studies %}{% include case-study-card.html study=study %}{% endfor %}
+            </div>
+            {% endif %}
+
+            {% if untagged_studies.size > 0 %}
+            <div class="section-heading"{% if public_studies.size > 0 or private_studies.size > 0 %} style="margin-top: 3rem;"{% endif %}>
+                <h2>More Stories</h2>
+            </div>
+            <div class="card-grid">
+                {% for study in untagged_studies %}{% include case-study-card.html study=study %}{% endfor %}
+            </div>
+            {% endif %}
         {% else %}
         <p class="muted" style="text-align: center;">New client stories are on the way — check back soon.</p>
         {% endif %}

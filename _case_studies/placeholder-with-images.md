@@ -6,6 +6,8 @@
 # renders at /case-studies/placeholder-with-images/
 title: "Placeholder Case Study (with images)"
 client: "Sample Client Co."
+# sector groups this study on the listing page: "public" or "private"
+sector: public
 summary: "A template case study showing the exact front matter and image paths Jekyll needs to render."
 description: "Used to validate the case-study layout and demonstrate how to reference image assets."
 

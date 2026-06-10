@@ -2,6 +2,7 @@
 layout: case-study
 title: "Project Workflow Automation"
 client: "North Country Handyman"
+sector: private
 summary: "Streamlining estimates, contracts, and project tracking for a residential trades business."
 description: "A placeholder case study used to validate the case-study layout."
 results:

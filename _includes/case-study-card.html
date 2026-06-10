@@ -1,0 +1,11 @@
+<article class="card">
+    <a href="{{ include.study.url | relative_url }}" class="card-image"{% unless include.study.hero_image %} data-label="Client photo"{% endunless %}>
+        {% if include.study.hero_image %}<img src="{{ include.study.hero_image | relative_url }}" alt="{{ include.study.hero_image_alt | default: include.study.title }}">{% endif %}
+    </a>
+    <div class="card-body">
+        {% if include.study.client %}<div class="card-meta">{{ include.study.client }}</div>{% endif %}
+        <h3>{{ include.study.title }}</h3>
+        {% if include.study.summary %}<p class="muted">{{ include.study.summary }}</p>{% endif %}
+        <a href="{{ include.study.url | relative_url }}" class="card-link">Learn more</a>
+    </div>
+</article>
