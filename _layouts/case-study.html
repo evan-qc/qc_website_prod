@@ -2,31 +2,38 @@
 layout: default
 active_nav: outcomes
 ---
-<section class="hero hero-compact">
-    <div class="hero-content">
+<header class="cs-masthead">
+    <div class="cs-masthead-inner">
         {% if page.client %}<span class="eyebrow">{{ page.client }}</span>{% endif %}
         <h1>{{ page.title }}</h1>
-        {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
+        {% if page.summary %}<p class="cs-summary">{{ page.summary }}</p>{% endif %}
     </div>
-</section>
+</header>
 
-<article class="article">
-    {% if page.hero_image %}
-    <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_image_alt | default: page.title }}" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 2.5rem;">
-    {% endif %}
-
-    {% if page.results %}
-    <div class="feature-list" style="margin-bottom: 2.5rem;">
-        {% for result in page.results %}
-        <div class="feature-list-item">
-            <h3>{{ result.stat }}</h3>
-            <p>{{ result.label }}</p>
+<div class="cs-wrap">
+    {% if page.hero_image or page.results %}
+    <section class="cs-lede{% if page.hero_image and page.results %} cs-lede--split{% endif %}">
+        {% if page.hero_image %}
+        <figure class="cs-lede-media">
+            <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_image_alt | default: page.title }}">
+        </figure>
+        {% endif %}
+        {% if page.results %}
+        <div class="cs-stats">
+            {% for result in page.results %}
+            <div class="cs-stat">
+                <span class="cs-stat-value">{{ result.stat }}</span>
+                <span class="cs-stat-label">{{ result.label }}</span>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
+        {% endif %}
+    </section>
     {% endif %}
 
-    {{ content }}
+    <div class="cs-body">
+        {{ content }}
+    </div>
 
-    <p style="margin-top: 3rem;"><a href="{{ '/case-studies.html' | relative_url }}" class="card-link">← Back to case studies</a></p>
-</article>
+    <p class="cs-back"><a href="{{ '/case-studies.html' | relative_url }}" class="card-link">← Back to case studies</a></p>
+</div>

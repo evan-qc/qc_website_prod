@@ -1074,6 +1074,206 @@ textarea {
 
 .article p { margin-bottom: 1.25rem; line-height: 1.75; }
 
+/* ---------- Case study (dense, whitepaper-style) ---------- */
+.cs-masthead {
+    position: relative;
+    overflow: hidden;
+    background: var(--hero-gradient);
+    color: var(--text-on-brand);
+    border-bottom: 1px solid var(--border-strong);
+    padding: 2.75rem 0 2.25rem;
+}
+
+.cs-masthead::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+}
+
+.cs-masthead-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.cs-masthead h1 {
+    color: var(--brand-white);
+    font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+    margin-bottom: 0.6rem;
+}
+
+.cs-summary {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.15rem;
+    line-height: 1.55;
+    max-width: 720px;
+    margin: 0;
+}
+
+.cs-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2.25rem 1.5rem 3.5rem;
+}
+
+/* Lede: hero image + headline proof, featured at the top */
+.cs-lede {
+    margin-bottom: 2.5rem;
+}
+
+.cs-lede--split {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.cs-lede-media {
+    margin: 0;
+    min-width: 0;
+}
+
+.cs-lede-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 360px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--border-soft);
+}
+
+/* Loud, large quantitative/qualitative proof */
+.cs-stats {
+    display: grid;
+    align-content: center;
+    background: var(--surface-2);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    padding: 0.25rem 1.5rem;
+}
+
+/* Stats stand alone (no hero image): lay out as a wide horizontal band */
+.cs-lede:not(.cs-lede--split) .cs-stats {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    align-items: stretch;
+    padding: 1.75rem 1rem;
+}
+
+.cs-stat {
+    padding: 1.15rem 0;
+    border-top: 1px solid var(--border-soft);
+}
+
+.cs-stat:first-child {
+    border-top: none;
+}
+
+.cs-lede:not(.cs-lede--split) .cs-stat {
+    border-top: none;
+    border-left: 1px solid var(--border-soft);
+    padding: 0.4rem 1.75rem;
+    text-align: center;
+}
+
+.cs-lede:not(.cs-lede--split) .cs-stat:first-child {
+    border-left: none;
+}
+
+.cs-stat-value {
+    display: block;
+    font-size: clamp(2.2rem, 3.6vw, 3rem);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    color: var(--accent);
+}
+
+.cs-stat-label {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.92rem;
+    line-height: 1.4;
+    color: var(--text-secondary);
+}
+
+/* Denser whitepaper body */
+.cs-body {
+    max-width: 720px;
+}
+
+.cs-body > :first-child {
+    margin-top: 0;
+}
+
+.cs-body p {
+    margin-bottom: 1rem;
+    line-height: 1.65;
+}
+
+.cs-body h2 {
+    font-size: clamp(1.35rem, 2.2vw, 1.6rem);
+    margin-top: 2rem;
+    margin-bottom: 0.6rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-soft);
+}
+
+.cs-body h3 {
+    margin-top: 1.5rem;
+}
+
+.cs-body ul,
+.cs-body ol {
+    margin: 0 0 1rem 1.25rem;
+    line-height: 1.65;
+}
+
+.cs-body li {
+    margin-bottom: 0.4rem;
+}
+
+.cs-body img {
+    display: block;
+    width: 100%;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    border: 1px solid var(--border-soft);
+}
+
+.cs-back {
+    margin-top: 2.5rem;
+}
+
+@media (max-width: 720px) {
+    .cs-lede--split {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    .cs-lede-media img {
+        max-height: 240px;
+    }
+    .cs-lede:not(.cs-lede--split) .cs-stats {
+        grid-auto-flow: row;
+        padding: 0.25rem 1.5rem;
+    }
+    .cs-lede:not(.cs-lede--split) .cs-stat {
+        border-left: none;
+        border-top: 1px solid var(--border-soft);
+        text-align: left;
+        padding: 1.1rem 0;
+    }
+    .cs-lede:not(.cs-lede--split) .cs-stat:first-child {
+        border-top: none;
+    }
+}
+
 /* ---------- Mobile nav ---------- */
 @media (max-width: 800px) {
     .site-header-inner {
