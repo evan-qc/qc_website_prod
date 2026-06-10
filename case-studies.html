@@ -16,57 +16,25 @@ active_nav: outcomes
 <!-- Case study grid -->
 <section class="section">
     <div class="container">
+        {% if site.case_studies.size > 0 %}
         <div class="card-grid">
+            {% for study in site.case_studies %}
             <article class="card">
-                <div class="card-image" data-label="Client photo"></div>
+                <a href="{{ study.url | relative_url }}" class="card-image"{% unless study.hero_image %} data-label="Client photo"{% endunless %}>
+                    {% if study.hero_image %}<img src="{{ study.hero_image | relative_url }}" alt="{{ study.hero_image_alt | default: study.title }}">{% endif %}
+                </a>
                 <div class="card-body">
-                    <div class="card-meta">Lewis County</div>
-                    <h3>County Budget Transparency with Tyler ERP</h3>
-                    <p class="muted">Bringing visibility to general ledger data for an entire county government.</p>
-                    <a href="#" class="card-link">Learn more</a>
+                    {% if study.client %}<div class="card-meta">{{ study.client }}</div>{% endif %}
+                    <h3>{{ study.title }}</h3>
+                    {% if study.summary %}<p class="muted">{{ study.summary }}</p>{% endif %}
+                    <a href="{{ study.url | relative_url }}" class="card-link">Learn more</a>
                 </div>
             </article>
-
-            <article class="card">
-                <div class="card-image" data-label="Client photo"></div>
-                <div class="card-body">
-                    <div class="card-meta">Double Play Community Center</div>
-                    <h3>Impact Measurement: Demographics & Programs</h3>
-                    <p class="muted">Helping a community nonprofit quantify and tell the story of their reach.</p>
-                    <a href="#" class="card-link">Learn more</a>
-                </div>
-            </article>
-
-            <article class="card">
-                <div class="card-image" data-label="Client photo"></div>
-                <div class="card-body">
-                    <div class="card-meta">North Country Handyman</div>
-                    <h3>Project Workflow Automation</h3>
-                    <p class="muted">Streamlining estimates, contracts, and project tracking for a residential trades business.</p>
-                    <a href="{{ '/case-studies/example-case-study/' | relative_url }}" class="card-link">Learn more</a>
-                </div>
-            </article>
-
-            <article class="card">
-                <div class="card-image" data-label="Client photo"></div>
-                <div class="card-body">
-                    <div class="card-meta">Lewis County</div>
-                    <h3>Trash and Recycling Data</h3>
-                    <p class="muted">Turning operational waste-management data into actionable insight.</p>
-                    <a href="#" class="card-link">Learn more</a>
-                </div>
-            </article>
-
-            <article class="card">
-                <div class="card-image" data-label="Client photo"></div>
-                <div class="card-body">
-                    <div class="card-meta">Sample Client Co.</div>
-                    <h3>Placeholder Case Study (with images)</h3>
-                    <p class="muted">A template showing the front matter and image paths Jekyll needs to render a case study.</p>
-                    <a href="{{ '/case-studies/placeholder-with-images/' | relative_url }}" class="card-link">Learn more</a>
-                </div>
-            </article>
+            {% endfor %}
         </div>
+        {% else %}
+        <p class="muted" style="text-align: center;">New client stories are on the way — check back soon.</p>
+        {% endif %}
     </div>
 </section>
 

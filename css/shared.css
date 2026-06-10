@@ -654,10 +654,19 @@ a:hover {
 }
 
 .card-image {
+    display: block;
     aspect-ratio: 16 / 10;
     background: var(--img-placeholder-bg);
     position: relative;
     overflow: hidden;
+    border-bottom: none;
+}
+
+.card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .card-image::after {
