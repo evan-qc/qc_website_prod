@@ -1,20 +1,15 @@
 ---
 title: "Workflow Automation for Resolution Drafting in County Government"
-client: "A county government"
+client: "Anonymous County"
 sector: public
 summary: "We replaced a county's manual, Adobe-form resolution process with an automated workflow that drafts resolutions, files and tracks every submission, and gives 30 departments real-time visibility into where their requests stand."
 description: "How we automated resolution drafting for a county government, turning a slow, error-prone paper process serving 30 departments into a faster, fully tracked workflow built on Microsoft Forms, OpenAI, Zapier, and Power Automate."
-
-# Optional hero image. Site-relative path; the layout runs it through relative_url.
-# Drop the real file into /assets/case-studies/. Remove both lines if there is no hero.
 hero_image: "/assets/case-studies/legislators_hero.webp"
 hero_image_alt: "The exterior of a county government legislative building"
-
-# Optional results grid. Remove this whole block if the source has no real stats.
 results:
   - stat: "30"
     label: "County departments now served by one automated workflow"
-  - stat: "10–20"
+  - stat: "10-20"
     label: "Resolutions drafted and tracked automatically each month"
   - stat: "100%"
     label: "Of submissions automatically filed, tracked, and acknowledged"
@@ -22,17 +17,25 @@ results:
     label: "Estimated reduction in hands-on time per resolution"
 ---
 
-Most counties can't simply hire their way out of a backlog. Headcount is capped, budgets are tight, and the work still has to get done. The most realistic lever isn't adding people, it's freeing the people you already have from low-value drudgery so they can spend their time on work that actually requires their judgment. That was the goal of this engagement with a county government we've partnered with across multiple projects: take one of their most manual, most error-prone internal processes and automate the parts that never needed a human in the first place.
+Most counties can't simply hire their way out of a backlog. Headcount is capped, budgets are tight, and the work still has to get done. The most realistic lever isn't adding people, it's freeing the people you already have from low-value drudgery so they can spend their time on work that actually requires their judgment.
+
+That was the goal of this engagement with a county government we've partnered with across multiple projects: take one of their most manual, most error-prone internal processes and automate the parts that never needed a human in the first place.
 
 ## The challenge
 
-Before a county legislature can take action, someone has to draft a resolution, and getting there meant running a long relay of hand-offs. A department head would fill out an Adobe form, printed or on-screen, with the details the legal department needed. That form went to the clerk of the board, who forwarded it to legal. The county attorney would review it, almost always discover gaps or missing information, and kick off an email exchange to chase down the rest. Only then could the attorney draft the resolution and route it back to the clerk to be placed on the right committee and legislative agendas.
+Before a county legislature can take action, someone has to draft a resolution, and getting there meant running a long relay of hand-offs.
 
-Every step was manual and every step could break. Information arrived incomplete because the form never asked the right questions up front. Submissions lived in inboxes and on individual desktops, each person working from their own downloaded copy of the PDF. And when something slipped through the cracks, the consequence wasn't trivial: miss an agenda window and the item waits another month for the next legislative meeting. On top of the lost hours, no one could answer a basic question with confidence, where is my submission right now, and is it going to make the agenda?
+A department head would fill out an Adobe form, printed or on-screen, with the details the legal department needed. That form went to the clerk of the board, who forwarded it to legal. The county attorney would review it, almost always discover gaps or missing information, and kick off an email exchange to chase down the rest. Only then could the attorney draft the resolution and route it back to the clerk to be placed on the right committee and legislative agendas.
+
+Every step was manual and every step could break. Information arrived incomplete because the form never asked the right questions up front. Submissions lived in inboxes and on individual desktops, each person working from their own downloaded copy of the PDF.
+
+And when something slipped through the cracks, the consequence wasn't trivial: miss an agenda window and the item waits another month for the next legislative meeting. On top of the lost hours, no one could answer a basic question with confidence: where is my submission right now, and is it going to make the agenda?
 
 ## What we built
 
-The foundation of the new process wasn't the flashiest part, but it was the most valuable: we rebuilt the intake. Working with the clerk of the board, we replaced the old Adobe forms with Microsoft Forms and, more importantly, redesigned the questions themselves. Revisiting a workflow is a chance to stop asking the questions you've always asked and start asking the ones you actually need answered, so we restructured the questionnaires to capture everything legal needs on the first pass. Because the forms now live in one place, a change is made once and applies everywhere, instead of being version-controlled across dozens of downloaded copies.
+The foundation of the new process wasn't the flashiest part, but it was the most valuable: we rebuilt the intake. Working with the clerk of the board, we replaced the old Adobe forms with Microsoft Forms and, more importantly, redesigned the questions themselves.
+
+Revisiting a workflow is a chance to stop asking the questions you've always asked and start asking the ones you actually need answered, so we restructured the questionnaires to capture everything legal needs on the first pass. Because the forms now live in one place, a change is made once and applies everywhere, instead of being version-controlled across dozens of downloaded copies.
 
 On top of that intake, we built an automated pipeline using a combination of OpenAI's models, Zapier, and Power Automate. The moment a department head submits a form, the system:
 
