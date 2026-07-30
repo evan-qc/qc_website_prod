@@ -1,0 +1,11 @@
+# Business Systems Assessment - remaining slots
+#
+# Edit the two values below by hand whenever you want. Nothing else on the
+# landing page needs to change. Once you save and the site rebuilds, the
+# number and the four marks update themselves.
+#
+#   month : the month named on the page (e.g. "August")
+#   left  : how many of the 4 monthly slots are still open (0, 1, 2, 3, or 4)
+
+month: August
+left: 2
