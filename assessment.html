@@ -9,13 +9,11 @@ title: Business Systems Assessment
   Standalone page on purpose: no site nav, no menu, no footer sitemap.
   The only way off this page is the application form.
 
-  To change the remaining-slots number and the month, edit _data/slots.yml.
-  Do not edit anything in this file for that.
+  The month and the remaining-slots count are computed automatically in the
+  browser from today's date (see the script at the bottom). Nothing to edit
+  by hand and nothing to maintain. The count runs 4 down to 0 across the
+  month: slotsLeft = ceil(4 * daysRemaining / daysInMonth).
 {%- endcomment -%}
-{%- assign total_slots = 4 -%}
-{%- assign slots_left = site.data.slots.left -%}
-{%- assign slots_taken = total_slots | minus: slots_left -%}
-{%- assign month = site.data.slots.month -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -308,18 +306,15 @@ title: Business Systems Assessment
         <h1>Has your business outgrown running on spreadsheets?</h1>
         <p class="sub">One phone call, about an hour. Same day, we send back a map of how your systems work today, where things break down, and what a single connected setup would look like instead. Yours to keep either way.</p>
 
-        <!-- 2. Slot indicator -->
+        <!-- 2. Slot indicator (month + count filled in by JS from today's date) -->
         <div class="slots-block">
-          <div class="slots-marks" role="img" aria-label="{{ slots_taken }} of {{ total_slots }} assessments taken this month">
-            {%- for i in (1..total_slots) -%}
-              {%- if forloop.index <= slots_taken -%}
-                <span class="slot slot--taken"></span>
-              {%- else -%}
-                <span class="slot slot--open"></span>
-              {%- endif -%}
-            {%- endfor -%}
+          <div class="slots-marks" id="slot-marks" role="img" aria-label="Assessment slots remaining this month">
+            <span class="slot slot--open"></span>
+            <span class="slot slot--open"></span>
+            <span class="slot slot--open"></span>
+            <span class="slot slot--open"></span>
           </div>
-          <p class="slots-line">{{ total_slots }} assessments per month. <span>{{ slots_left }} left in {{ month }}.</span></p>
+          <p class="slots-line">4 assessments per month.<span id="slots-summary"></span></p>
         </div>
 
         <a href="#apply" class="btn">Apply for a slot</a>
@@ -376,7 +371,7 @@ title: Business Systems Assessment
     <section class="section-alt form-section" id="apply">
       <div class="wrap">
         <h2>Apply for a slot</h2>
-        <p class="lead-para" style="margin-bottom:1.75rem;">Five quick answers. {{ slots_left }} slots left in {{ month }}.</p>
+        <p class="lead-para" style="margin-bottom:1.75rem;">Five quick answers.<span id="form-slots-summary"></span></p>
 
         <form id="apply-form" novalidate>
           <div class="field">
@@ -418,6 +413,47 @@ title: Business Systems Assessment
   </footer>
 
   <script>
+    // ---- Slot indicator: month + remaining count, computed from today ----
+    // Runs in the browser (not at build time) so it is always the real
+    // current date. Count falls from 4 to 0 across the month:
+    //   slotsLeft = ceil(TOTAL * daysRemaining / daysInMonth)
+    // On the 16th of a 31-day month that is 2; on the last day it is 0.
+    (function () {
+      var TOTAL = 4;
+      var now = new Date();
+      var year = now.getFullYear();
+      var monthIndex = now.getMonth();
+      var day = now.getDate();
+      var month = now.toLocaleString('en-US', { month: 'long' });
+
+      var daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+      var daysRemaining = daysInMonth - day;               // 0 on the last day
+      var left = Math.ceil(TOTAL * daysRemaining / daysInMonth);
+      if (left < 0) left = 0;
+      if (left > TOTAL) left = TOTAL;
+      var taken = TOTAL - left;
+
+      // Fill the four marks: taken ones muted, remaining ones Iris.
+      var marks = document.querySelectorAll('#slot-marks .slot');
+      for (var i = 0; i < marks.length; i++) {
+        marks[i].className = 'slot ' + (i < taken ? 'slot--taken' : 'slot--open');
+      }
+      var group = document.getElementById('slot-marks');
+      if (group) {
+        group.setAttribute('aria-label',
+          taken + ' of ' + TOTAL + ' assessments taken this month, ' + left + ' left in ' + month + '.');
+      }
+
+      var heroSummary = document.getElementById('slots-summary');
+      if (heroSummary) heroSummary.textContent = ' ' + left + ' left in ' + month + '.';
+
+      var formSummary = document.getElementById('form-slots-summary');
+      if (formSummary) {
+        formSummary.textContent = ' ' + left + ' slot' + (left === 1 ? '' : 's') + ' left in ' + month + '.';
+      }
+    })();
+
+    // ---- Application form: submit to Zapier, show inline confirmation ----
     (function () {
       var form = document.getElementById('apply-form');
       var confirm = document.getElementById('apply-confirm');
