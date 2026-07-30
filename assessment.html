@@ -1,0 +1,502 @@
+---
+layout: null
+permalink: /assessment/
+title: Business Systems Assessment
+---
+{%- comment -%}
+  Business Systems Assessment landing page.
+
+  Standalone page on purpose: no site nav, no menu, no footer sitemap.
+  The only way off this page is the application form.
+
+  The month and the remaining-slots count are computed automatically in the
+  browser from today's date (see the script at the bottom). Nothing to edit
+  by hand and nothing to maintain. The count runs 4 down to 0 across the
+  month: slotsLeft = ceil(4 * daysRemaining / daysInMonth).
+{%- endcomment -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Systems Assessment - Quantify</title>
+  <meta name="description" content="A free Business Systems Assessment. One phone call, about an hour. Same day, we send back a map of how your systems work today and where they break down. Yours to keep either way.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="{{ '/assets/qc_logo_only_blank_on_trans.png' | relative_url }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---- Quantify "Iris" palette (matches brand.json) ---- */
+    :root {
+      --charcoal: #0E1116;
+      --iris: #5B4BCC;
+      --iris-hover: #4A3BB5;
+      --ochre: #C68A1E;
+      --linen: #F1EEE7;
+      --white: #FFFFFF;
+
+      --text: #1B1A2E;
+      --text-soft: rgba(27, 26, 46, 0.72);
+      --text-muted: rgba(27, 26, 46, 0.55);
+      --border: rgba(14, 17, 22, 0.14);
+
+      --maxw: 640px;
+      --gutter: 1.5rem;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: "Open Sans", Arial, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ---- Focus states: visible on every interactive element ---- */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid var(--iris);
+      outline-offset: 2px;
+    }
+
+    /* ---- Masthead: logo only, not a link, so there is no exit ---- */
+    .masthead {
+      padding: 1.5rem var(--gutter) 0;
+      display: flex;
+      justify-content: center;
+    }
+    .masthead img { width: 168px; height: auto; }
+
+    /* ---- Primary button, used by the hero CTA and the form ---- */
+    .btn {
+      display: inline-block;
+      width: 100%;
+      max-width: 420px;
+      background: var(--iris);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 1.125rem;
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      border-radius: var(--radius);
+      padding: 1.05rem 1.5rem;
+      min-height: 56px;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+    .btn:hover { background: var(--iris-hover); }
+    .btn:disabled { opacity: 0.7; cursor: default; }
+
+    /* ---- Section rhythm ---- */
+    section { padding: 3rem 0; }
+    .section-alt { background: var(--linen); }
+
+    h1, h2 {
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--charcoal);
+    }
+
+    /* ---- 1. Hero ---- */
+    .hero { padding: 2.25rem 0 2.5rem; text-align: center; }
+    .hero h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .hero .sub {
+      font-size: 1.0625rem;
+      color: var(--text-soft);
+      margin: 0 auto 1.75rem;
+      max-width: 34rem;
+    }
+
+    /* ---- 2. Slot indicator: a fact, not a badge ---- */
+    .slots-block {
+      margin: 0 auto 1.75rem;
+      max-width: 30rem;
+    }
+    .slots-marks {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .slot {
+      width: 2.75rem;
+      height: 0.55rem;
+      border-radius: 3px;
+    }
+    .slot--taken { background: rgba(14, 17, 22, 0.22); }
+    .slot--open  { background: var(--iris); }
+    .slots-line {
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+    .slots-line .muted { color: var(--text-muted); font-weight: 400; }
+
+    /* ---- 3. What you don't have to do ---- */
+    .absences { list-style: none; margin-top: 1.5rem; }
+    .absences li {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      padding: 0.9rem 0 0.9rem 2.25rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .absences li:last-child { border-bottom: none; }
+    .absences li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1.35rem;
+      width: 1.4rem;
+      height: 1.4rem;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235B4BCC' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+    }
+
+    /* ---- 4 / 6. Plain text sections ---- */
+    .lead-para { font-size: 1.125rem; color: var(--text-soft); }
+
+    .not-for { list-style: none; margin-top: 1.5rem; }
+    .not-for li {
+      font-size: 1.1875rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .not-for li:last-child { border-bottom: none; }
+
+    /* ---- 5. Proof: one client, one quote ---- */
+    .proof-context { font-size: 1.125rem; color: var(--text-soft); margin-bottom: 1.5rem; }
+    .quote {
+      border-left: 4px solid var(--iris);
+      background: var(--white);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .quote p {
+      font-size: 1.375rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      line-height: 1.35;
+      margin-bottom: 0.85rem;
+    }
+    .quote cite {
+      font-style: normal;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      display: block;
+    }
+    .quote cite strong { color: var(--iris); font-weight: 700; display: block; }
+
+    .eyebrow {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--iris);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    h2 { font-size: 1.625rem; margin-bottom: 0.5rem; }
+
+    /* ---- 7. Form ---- */
+    .form-section { padding-bottom: 3.5rem; }
+    .field { margin-bottom: 1.25rem; }
+    .field label {
+      display: block;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      color: var(--charcoal);
+    }
+    .field .hint { font-weight: 400; color: var(--text-muted); font-size: 0.9rem; }
+    .field input,
+    .field textarea {
+      width: 100%;
+      font-family: inherit;
+      font-size: 1.0625rem;
+      color: var(--text);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.85rem 0.9rem;
+      min-height: 52px;
+    }
+    .field input:hover,
+    .field textarea:hover { border-color: rgba(14, 17, 22, 0.3); }
+    .field input:focus,
+    .field textarea:focus { border-color: var(--iris); }
+    .field textarea { min-height: 120px; resize: vertical; }
+
+    .form-note { margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted); text-align: center; }
+
+    /* ---- Confirmation ---- */
+    .confirm {
+      background: var(--linen);
+      border-left: 4px solid var(--iris);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.5rem;
+    }
+    .confirm h2 { margin-bottom: 0.5rem; }
+    .confirm p { color: var(--text-soft); font-size: 1.0625rem; }
+
+    /* ---- Minimal footer: logo + copyright, no links (no second exit) ---- */
+    .foot {
+      text-align: center;
+      padding: 2rem var(--gutter) 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .foot img { width: 52px; height: auto; margin: 0 auto 0.75rem; opacity: 0.85; }
+    .foot p { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* ---- A little more room on larger phones / desktop ---- */
+    @media (min-width: 700px) {
+      .hero h1 { font-size: 2.5rem; }
+      h2 { font-size: 1.875rem; }
+      section { padding: 3.5rem 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <img src="{{ '/assets/qc_logo_black_on_transparent.png' | relative_url }}" alt="Quantify" width="659" height="174">
+  </header>
+
+  <main>
+
+    <!-- 1. Hero -->
+    <section class="hero">
+      <div class="wrap">
+        <h1>Has your business outgrown running on spreadsheets?</h1>
+        <p class="sub">One phone call, about an hour. Same day, we send back a map of how your systems work today, where things break down, and what a single connected setup would look like instead. Yours to keep either way.</p>
+
+        <!-- 2. Slot indicator (month + count filled in by JS from today's date) -->
+        <div class="slots-block">
+          <div class="slots-marks" id="slot-marks" role="img" aria-label="Assessment slots remaining this month">
+            <span class="slot slot--open"></span>
+            <span class="slot slot--open"></span>
+            <span class="slot slot--open"></span>
+            <span class="slot slot--open"></span>
+          </div>
+          <p class="slots-line">4 assessments per month.<span id="slots-summary"></span></p>
+        </div>
+
+        <a href="#apply" class="btn">Apply for a slot</a>
+      </div>
+    </section>
+
+    <!-- 3. What you don't have to do -->
+    <section class="section-alt">
+      <div class="wrap">
+        <h2>What you don't have to do</h2>
+        <ul class="absences">
+          <li>Nothing to prepare.</li>
+          <li>Nothing to install.</li>
+          <li>No software to learn.</li>
+          <li>No data to pull together beforehand.</li>
+          <li>You can take the call from your truck.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. Why it's free -->
+    <section>
+      <div class="wrap">
+        <h2>Why it's free</h2>
+        <p class="lead-para">Because it's how we figure out whether we're a fit, and we'd rather show you than pitch you. We can only do four a month. You keep the assessment whether or not you ever hire us.</p>
+      </div>
+    </section>
+
+    <!-- 5. Proof -->
+    <section class="section-alt">
+      <div class="wrap">
+        <span class="eyebrow">One example</span>
+        <p class="proof-context">A 50-person food safety consulting firm was running its entire operation on six spreadsheets. Today it runs on one system.</p>
+        <blockquote class="quote">
+          <p>"Redundant work has disappeared. Single input of information."</p>
+          <cite><strong>Darin Zehr</strong>General Manager, Commercial Food Sanitation</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 6. Who this isn't for -->
+    <section>
+      <div class="wrap">
+        <h2>Who this isn't for</h2>
+        <ul class="not-for">
+          <li>Businesses under $1M in revenue.</li>
+          <li>Anyone looking to hire someone to run their software day to day.</li>
+          <li>Anyone who wants to be talked into this.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. The form -->
+    <section class="section-alt form-section" id="apply">
+      <div class="wrap">
+        <h2>Apply for a slot</h2>
+        <p class="lead-para" style="margin-bottom:1.75rem;">Five quick answers.<span id="form-slots-summary"></span></p>
+
+        <form id="apply-form" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" autocomplete="organization" required>
+          </div>
+          <div class="field">
+            <label for="does">What your company does</label>
+            <input type="text" id="does" name="what_company_does" required>
+          </div>
+          <div class="field">
+            <label for="running-on">What you're running on today <span class="hint">(the more the better)</span></label>
+            <textarea id="running-on" name="running_on_today" required></textarea>
+          </div>
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+          </div>
+          <button type="submit" class="btn">Apply for a slot</button>
+          <p class="form-note">We read every application by hand. No newsletter, no follow-up spam.</p>
+        </form>
+
+        <div class="confirm" id="apply-confirm" role="status" aria-live="polite" tabindex="-1" hidden>
+          <h2>Application received.</h2>
+          <p>We'll reach out within one business day to schedule your call. That same day as the call, you'll have your assessment.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <img src="{{ '/assets/qc_logo_only_blank_on_trans.png' | relative_url }}" alt="Quantify" width="191" height="174">
+    <p>&copy; {{ 'now' | date: "%Y" }} Quantify Consulting</p>
+  </footer>
+
+  <script>
+    // ---- Slot indicator: month + remaining count, computed from today ----
+    // Runs in the browser (not at build time) so it is always the real
+    // current date. Count falls from 4 to 0 across the month:
+    //   slotsLeft = ceil(TOTAL * daysRemaining / daysInMonth)
+    // On the 16th of a 31-day month that is 2; on the last day it is 0.
+    (function () {
+      var TOTAL = 4;
+      var now = new Date();
+      var year = now.getFullYear();
+      var monthIndex = now.getMonth();
+      var day = now.getDate();
+      var month = now.toLocaleString('en-US', { month: 'long' });
+
+      var daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+      var daysRemaining = daysInMonth - day;               // 0 on the last day
+      var left = Math.ceil(TOTAL * daysRemaining / daysInMonth);
+      if (left < 0) left = 0;
+      if (left > TOTAL) left = TOTAL;
+      var taken = TOTAL - left;
+
+      // Fill the four marks: taken ones muted, remaining ones Iris.
+      var marks = document.querySelectorAll('#slot-marks .slot');
+      for (var i = 0; i < marks.length; i++) {
+        marks[i].className = 'slot ' + (i < taken ? 'slot--taken' : 'slot--open');
+      }
+      var group = document.getElementById('slot-marks');
+      if (group) {
+        group.setAttribute('aria-label',
+          taken + ' of ' + TOTAL + ' assessments taken this month, ' + left + ' left in ' + month + '.');
+      }
+
+      var heroSummary = document.getElementById('slots-summary');
+      if (heroSummary) heroSummary.textContent = ' ' + left + ' left in ' + month + '.';
+
+      var formSummary = document.getElementById('form-slots-summary');
+      if (formSummary) {
+        formSummary.textContent = ' ' + left + ' slot' + (left === 1 ? '' : 's') + ' left in ' + month + '.';
+      }
+    })();
+
+    // ---- Application form: submit to Zapier, show inline confirmation ----
+    (function () {
+      var form = document.getElementById('apply-form');
+      var confirm = document.getElementById('apply-confirm');
+      var endpoint = 'https://hooks.zapier.com/hooks/catch/21697097/46bf40n/';
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Native validity check so required fields surface a message.
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        var btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+
+        // URL-encoded body = a "simple" request: no CORS preflight, and
+        // Zapier's catch hook parses the pairs straight into named fields.
+        var body = new URLSearchParams(new FormData(form));
+
+        function done() {
+          form.hidden = true;
+          confirm.hidden = false;
+          confirm.focus();
+          confirm.scrollIntoView({ block: 'center' });
+        }
+
+        fetch(endpoint, { method: 'POST', mode: 'no-cors', body: body })
+          .then(done)
+          .catch(function () {
+            // Only a genuine network failure lands here. Let the applicant
+            // retry rather than silently losing them.
+            btn.disabled = false;
+            btn.textContent = 'Apply for a slot';
+            var note = form.querySelector('.form-note');
+            note.textContent = "Something went wrong sending that. Please try again, or email hello@quantify-consulting.com.";
+            note.style.color = '#9C5D00';
+          });
+      });
+    })();
+  </script>
+
+</body>
+</html>
