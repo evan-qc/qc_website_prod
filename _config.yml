@@ -12,12 +12,11 @@ collections:
 defaults:
   - scope:
       path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
       type: case_studies
     values:
       layout: case-study
-      # `rank` controls order on the Client Outcomes grid, lowest first.
-      # Ranks are spaced by 10 (10, 20, 30 ...) so a new study can be
-      # slotted mid-lineup with an in-between value (e.g. 25) without
-      # renumbering the others. Unranked studies fall back to 9999 (last).
-      rank: 9999
-      capabilities: []  # keeps capability filtering safe when none are tagged
