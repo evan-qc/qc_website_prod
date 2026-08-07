@@ -7,10 +7,13 @@ capabilities: [automation]
 summary: "Quantify built North Country Handymen a Core Business Platform, one system that runs the whole operation, reclaiming 12 to 15 hours a week and consolidating scattered tools onto a single platform."
 description: "How Quantify built North Country Handymen a Core Business Platform: automating intake, invoicing, and project tracking, then consolidating the operation onto Airtable. 12 to 15 hours a week reclaimed."
 
-hero_image: "/assets/case-studies/nch_logo.webp"
-hero_image_width: 2000
-hero_image_height: 1250
-hero_image_alt: "North Country Handymen logo"
+hero_image: "/assets/case-studies/nch-deck.webp"
+hero_image_width: 2500
+hero_image_height: 1875
+hero_image_alt: "A deck built by North Country Handymen"
+
+thumbnail_image: "/assets/case-studies/nch-team.jpg"
+thumbnail_image_alt: "The North Country Handymen team"
 
 results:
   - stat: "12–15"
