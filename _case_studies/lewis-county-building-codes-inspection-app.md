@@ -59,9 +59,12 @@ The team went from 24 disconnected spreadsheets to one custom application built 
 
 **Less manual work.** Automations handle owner notifications and the repetitive save-move-sign-archive steps that used to eat staff time after every inspection.
 
-> "The live interface and dashboard showing graphics helps this office see and categorize the most urgent projects and needs."
->
-> - Jonathan Roes, Director, Lewis County Building Codes
+<figure class="cs-pullquote">
+  <blockquote>
+    <p>"The live interface and dashboard showing graphics helps this office see and categorize the most urgent projects and needs."</p>
+  </blockquote>
+  <figcaption>Jonathan Roes<span>Director, Lewis County Building Codes</span></figcaption>
+</figure>
 
 <p class="cs-cta" style="margin-top: 2.5rem;"><a class="btn btn-amber" href="mailto:hello@quantify-consulting.com?subject=Interested%20in%20results%20like%20these">Email us</a></p>
 

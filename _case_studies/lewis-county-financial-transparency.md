@@ -60,8 +60,11 @@ We validated every data point against the county's 2025 published budget book, w
 
 The whole transformation took three months, not three years. The county didn't replace its ERP; it built a modern analytics layer on top of it. Meaningful financial transparency didn't require ripping out legacy systems - just the right architecture and a commitment to turning data into stories stakeholders can act on.
 
-> "Evan approached the project with a clear vision and structured methodology. He not only met the project objectives but exceeded expectations in terms of quality and impact."
->
-> - Tim Hunt, County Administrator, Lewis County
+<figure class="cs-pullquote">
+  <blockquote>
+    <p>"Evan approached the project with a clear vision and structured methodology. He not only met the project objectives but exceeded expectations in terms of quality and impact."</p>
+  </blockquote>
+  <figcaption>Tim Hunt<span>County Administrator, Lewis County</span></figcaption>
+</figure>
 
 **[See it live → lewiscountyny.gov/analytics](https://lewiscountyny.gov/analytics/)**

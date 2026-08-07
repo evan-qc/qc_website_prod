@@ -58,13 +58,19 @@ Three years of applications, once scattered across 30-plus tables, are now unifi
 
 **Data the team can act on.** The consolidated system now supports personnel development, project planning, and budgeting - not just reporting.
 
-> "They were thoughtful in their process and mapped out every detail, communicating consistently to keep the project progressing. It helped us organize our anticipated and existing grants and use the data for personnel development, project planning, and budgeting. Efficient and rewarding!"
->
-> - Casandra Buell, Director of Planning & Community Development, Lewis County
+<figure class="cs-pullquote">
+  <blockquote>
+    <p>"They were thoughtful in their process and mapped out every detail, communicating consistently to keep the project progressing. It helped us organize our anticipated and existing grants and use the data for personnel development, project planning, and budgeting. Efficient and rewarding!"</p>
+  </blockquote>
+  <figcaption>Casandra Buell<span>Director of Planning &amp; Community Development, Lewis County</span></figcaption>
+</figure>
 
-> "The efficiencies and data-driven metrics they provide enhance transparency and efficiency, ultimately improving the service delivery of local government."
->
-> - Tim Hunt, County Administrator, Lewis County
+<figure class="cs-pullquote">
+  <blockquote>
+    <p>"The efficiencies and data-driven metrics they provide enhance transparency and efficiency, ultimately improving the service delivery of local government."</p>
+  </blockquote>
+  <figcaption>Tim Hunt<span>County Administrator, Lewis County</span></figcaption>
+</figure>
 
 <p class="cs-cta" style="margin-top: 2.5rem;"><a class="btn btn-amber" href="mailto:hello@quantify-consulting.com?subject=Interested%20in%20results%20like%20these">Email us</a></p>
 

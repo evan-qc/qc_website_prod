@@ -47,6 +47,9 @@ Rather than replace the tool the team already trusted, we rebuilt the model as a
 
 The Authority now plans against a 50-year horizon purpose-built for landfill lifecycle decisions, with finer control over its assumptions than the old workbook allowed. Just as importantly, the MMF Director, CFO, and COO work from a single shared model - and can create, store, and compare named what-if scenarios, the biggest functional gain over the tool it replaced.
 
-> "Quantify did exactly what they said they were going to do, and we received a valuable deliverable that will be extremely useful for our future operations."
->
-> - Carrie Tuttle, Chief Operating Officer, Development Authority of the North Country
+<figure class="cs-pullquote">
+  <blockquote>
+    <p>"Quantify did exactly what they said they were going to do, and we received a valuable deliverable that will be extremely useful for our future operations."</p>
+  </blockquote>
+  <figcaption>Carrie Tuttle<span>Chief Operating Officer, Development Authority of the North Country</span></figcaption>
+</figure>

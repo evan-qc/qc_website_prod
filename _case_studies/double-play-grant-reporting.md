@@ -51,6 +51,9 @@ Staff no longer spend hours reviewing registration lists and mapping addresses -
 
 The whole transformation took under three months. The center didn't need enterprise software; it needed its existing systems connected intelligently. The result: a nonprofit serving everyone from preschoolers to seniors can now prove its geographic impact instantly, freeing staff to focus on what matters most - bringing the community together.
 
-> "Such a great experience working with these gentlemen! The insight and vision is going to really make a difference in how we serve the community!"
->
-> - Dan Myers, Executive Director, Double Play Community Center
+<figure class="cs-pullquote">
+  <blockquote>
+    <p>"Such a great experience working with these gentlemen! The insight and vision is going to really make a difference in how we serve the community!"</p>
+  </blockquote>
+  <figcaption>Dan Myers<span>Executive Director, Double Play Community Center</span></figcaption>
+</figure>
