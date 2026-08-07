@@ -1911,6 +1911,58 @@ textarea {
     border: 1px solid var(--border-soft);
 }
 
+/* Testimonial pull-quote callout */
+.cs-body .cs-pullquote {
+    position: relative;
+    margin: 2rem 0;
+    padding: 1.9rem 1.9rem 1.6rem 3.4rem;
+    background: linear-gradient(135deg, rgba(91, 75, 204, 0.07), rgba(91, 75, 204, 0.02));
+    border: 1px solid var(--border-soft);
+    border-left: 4px solid var(--brand-iris);
+    border-radius: var(--radius-lg);
+}
+
+.cs-body .cs-pullquote::before {
+    content: "\201C";
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 3.4rem;
+    line-height: 1;
+    color: var(--brand-iris);
+    opacity: 0.32;
+}
+
+.cs-body .cs-pullquote blockquote {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.cs-body .cs-pullquote p {
+    margin: 0 0 0.9rem;
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    line-height: 1.5;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--text-heading);
+}
+
+.cs-body .cs-pullquote figcaption {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--brand-iris);
+}
+
+.cs-body .cs-pullquote figcaption span {
+    display: block;
+    margin-top: 0.15rem;
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
 .cs-back {
     /* contain the lede floats when the body text runs shorter than they do */
     clear: both;

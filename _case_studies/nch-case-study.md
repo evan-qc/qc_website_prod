@@ -48,9 +48,12 @@ Throughout, our priority was making Corwin's concerns our concerns, so the final
 
 The platform earns its keep in two ways at once, and Corwin is clear that you need both. On one side, every piece of data he needs to run the business lives in one place, so he can answer questions like how much profit a job made without a week of digging. On the other, the automations simply happen: handoffs, approvals, documents, signatures, and reminders fire without anyone touching them.
 
-> "You have to have both in order for it to work the way that it works for me."
->
-> - Corwin Christman, CEO & Founder, North Country Handymen
+<figure class="cs-pullquote">
+  <blockquote>
+    <p>"You have to have both in order for it to work the way that it works for me."</p>
+  </blockquote>
+  <figcaption>Corwin Christman<span>CEO &amp; Founder, North Country Handymen</span></figcaption>
+</figure>
 
 There is one more thing that makes it stick: Corwin does not have to understand any of it. He does not want to know how a trigger sends a DocuSign when a record moves from one stage to the next. He just needs to know it is happening, and to know who to call on the rare occasion it is not. Quantify monitors the platform and stays on for support, so a missed trigger is a quick fix rather than an emergency, and the system never lives or dies by one person's memory.
 
@@ -69,6 +72,9 @@ North Country Handymen was the first business to run on what Quantify now calls 
           allowfullscreen></iframe>
 </div>
 
-> "If you want to scale in any way, shape, or form, it's a game changer. You can't afford not to do it."
->
-> - Corwin Christman, CEO & Founder, North Country Handymen
+<figure class="cs-pullquote">
+  <blockquote>
+    <p>"If you want to scale in any way, shape, or form, it's a game changer. You can't afford not to do it."</p>
+  </blockquote>
+  <figcaption>Corwin Christman<span>CEO &amp; Founder, North Country Handymen</span></figcaption>
+</figure>

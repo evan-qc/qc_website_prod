@@ -35,9 +35,12 @@ Keeping the data clean took daily effort from the Operations Director plus a sta
 
 Quantify opened with Forging Foundations, our requirements-gathering phase, focused on how the team actually schedules and reports rather than on the software it wanted to replace. We asked probing questions to reach the real desired outcomes, mapped the current process end to end, and studied how the tool had evolved and where CFS wanted to take it next. That let us design for the future state rather than rebuild the past one.
 
-> "They worked tirelessly as we refined the product, tested various scenarios, and helped us create something far better than we could have imagined on our own."
->
-> - Darin Zehr, General Manager, Commercial Food Sanitation
+<figure class="cs-pullquote">
+  <blockquote>
+    <p>"They worked tirelessly as we refined the product, tested various scenarios, and helped us create something far better than we could have imagined on our own."</p>
+  </blockquote>
+  <figcaption>Darin Zehr<span>General Manager, Commercial Food Sanitation</span></figcaption>
+</figure>
 
 Forging Foundations pointed at a named destination, a Core Business Platform Build. From there we designed and implemented the CFS Scheduler, a Core Business Platform built in Airtable and structured as a proper relational database. Customers, agreements, plant visits, and Food Safety Specialists are all linked with referential integrity, so information entered once flows through to scheduling, agreement tracking, visit checklists, and KPI reporting.
 
@@ -56,10 +59,16 @@ To land it globally, Quantify migrated the data, ran synchronous and asynchronou
 
 Redundant work has disappeared. The double and triple entry across Outlook, the CRM, and payroll collapsed into a single point of entry, and the standing weekly data-hygiene meeting - along with the daily cleanup it depended on - is gone. More than 3,700 scheduled days for a global team now live in one connected system with mobile field access, freeing Food Safety Specialists to spend their time where they create the most value.
 
-> "We chose Quantify because they brought the right combination of agility, curiosity, and partnership. They were willing to take the time to understand our business, ask thoughtful questions, and tailor their approach to our needs rather than offering a one-size-fits-all solution."
->
-> - Darin Zehr, General Manager, Commercial Food Sanitation
+<figure class="cs-pullquote">
+  <blockquote>
+    <p>"We chose Quantify because they brought the right combination of agility, curiosity, and partnership. They were willing to take the time to understand our business, ask thoughtful questions, and tailor their approach to our needs rather than offering a one-size-fits-all solution."</p>
+  </blockquote>
+  <figcaption>Darin Zehr<span>General Manager, Commercial Food Sanitation</span></figcaption>
+</figure>
 
-> "Working with you on this was enlightening. You not only considered our current issues in replacing our previous platform, you shared vision and gave insight to develop something that will function in what we may want our future state to be. Your solution is intuitive and is mobile-friendly. I would recommend your team to anyone seeking a similar improvement. Very well done."
->
-> - Jason Klein, Director of Operations, Commercial Food Sanitation
+<figure class="cs-pullquote">
+  <blockquote>
+    <p>"Working with you on this was enlightening. You not only considered our current issues in replacing our previous platform, you shared vision and gave insight to develop something that will function in what we may want our future state to be. Your solution is intuitive and is mobile-friendly. I would recommend your team to anyone seeking a similar improvement. Very well done."</p>
+  </blockquote>
+  <figcaption>Jason Klein<span>Director of Operations, Commercial Food Sanitation</span></figcaption>
+</figure>
