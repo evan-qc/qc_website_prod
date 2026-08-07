@@ -1,7 +1,9 @@
 {% assign caps = include.study.capabilities | join: " " %}
+{% assign card_image = include.study.thumbnail_image | default: include.study.hero_image %}
+{% assign card_image_alt = include.study.thumbnail_image_alt | default: include.study.hero_image_alt | default: include.study.title %}
 <article class="card case-card" data-sector="{{ include.study.sector }}" data-capabilities="{{ caps }}">
-    <a href="{{ include.study.url | relative_url }}" class="card-image"{% unless include.study.hero_image %} data-label="Client photo"{% endunless %}>
-        {% if include.study.hero_image %}<img src="{{ include.study.hero_image | relative_url }}" alt="{{ include.study.hero_image_alt | default: include.study.title }}" width="1600" height="1000" loading="lazy">{% endif %}
+    <a href="{{ include.study.url | relative_url }}" class="card-image"{% unless card_image %} data-label="Client photo"{% endunless %}>
+        {% if card_image %}<img src="{{ card_image | relative_url }}" alt="{{ card_image_alt }}" width="1600" height="1000" loading="lazy">{% endif %}
         {% if include.study.sector == "public" %}<span class="card-badge badge-gov">Government &amp; Civic</span>{% elsif include.study.sector == "private" %}<span class="card-badge badge-biz">Business &amp; Industry</span>{% endif %}
     </a>
     <div class="card-body">
