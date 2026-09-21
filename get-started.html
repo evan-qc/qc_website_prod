@@ -1,19 +1,20 @@
 ---
 layout: default
-title: Let's Work Together
-description: "Schedule a free consultation. Consultation today, investment in your tomorrow."
-active_nav: get-started
+title: Let's Talk
+seo_title: "Let's Talk | Quantify"
+description: "Start with a free conversation. Quantify works with counties, authorities, agencies, and employers across Lewis, Jefferson, and St. Lawrence counties and the wider North Country. Based in Lowville, NY."
+active_nav: talk
 ---
 <!-- Hero -->
 <section class="hero hero-compact">
     <div class="hero-content">
-        <span class="eyebrow">Let's Work Together</span>
-        <h1>Consultation today.<br>Investment in your <span class="accent-word">tomorrow</span>.</h1>
-        <p class="lead">Schedule your complimentary consultation today to begin exploring how data-driven solutions can enhance your business operations.</p>
+        <span class="eyebrow">Let's Talk</span>
+        <h1>Start with a conversation,<br>not a <span class="accent-word">contract</span>.</h1>
+        <p class="lead">The first one is free, and we lead with something useful whether or not you hire us. Tell us where the pain is and we will tell you straight whether we are the right people to fix it.</p>
     </div>
 </section>
 
-<!-- Form + intro -->
+<!-- Form + contact -->
 <section class="section">
     <div class="container">
         <div class="two-col two-col--lopsided">
@@ -21,11 +22,25 @@ active_nav: get-started
                 <div class="section-heading">
                     <h2>Tell us a bit about you</h2>
                 </div>
-                <p>This session is an opportunity to discuss your unique challenges and identify strategies that drive long-term success. We respond to inquiries within 48 hours.</p>
-                <p class="u-mt-6"><strong>Email:</strong> <a href="mailto:hello@quantify-consulting.com?subject=Free%20consultation">Email us</a></p>
+                <p>This session is an opportunity to discuss your challenges and identify where the highest-leverage place to start is. We respond to every inquiry within 48 hours.</p>
+
+                <div class="contact-block">
+                    <h3>Email</h3>
+                    <p><a class="contact-email" href="mailto:{{ site.email }}?subject=Free%20consultation">{{ site.email }}</a></p>
+
+                    <h3>Office</h3>
+                    <address class="contact-address">
+                        Quantify Consulting<br>
+                        {{ site.address_street }}<br>
+                        {{ site.address_locality }}, {{ site.address_region }} {{ site.address_postal }}
+                    </address>
+
+                    <h3>Where we work</h3>
+                    <p class="muted">Lewis, Jefferson, and St. Lawrence counties, and across upstate New York.</p>
+                </div>
             </div>
             <div>
-                <iframe class="airtable-embed" src="https://airtable.com/embed/appAqSGbcZW97E1aK/pagTaNts1aKm9mVmx/form" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+                <iframe class="airtable-embed" src="https://airtable.com/embed/appAqSGbcZW97E1aK/pagTaNts1aKm9mVmx/form" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;" title="Contact form"></iframe>
             </div>
         </div>
     </div>
@@ -41,19 +56,27 @@ active_nav: get-started
             <details class="faq-item">
                 <summary>Do you have an average project cost?</summary>
                 <div class="faq-answer">
-                    <p>Our pricing is primarily based on the value we deliver to your business or organization, rather than the number of hours invested in the project. Project costs typically range from $3K to $50K, depending on the scope and impact.</p>
+                    <p>Our pricing is primarily based on the value we deliver to your organization, rather than the number of hours invested in the project. Project costs typically range from $10K to $50K+, depending on the scope and impact.</p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>How do municipalities and agencies contract with you?</summary>
+                <div class="faq-answer">
+                    <p>As a professional services provider. In New York, professional services are generally exempt from competitive bidding requirements, which means most of our municipal engagements are contracted directly rather than through a formal bid.</p>
+                    <p>That said, procurement is set locally, and we work within whatever your policy requires. If your county or municipality has a General Municipal Law §104-b procurement policy that calls for written or verbal quotes at your spending threshold, tell us the threshold and we will supply what the policy asks for in the format it asks for.</p>
+                    <p>We have a W-9, a certificate of insurance, and client references available on request, and we can provide them before you start the paperwork rather than after. If your purchasing officer wants to talk through the mechanics before anything is committed, we are happy to have that call.</p>
                 </div>
             </details>
             <details class="faq-item">
                 <summary>What type of clients do you work with?</summary>
                 <div class="faq-answer">
-                    <p>We work with a wide range of clients, many of whom are small to mid-sized businesses in the Syracuse, Utica, and Watertown areas. We're open to collaborating with businesses of any size or location.</p>
+                    <p>Counties, authorities, agencies, school districts, and local employers. Most of our work is in Lewis, Jefferson, and St. Lawrence counties. We also work across upstate New York, and we take on delivery work for consulting firms outside the region.</p>
                 </div>
             </details>
             <details class="faq-item">
                 <summary>Does my physical location matter?</summary>
                 <div class="faq-answer">
-                    <p>We are open to discussing all project inquiries, regardless of where you're based.</p>
+                    <p>Being close helps, and a lot of our clients are within an hour's drive of Lowville, which means we can be in the room when it matters. But it isn't a requirement. We're open to discussing all project inquiries, regardless of where you're based.</p>
                 </div>
             </details>
             <details class="faq-item">
@@ -62,10 +85,16 @@ active_nav: get-started
                     <p>Engagement length varies with scope - from a focused 1–2 week data strategy workshop to multi-month implementation projects. We'll scope this together during your free consultation.</p>
                 </div>
             </details>
+            <details class="faq-item">
+                <summary>What happens after the build is finished?</summary>
+                <div class="faq-answer">
+                    <p>We stay on. Systems need an owner, and most of our clients don't have an internal team to hand one to. When we finish a build we remain the team that maintains it, so when something breaks or changes there's a name attached. <a href="{{ '/what-to-expect.html' | relative_url }}">More on how we work →</a></p>
+                </div>
+            </details>
         </div>
         <div class="section-footnote">
             <h3>Still have questions?</h3>
-            <p class="muted">Drop us a line - we'll respond within 48 hours.</p>
+            <p class="muted">Email us at <a href="mailto:{{ site.email }}">{{ site.email }}</a> - we'll respond within 48 hours.</p>
         </div>
     </div>
 </section>

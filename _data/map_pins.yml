@@ -1,0 +1,47 @@
+# Client pins on the homepage North Country map.
+#
+# x/y are SVG user units in the viewBox recorded in _data/map_meta.yml, which
+# also carries a lookup table of projected town coordinates. To add a pin:
+# copy the x/y for the town from that table, nudge by a few units if it would
+# collide with an existing pin, and add a row here. No script needed unless the
+# town is missing from the table.
+#
+# Fields:
+#   label    org name shown on hover and to screen readers (required)
+#   town     shown under the label on hover (required)
+#   url      case study to link to. Omit for an unlinked pin.
+#   status   omit for a normal pin, or "in-progress" for the ochre treatment
+#            used for engagements that are live but not yet publishable.
+#
+# Deliberately not pinned, and why:
+#   - The two Anonymous County studies. Pinning them would identify the client.
+#   - Commercial Food Sanitation. Global operation, no North Country location
+#     to pin honestly.
+#   - Double Play Community Center and North Country Handymen. Both are local
+#     but neither case study states a town, and I won't guess one. Add them
+#     here once you confirm the towns.
+
+- label: "Lewis County Government"
+  town: "Lowville"
+  x: 509.9
+  y: 211.3
+  url: "/case-studies/lewis-county-financial-transparency/"
+
+- label: "Development Authority of the North Country"
+  town: "Watertown"
+  x: 461.9
+  y: 182.1
+  url: "/case-studies/north-country-landfill-financial-model/"
+
+- label: "Christian Community Center"
+  town: "Turin"
+  x: 519.0
+  y: 235.7
+  url: "/case-studies/christian-community-center-rental-automation/"
+
+# Engagement in flight. Unlinked until it wraps and we have sign-off.
+- label: "Naturally Lewis"
+  town: "Lowville"
+  x: 498.0
+  y: 220.0
+  status: "in-progress"

@@ -1,72 +1,130 @@
 ---
 layout: default
 title: Home
-description: "We help businesses elevate operations through commercial digitalization - analytics, automation, and AI."
+seo_title: "Quantify | Data, Systems & Reporting for New York's North Country"
+description: "Quantify is the fractional data and systems department for the counties, authorities, agencies, and employers of New York's North Country. Dashboards, custom apps, automation, and financial modeling. Based in Lowville, NY."
+active_nav: home
 ---
-<!-- Hero (animated, looping) -->
-{% include hero-animation.html %}
-
-<!-- Three pillars -->
-<section class="section">
-    <div class="container">
-        <div class="pillars">
-            <article class="pillar">
-                <div class="pillar-icon-chip">
-                    <img loading="lazy" src="{{ '/assets/icon-analytics.svg' | relative_url }}" alt="" width="40" height="40" />
-                </div>
-                <h3>Analytics</h3>
-                <p>Unlock actionable insights and data-driven decisions with advanced analytics that reveal hidden opportunities, optimize performance, and fuel sustainable commercial growth.</p>
-            </article>
-            <article class="pillar">
-                <div class="pillar-icon-chip">
-                    <img loading="lazy" src="{{ '/assets/icon-automation.svg' | relative_url }}" alt="" width="40" height="40" />
-                </div>
-                <h3>Automation</h3>
-                <p>Streamline operations and eliminate inefficiencies through intelligent automation that accelerates processes, reduces costs, and frees your team for strategic work.</p>
-            </article>
-            <article class="pillar">
-                <div class="pillar-icon-chip">
-                    <img loading="lazy" src="{{ '/assets/icon-ai.svg' | relative_url }}" alt="" width="40" height="40" />
-                </div>
-                <h3>AI</h3>
-                <p>Harness the power of artificial intelligence to innovate faster, personalize customer experiences, predict trends, and transform your operations with smart, scalable solutions.</p>
-            </article>
+<!-- Hero -->
+<section class="hero home-hero">
+    <div class="hero-content">
+        <span class="eyebrow">New York's North Country</span>
+        <h1>You need a data analyst, an IT director, and an operations lead.</h1>
+        <p class="home-hero-sub">Hiring all three isn't realistic. So hire the three of us.</p>
+        <p class="lead">Quantify is the fractional data and systems department for organizations that will never have one on payroll. We build the reporting, the systems, and the models an internal team would build, then we stay on to keep them running.</p>
+        <p class="home-hero-region">Based in Lowville. Working across Lewis, Jefferson, and St. Lawrence counties, and the wider North Country.</p>
+        <div class="hero-cta-row">
+            <a href="{{ '/case-studies.html' | relative_url }}" class="btn btn-amber">See our work</a>
+            <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-ghost">Talk to us</a>
         </div>
     </div>
 </section>
 
-<!-- We help you... -->
+<!-- Client logos: sits directly under the hero, above everything else -->
+{% include client-logos.html %}
+
+<!-- North Country map -->
+<section class="section section-tight">
+    <div class="container">
+        {% include north-country-map.html %}
+        <p class="nc-map-caption">Every pin is a client. Most of them are within an hour's drive.</p>
+    </div>
+</section>
+
+<!-- Audience router -->
 <section class="section section-alt">
     <div class="container">
         <div class="section-heading">
-            <h2><em>We help you…</em></h2>
+            <h2>Where should you start?</h2>
         </div>
-        <div class="feature-list">
-            <div class="feature-list-item">
-                <h3>Build a Data Strategy</h3>
-                <p>We guide your leadership through a focused session to define your data mission, establish aligned strategic KPIs, and prioritize high-impact improvement opportunities - delivering a clear, actionable roadmap in one efficient workshop.</p>
-            </div>
-            <div class="feature-list-item">
-                <h3>Create Automated Reporting</h3>
-                <p>Turn your data into decisions. We build dashboards and reports that make performance clear at a glance, so you can see what's working, spot issues early, and plan your next move with confidence.</p>
-            </div>
-            <div class="feature-list-item">
-                <h3>Integrate Your Systems</h3>
-                <p>No more disconnected tools or double data entry. We connect your systems so information flows seamlessly - improving accuracy, efficiency, and visibility across your business.</p>
-            </div>
-            <div class="feature-list-item">
-                <h3>Automate Your Core Processes</h3>
-                <p>Stop wasting hours on repetitive tasks. We design smart automations that handle the busywork - saving you time, reducing errors, and helping your business run smoother every day.</p>
-            </div>
+        <div class="audience-router">
+            <a class="audience-card" href="{{ '/case-studies.html' | relative_url }}?sector=public">
+                <h3>I run a county, authority, or agency</h3>
+                <p>Real-time financial reporting, grant and compliance tracking, custom applications, and long-range financial models. We have done this work for Lewis County and the Development Authority of the North Country.</p>
+                <span class="audience-card-cue">See our public-sector work →</span>
+            </a>
+            <a class="audience-card" href="{{ '/case-studies.html' | relative_url }}?sector=private">
+                <h3>I own a local business</h3>
+                <p>One system that runs the whole operation instead of nine spreadsheets and a group text. Built in weeks, not quarters, and priced for a company your size.</p>
+                <span class="audience-card-cue">See our work with local businesses →</span>
+            </a>
         </div>
+        <p class="audience-aside">Consulting firm looking for delivery capacity? <a href="{{ '/for-consulting-firms/' | relative_url }}">Start here →</a></p>
     </div>
 </section>
 
-<!-- CTA Banner -->
+<!-- Capability menu -->
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <h2>What we can do for you</h2>
+        </div>
+        {% include capability-tiles.html %}
+        <p class="section-footnote u-center">
+            <a href="{{ '/what-we-do.html' | relative_url }}" class="card-link">See all capabilities</a>
+        </p>
+    </div>
+</section>
+
+<!-- The three of us -->
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-heading">
+            <h2>Three people. Thirty years of it.</h2>
+        </div>
+        <p class="lead u-mb-8">In a region this size, you are not hiring a firm. You are hiring the people who show up. Here is who shows up.</p>
+        <div class="team-strip">
+            <article class="team-strip-member">
+                <img class="team-strip-photo" src="{{ '/assets/evan.png' | relative_url }}" alt="Evan Jennings" width="800" height="800" loading="lazy">
+                <div class="team-strip-name">Evan Jennings</div>
+                <div class="team-strip-role">Founder</div>
+                <p>Carnegie Mellon MBA in finance, operations, and data. Former business intelligence engineer at Amazon Web Services. Back in Lewis County on purpose.</p>
+            </article>
+            <article class="team-strip-member">
+                <img class="team-strip-photo" src="{{ '/assets/conner.png' | relative_url }}" alt="Conner Biolsi" width="800" height="800" loading="lazy">
+                <div class="team-strip-name">Conner Biolsi</div>
+                <div class="team-strip-role">Principal Solutions Architect</div>
+                <p>Former IT Director for Lewis County government, where he rebuilt the county's entire infrastructure stack. Previously technology at J.P. Morgan Chase. Certified in Cybersecurity.</p>
+            </article>
+            <article class="team-strip-member">
+                <img class="team-strip-photo" src="{{ '/assets/allen.png' | relative_url }}" alt="Allen Beaujon" width="800" height="800" loading="lazy">
+                <div class="team-strip-name">Allen Beaujon</div>
+                <div class="team-strip-role">Principal Data Solutions Consultant</div>
+                <p>Built reporting and analytics for a regional bank. Specializes in turning messy operational data into numbers a leadership team will actually act on.</p>
+            </article>
+        </div>
+        <p class="section-footnote u-center">
+            <a href="{{ '/about.html' | relative_url }}" class="card-link">Meet the team</a>
+        </p>
+    </div>
+</section>
+
+<!-- Featured work: one per audience type -->
+{% assign featured_slugs = "lewis-county-financial-transparency,north-country-landfill-financial-model,commercial-food-sanitation-core-business-platform" | split: "," %}
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <h2>Recent work</h2>
+        </div>
+        <div class="card-grid case-grid">
+            {%- for slug in featured_slugs %}
+            {%- assign path = "_case_studies/" | append: slug | append: ".md" %}
+            {%- assign study = site.case_studies | where: "path", path | first %}
+            {%- if study %}{% include case-study-card.html study=study %}{% endif %}
+            {%- endfor %}
+        </div>
+        <p class="section-footnote u-center">
+            <a href="{{ '/case-studies.html' | relative_url }}" class="card-link">See all {{ site.case_studies.size }} projects</a>
+        </p>
+    </div>
+</section>
+
+<!-- Closing CTA -->
 <section class="cta-banner">
     <div class="container">
-        <h2>Let's get started</h2>
-        <p>Schedule a free consultation today to see how our expert solutions can streamline your processes and drive lasting success.</p>
-        <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Let's Work Together</a>
+        <h2>Start with a conversation, not a contract.</h2>
+        <p>The first one is free, and we lead with something useful whether or not you hire us. Tell us where the pain is and we will tell you straight whether we are the right people to fix it.</p>
+        <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Talk to us</a>
+        <p class="cta-contact">{{ site.address_locality }}, {{ site.address_region }} · <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
     </div>
 </section>

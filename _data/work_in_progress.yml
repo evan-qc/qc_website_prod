@@ -1,0 +1,13 @@
+# Engagements that are live but not yet publishable as a full case study.
+# These render in the "Recent work in progress" band at the bottom of Our Work.
+#
+# When the work wraps and the client signs off, write the study into
+# _case_studies/ and delete the row here. Keep entries vague enough that they
+# need no sign-off to publish: client name, what kind of work, no results.
+#
+# Empty this list and the whole section disappears from the page.
+
+- client: "Naturally Lewis"
+  title: "Systems and reporting for a county economic development agency"
+  summary: "Work underway now with Lewis County's economic development organization. Full write-up to follow."
+  status: "In progress"

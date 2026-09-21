@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} - {{ site.title }} Consulting{% else %}{{ site.title }} Consulting{% endif %}</title>
+    <title>{% if page.seo_title %}{{ page.seo_title }}{% elsif page.title %}{{ page.title }} - {{ site.title }} Consulting{% else %}{{ site.title }} Consulting{% endif %}</title>
     <meta name="description" content="{{ page.description | default: site.description }}">
     <link rel="icon" type="image/png" href="{{ '/assets/qc_logo_only_blank_on_trans.png' | relative_url }}">
     <link rel="stylesheet" href="{{ '/css/shared.css' | relative_url }}?v={{ site.time | date: '%s' }}">
@@ -22,31 +22,11 @@
                 </span>
             </button>
             <nav class="site-nav" id="site-nav" aria-label="Primary">
-                <div class="nav-item has-dropdown">
-                    <button type="button" class="nav-trigger{% if page.active_nav == 'about' %} active{% endif %}" aria-haspopup="true" aria-expanded="false">About Us <span class="nav-caret" aria-hidden="true">▾</span></button>
-                    <div class="dropdown">
-                        <div class="dropdown-inner">
-                            <a href="{{ '/our-why.html' | relative_url }}">Our Why</a>
-                            <a href="{{ '/the-3as.html' | relative_url }}">The "3 A's"</a>
-                            <a href="{{ '/what-to-expect.html' | relative_url }}">What to Expect</a>
-                            <a href="{{ '/about.html' | relative_url }}">Meet The Team</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="nav-item has-dropdown">
-                    <button type="button" class="nav-trigger{% if page.active_nav == 'expertise' %} active{% endif %}" aria-haspopup="true" aria-expanded="false">Expertise <span class="nav-caret" aria-hidden="true">▾</span></button>
-                    <div class="dropdown">
-                        <div class="dropdown-inner">
-                            <span class="dropdown-label">The 3 A's</span>
-                            <a href="{{ '/data-analytics.html' | relative_url }}" class="dropdown-sub">Analytics</a>
-                            <a href="{{ '/business-process-automation.html' | relative_url }}" class="dropdown-sub">Automation</a>
-                            <a href="{{ '/ai.html' | relative_url }}" class="dropdown-sub">AI</a>
-                            <a href="{{ '/technologies-partners.html' | relative_url }}">Technologies &amp; Partners</a>
-                        </div>
-                    </div>
-                </div>
-                <a href="{{ '/case-studies.html' | relative_url }}" class="nav-link{% if page.active_nav == 'outcomes' %} active{% endif %}">Client Outcomes</a>
-                <a href="{{ '/get-started.html' | relative_url }}" class="cta">Let's Work Together</a>
+                <a href="{{ '/case-studies.html' | relative_url }}" class="nav-link{% if page.active_nav == 'work' %} active{% endif %}">Our Work</a>
+                <a href="{{ '/what-we-do.html' | relative_url }}" class="nav-link{% if page.active_nav == 'capabilities' %} active{% endif %}">What We Do</a>
+                <a href="{{ '/about.html' | relative_url }}" class="nav-link{% if page.active_nav == 'team' %} active{% endif %}">Our Team</a>
+                <a href="{{ '/what-to-expect.html' | relative_url }}" class="nav-link{% if page.active_nav == 'how' %} active{% endif %}">How We Work</a>
+                <a href="{{ '/get-started.html' | relative_url }}" class="cta">Let's Talk</a>
             </nav>
         </div>
     </header>
@@ -61,43 +41,47 @@
                     <a href="{{ '/index.html' | relative_url }}" class="site-logo">
                         <img src="{{ '/assets/qc_logo_black_on_transparent.png' | relative_url }}" alt="Quantify" width="659" height="174" loading="lazy" />
                     </a>
-                    <p>Helping businesses unlock the power of their data through analytics, automation, and AI.</p>
+                    <p>The fractional data and systems department for New York's North Country.</p>
+                    <p class="footer-region">{{ site.address_locality }}, {{ site.address_region }} · Serving Lewis, Jefferson, and St. Lawrence counties and the wider North Country.</p>
                 </div>
                 <div>
-                    <h4>Expertise</h4>
+                    <h4>Quantify</h4>
                     <ul>
-                        <li><a href="{{ '/data-analytics.html' | relative_url }}">Analytics</a></li>
-                        <li><a href="{{ '/business-process-automation.html' | relative_url }}">Automation</a></li>
-                        <li><a href="{{ '/ai.html' | relative_url }}">AI</a></li>
-                        <li><a href="{{ '/technologies-partners.html' | relative_url }}">Technologies &amp; Partners</a></li>
+                        <li><a href="{{ '/case-studies.html' | relative_url }}">Our Work</a></li>
+                        <li><a href="{{ '/what-we-do.html' | relative_url }}">What We Do</a></li>
+                        <li><a href="{{ '/about.html' | relative_url }}">Our Team</a></li>
+                        <li><a href="{{ '/what-to-expect.html' | relative_url }}">How We Work</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Company</h4>
+                    <h4>More</h4>
                     <ul>
-                        <li><a href="{{ '/about.html' | relative_url }}">Meet The Team</a></li>
-                        <li><a href="{{ '/our-why.html' | relative_url }}">Our Why</a></li>
-                        <li><a href="{{ '/what-to-expect.html' | relative_url }}">What to Expect</a></li>
-                        <li><a href="{{ '/case-studies.html' | relative_url }}">Client Outcomes</a></li>
+                        <li><a href="{{ '/for-consulting-firms/' | relative_url }}">For Consulting Firms</a></li>
                         <li><a href="{{ '/careers.html' | relative_url }}">Careers</a></li>
+                        <li><a href="{{ '/privacy.html' | relative_url }}">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4>Contact</h4>
                     <ul>
-                        <li><a href="{{ '/get-started.html' | relative_url }}">Let's Work Together</a></li>
-                        <li><a href="mailto:hello@quantify-consulting.com">Email us</a></li>
-                        <li><a href="https://www.linkedin.com/in/evan-jennings/">LinkedIn</a></li>
+                        <li><a href="{{ '/get-started.html' | relative_url }}">Let's Talk</a></li>
+                        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+                        <li><a href="{{ site.linkedin_url }}">LinkedIn</a></li>
                     </ul>
+                    <address class="footer-address">
+                        {{ site.address_street }}<br>
+                        {{ site.address_locality }}, {{ site.address_region }} {{ site.address_postal }}
+                    </address>
                 </div>
             </div>
             <div class="footer-bottom">
-                © {{ 'now' | date: "%Y" }} Quantify Consulting · <a href="#">Privacy Policy</a>
+                © {{ 'now' | date: "%Y" }} Quantify Consulting · <a href="{{ '/privacy.html' | relative_url }}">Privacy Policy</a>
             </div>
         </div>
     </footer>
 
-    <!-- Mobile navigation: slide-out drawer + accessible dropdown accordions -->
+    <!-- Mobile navigation: slide-out drawer. The nav is a flat list of five
+         links, so there are no dropdowns to manage here any more. -->
     <script>
       (function () {
         var toggle = document.getElementById('nav-toggle');
@@ -121,11 +105,6 @@
           toggle.setAttribute('aria-label', 'Open navigation menu');
           if (scrim) scrim.hidden = true;
           document.body.classList.remove('nav-open');
-          nav.querySelectorAll('.nav-item.is-open').forEach(function (item) {
-            item.classList.remove('is-open');
-            var t = item.querySelector('.nav-trigger');
-            if (t) t.setAttribute('aria-expanded', 'false');
-          });
         }
 
         toggle.addEventListener('click', function () {
@@ -139,18 +118,6 @@
             closeNav();
             toggle.focus();
           }
-        });
-
-        // Dropdown triggers act as accordions inside the drawer; on desktop
-        // the CSS hover/focus behaviour takes over and we leave them alone.
-        nav.querySelectorAll('.nav-trigger').forEach(function (trigger) {
-          trigger.addEventListener('click', function () {
-            if (desktop.matches) return;
-            var item = trigger.closest('.nav-item');
-            if (!item) return;
-            var isOpen = item.classList.toggle('is-open');
-            trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-          });
         });
 
         // Reset drawer state when growing past the desktop breakpoint.

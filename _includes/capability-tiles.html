@@ -1,0 +1,13 @@
+<!-- Abbreviated capability menu for the homepage. Eight tiles, headline plus
+     one line, from _data/capabilities.yml. The full sections, with proof,
+     live on what-we-do.html. -->
+<ul class="capability-tiles">
+    {%- for cap in site.data.capabilities %}
+    <li class="capability-tile">
+        <a href="{{ '/what-we-do.html' | relative_url }}#{{ cap.slug }}">
+            <h3>{{ cap.short }}</h3>
+            <p>{{ cap.tagline }}</p>
+        </a>
+    </li>
+    {%- endfor %}
+</ul>
