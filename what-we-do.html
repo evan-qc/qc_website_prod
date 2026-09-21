@@ -1,0 +1,80 @@
+---
+layout: default
+title: What We Do
+seo_title: "What We Do | Quantify"
+description: "Dashboards and reporting, custom applications, system integration, process automation, financial modeling, data cleanup, grant and compliance reporting, and technology assessments. Every capability backed by work we have actually delivered."
+active_nav: capabilities
+---
+<!-- Hero -->
+<section class="hero hero-compact">
+    <div class="hero-content">
+        <span class="eyebrow">What We Do</span>
+        <h1>Eight things, and <span class="accent-word">proof</span> of each.</h1>
+        <p class="lead">Every capability below links to a project where we did it, for a named client, with a result you can read. If we cannot point at proof, it is not on this page.</p>
+    </div>
+</section>
+
+<!-- The eight -->
+<section class="section">
+    <div class="container-narrow">
+        {%- for cap in site.data.capabilities %}
+        <article class="capability" id="{{ cap.slug }}">
+            <div class="capability-num" aria-hidden="true">{{ forloop.index }}</div>
+            <div class="capability-body">
+                <h2>{{ cap.title }}</h2>
+                <p class="capability-tagline">{{ cap.tagline }}</p>
+                <p>{{ cap.body }}</p>
+                {%- if cap.tools %}<p class="capability-tools">{{ cap.tools }}</p>{% endif %}
+                {%- if cap.proof_url %}
+                <p class="capability-proof">
+                    <span class="capability-proof-label">Proof</span>
+                    {{ cap.proof }}
+                    <a href="{{ cap.proof_url | relative_url }}" class="card-link">Read it</a>
+                </p>
+                {%- elsif cap.proof_note %}
+                <p class="capability-proof capability-proof--none">
+                    <span class="capability-proof-label">Proof</span>
+                    {{ cap.proof_note }}
+                </p>
+                {%- endif %}
+            </div>
+        </article>
+        {%- endfor %}
+    </div>
+</section>
+
+<!-- Closing: the 3 A's, demoted to a toolkit -->
+<section class="section section-alt">
+    <div class="container-narrow">
+        <div class="section-heading">
+            <h2>Analytics, automation, and AI are the toolkit, not the pitch.</h2>
+        </div>
+        <p>Underneath all eight of those is the same set of tools: analytics and reporting, process automation, and AI where it genuinely earns its keep. We care much less about which one we reach for than about whether the thing we hand you actually gets used.</p>
+        <p>On AI specifically, our position is simple.</p>
+        <blockquote class="pull-quote">Most "AI" is a chatbot bolted onto a broken process.</blockquote>
+        <p>The useful version is narrower and more boring: reading documents so nobody re-keys them, triaging requests, surfacing what deserves attention. We will tell you when it fits, and we will tell you when it does not.</p>
+
+        <div class="u-mt-10">
+            <h3 class="logo-group-heading">The platforms we build on</h3>
+            {% include tool-grid.html compact=true %}
+            <p class="u-mt-6"><a href="{{ '/for-consulting-firms/' | relative_url }}#tools" class="card-link">See the full stack</a></p>
+        </div>
+
+        <!-- The three older deep-dive pages. Out of the main nav, kept live and
+             reachable from here until we have traffic data on them. -->
+        <p class="muted u-mt-10">Longer reads on the underlying disciplines:
+            <a href="{{ '/data-analytics.html' | relative_url }}">analytics</a>,
+            <a href="{{ '/business-process-automation.html' | relative_url }}">process automation</a>, and
+            <a href="{{ '/ai.html' | relative_url }}">applied AI</a>.
+        </p>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+    <div class="container">
+        <h2>Not sure which of these you need?</h2>
+        <p>That is the normal starting point, and it is what the first conversation is for. We find the highest-leverage place to begin, then build the path forward with you.</p>
+        <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Talk to us</a>
+    </div>
+</section>

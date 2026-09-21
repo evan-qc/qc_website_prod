@@ -2011,3 +2011,734 @@ textarea {
         transition: none;
     }
 }
+
+/* =========================================================
+   Restructure components
+   Homepage (logo strip, map, audience router, capability
+   tiles, team strip), What We Do, /for-consulting-firms,
+   and the Our Work "in progress" band.
+   ========================================================= */
+
+/* ---------- Map tokens ----------
+   Kept as variables so the map follows a theme change instead of
+   hardcoding one, and so a dark mode only needs this block redefined. */
+:root {
+    --nc-land: #E6E1D6;
+    --nc-land-stroke: rgba(14, 17, 22, 0.20);
+    --nc-focus: var(--brand-iris);
+    --nc-focus-stroke: rgba(255, 255, 255, 0.55);
+    --nc-pin: var(--brand-charcoal);
+    --nc-pin-halo: var(--brand-white);
+    --nc-pin-progress: var(--cta-amber);
+    --nc-label-ink: var(--brand-charcoal);
+    --nc-label-halo: var(--brand-white);
+}
+
+/* ---------- Hero: contrast fixes + home variant ---------- */
+/* The default eyebrow colour is a dark amber tuned for light surfaces; on the
+   purple hero it fails contrast. Heroes get the light amber instead. */
+.hero .eyebrow {
+    color: var(--brand-amber);
+}
+
+.hero .btn-ghost {
+    color: var(--brand-white);
+    border-color: rgba(255, 255, 255, 0.55);
+}
+
+@media (hover: hover) {
+    .hero .btn-ghost:hover {
+        color: var(--brand-white);
+        border-color: var(--brand-white);
+        background: rgba(255, 255, 255, 0.12);
+    }
+}
+
+.home-hero h1 {
+    max-width: 18ch;
+}
+
+.home-hero-sub {
+    font-size: clamp(1.2rem, 1rem + 1.1vw, 1.6rem);
+    font-weight: 600;
+    color: var(--brand-amber);
+    line-height: 1.35;
+    margin: 0.75rem 0 1.25rem;
+    max-width: 32ch;
+}
+
+/* County names read as supporting detail, not a display line. */
+.home-hero-region {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.68);
+    max-width: 52ch;
+    margin: -1rem 0 2rem;
+}
+
+/* ---------- Client logo strip ---------- */
+.client-strip {
+    padding: 2.25rem 0;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.client-strip-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.client-strip-list {
+    list-style: none;
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Flex rather than grid on desktop so a wrapped final tile centres under the
+   row instead of orphaning hard left. The list length changes every time a
+   client is added, so the layout has to look deliberate at any count. */
+@media (min-width: 768px) {
+    .client-strip-list {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+        overflow: visible;
+    }
+    .client-tile {
+        flex: 1 1 158px;
+        max-width: 220px;
+    }
+}
+
+.client-tile {
+    flex: 0 0 62%;
+    scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+    .client-tile {
+        flex: initial;
+    }
+}
+
+.client-tile-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    height: 100%;
+    min-height: 88px;
+    padding: 0.9rem 0.85rem;
+    text-align: center;
+    background: var(--surface-1);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    transition: border-color 0.2s, filter 0.2s, opacity 0.2s;
+}
+
+a.client-tile-inner {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.client-tile img {
+    max-width: 100%;
+    max-height: 46px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    /* Grayscale at rest, full colour on hover, per the brief. */
+    filter: grayscale(1);
+    opacity: 0.75;
+    transition: filter 0.2s, opacity 0.2s;
+}
+
+.client-wordmark {
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+
+@media (hover: hover) {
+    a.client-tile-inner:hover {
+        border-color: var(--accent);
+    }
+    a.client-tile-inner:hover img {
+        filter: grayscale(0);
+        opacity: 1;
+    }
+    /* A wordmark has no colour to restore, so it gains weight instead. */
+    a.client-tile-inner:hover .client-wordmark {
+        color: var(--accent);
+    }
+}
+
+/* Engagement in flight: styled, but deliberately not a link. */
+.client-tile--pending .client-tile-inner {
+    border-style: dashed;
+    background: transparent;
+}
+
+.client-tile--pending .client-wordmark {
+    color: var(--text-muted);
+}
+
+.client-tile-note {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+/* ---------- North Country map ---------- */
+.nc-map {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.nc-map-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.nc-county {
+    fill: var(--nc-land);
+    stroke: var(--nc-land-stroke);
+    stroke-width: 0.75;
+    stroke-linejoin: round;
+}
+
+.nc-county--focus {
+    fill: var(--nc-focus);
+    stroke: var(--nc-focus-stroke);
+    stroke-width: 1;
+}
+
+.nc-pin-hit {
+    fill: transparent;
+}
+
+.nc-pin-halo {
+    fill: var(--nc-pin-halo);
+    opacity: 0.9;
+}
+
+.nc-pin-dot {
+    fill: var(--nc-pin);
+    transition: r 0.15s ease;
+}
+
+.nc-pin--progress .nc-pin-dot {
+    fill: var(--nc-pin-progress);
+}
+
+.nc-pin {
+    cursor: pointer;
+}
+
+.nc-pin--static {
+    cursor: default;
+}
+
+/* Labels are hidden until hover or keyboard focus, so the map reads as
+   geography first. paint-order puts a halo stroke behind the glyphs, which
+   keeps them legible over any county fill without needing a backing rect. */
+.nc-pin-label {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.nc-pin-name,
+.nc-pin-town {
+    text-anchor: middle;
+    paint-order: stroke fill;
+    stroke: var(--nc-label-halo);
+    stroke-width: 4;
+    stroke-linejoin: round;
+    fill: var(--nc-label-ink);
+    font-family: inherit;
+}
+
+.nc-pin-name {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.nc-pin-town {
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.75;
+}
+
+.nc-pin:hover .nc-pin-label,
+.nc-pin:focus .nc-pin-label,
+.nc-pin:focus-visible .nc-pin-label,
+.nc-pin:focus-within .nc-pin-label {
+    opacity: 1;
+}
+
+.nc-pin:hover .nc-pin-dot {
+    r: 7.5;
+}
+
+.nc-pin:focus-visible {
+    outline: none;
+}
+
+.nc-pin:focus-visible .nc-pin-halo {
+    stroke: var(--accent);
+    stroke-width: 2.5;
+}
+
+/* At phone width the whole state is about 340px across, which shrinks pins and
+   labels to a few pixels. Scale the pin geometry up in user units so they stay
+   visible; the SVG scales them back down. Fine-grained pin tapping is still a
+   desktop affordance - four North Country pins land within ~25px of each other
+   at this size - so nothing depends on it: the logo strip above and Our Work
+   both reach the same case studies. */
+@media (max-width: 700px) {
+    .nc-pin-hit { r: 30; }
+    .nc-pin-halo { r: 20; }
+    .nc-pin-dot { r: 11; }
+    .nc-pin:hover .nc-pin-dot { r: 13; }
+    .nc-pin-name { font-size: 32px; stroke-width: 7; }
+    .nc-pin-town { font-size: 27px; stroke-width: 7; }
+    /* The label group carries an SVG translate attribute; a CSS transform on it
+       would replace that and stack every label in one spot. Nudge the two text
+       elements instead, which have no attribute transform of their own. */
+    .nc-pin-name { transform: translateY(-22px); }
+    .nc-pin-town { transform: translateY(-12px); }
+}
+
+.nc-map-caption {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+}
+
+/* ---------- Audience router ---------- */
+.audience-router {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .audience-router {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.audience-card {
+    display: block;
+    padding: 1.75rem;
+    background: var(--surface-1);
+    border: 1px solid var(--border-soft);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-lg);
+    color: var(--text-primary);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.audience-card h3 {
+    font-size: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+    color: var(--text-heading);
+    margin-bottom: 0.6rem;
+}
+
+.audience-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.audience-card-cue {
+    font-weight: 600;
+    color: var(--accent);
+}
+
+@media (hover: hover) {
+    .audience-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-sm);
+        border-color: var(--border-strong);
+        border-left-color: var(--accent);
+        color: var(--text-primary);
+    }
+    .audience-card:hover .audience-card-cue {
+        color: var(--accent-warm);
+    }
+}
+
+/* The third audience, deliberately quiet: indexed and findable, invisible
+   unless you are looking for it. No card, no icon, no button. */
+.audience-aside {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* ---------- Capability tiles (homepage) ---------- */
+.capability-tiles {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+}
+
+@media (min-width: 600px) {
+    .capability-tiles {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 960px) {
+    .capability-tiles {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.capability-tile a {
+    display: block;
+    height: 100%;
+    padding: 1.1rem 1.15rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.capability-tile h3 {
+    font-size: 0.98rem;
+    color: var(--text-heading);
+    margin-bottom: 0.35rem;
+}
+
+.capability-tile p {
+    font-size: 0.86rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+@media (hover: hover) {
+    .capability-tile a:hover {
+        transform: translateY(-2px);
+        border-color: var(--accent);
+        box-shadow: var(--shadow-sm);
+        color: var(--text-primary);
+    }
+}
+
+/* ---------- Team strip (homepage) ---------- */
+.team-strip {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+}
+
+@media (min-width: 768px) {
+    .team-strip {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.team-strip-photo {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--surface-1);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 0.9rem;
+}
+
+.team-strip-name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-heading);
+}
+
+.team-strip-role {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+}
+
+.team-strip-member p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+}
+
+/* ---------- What We Do: capability sections ---------- */
+.capability {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-subtle);
+    scroll-margin-top: 90px;
+}
+
+.capability:first-of-type {
+    border-top: none;
+    padding-top: 0;
+}
+
+.capability-num {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent);
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.capability h2 {
+    font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem);
+    margin-bottom: 0.4rem;
+}
+
+.capability-tagline {
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-bottom: 0.9rem;
+}
+
+.capability-body > p {
+    margin-bottom: 0.9rem;
+}
+
+.capability-tools {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Every claim on this page points at evidence, so the proof line is styled to
+   be found: it is the reason the page exists. */
+.capability-proof {
+    margin-top: 1rem;
+    padding: 0.9rem 1.1rem;
+    background: var(--bg-card);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-sm);
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+}
+
+.capability-proof .card-link {
+    margin-left: 0.35rem;
+    white-space: nowrap;
+}
+
+.capability-proof-label {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-right: 0.5rem;
+}
+
+.capability-proof--none {
+    border-left-color: var(--border-strong);
+    font-style: italic;
+}
+
+.capability-proof--none .capability-proof-label {
+    color: var(--text-muted);
+}
+
+/* ---------- Pull quote ---------- */
+.pull-quote {
+    margin: 1.25rem 0;
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    border-left: 4px solid var(--brand-amber);
+    font-size: clamp(1.1rem, 1rem + 0.7vw, 1.35rem);
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--text-heading);
+}
+
+.tool-grid-compact p {
+    line-height: 1.9;
+}
+
+/* ---------- Availability callout (/for-consulting-firms) ---------- */
+.availability {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-md);
+}
+
+.availability-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+}
+
+.availability-value {
+    font-size: clamp(1.4rem, 1.2rem + 1vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-heading);
+}
+
+.availability-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.availability--unset {
+    border-left-color: var(--border-strong);
+}
+
+/* ---------- Work in progress (Our Work) ---------- */
+.wip-card {
+    border-style: dashed;
+}
+
+.wip-card .card-body {
+    padding-top: 1.25rem;
+}
+
+.wip-badge {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent-warm);
+    background: rgba(244, 184, 96, 0.18);
+    border-radius: var(--radius-sm);
+}
+
+/* ---------- Contact + footer details ---------- */
+.contact-block {
+    margin-top: 1.75rem;
+}
+
+.contact-block h3 {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+}
+
+.contact-block h3 + p,
+.contact-block h3 + address {
+    margin-bottom: 1.25rem;
+}
+
+.contact-email {
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.contact-address {
+    font-style: normal;
+    line-height: 1.65;
+    color: var(--text-secondary);
+}
+
+.footer-region {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.footer-address {
+    font-style: normal;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-top: 0.85rem;
+}
+
+.cta-contact {
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+}
+
+.cta-banner .cta-contact,
+.cta-banner .cta-contact a {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.cta-banner .cta-contact a {
+    border-bottom-color: rgba(255, 255, 255, 0.4);
+}
+
+@media (hover: hover) {
+    .cta-banner .cta-contact a:hover {
+        color: var(--brand-white);
+        border-bottom-color: var(--brand-white);
+    }
+}
+
+/* ---------- Logo ticker: stop the loop reading as a duplicate ----------
+   The track holds two identical groups so the -50% translate loops seamlessly.
+   With only ten chips a group was narrower than a wide viewport, so both
+   copies sat on screen at once and read as a duplicated node. Forcing each
+   group to at least viewport width means you only ever see one of them. */
+@media (prefers-reduced-motion: no-preference) {
+    .logo-ticker-group {
+        min-width: 100vw;
+        justify-content: space-around;
+    }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .audience-card,
+    .capability-tile a,
+    .client-tile-inner,
+    .client-tile img,
+    .nc-pin-label,
+    .nc-pin-dot {
+        transition: none;
+    }
+    .audience-card:hover,
+    .capability-tile a:hover {
+        transform: none;
+    }
+}

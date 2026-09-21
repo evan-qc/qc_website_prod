@@ -1,0 +1,43 @@
+<!-- =========================================================
+     Client logo strip. Driven entirely by _data/clients.yml, so
+     adding a logo is a data edit: drop the file in assets/clients/
+     and set `logo` on that client's row.
+
+     Tiles with no logo render the client's name as a wordmark, so
+     the strip looks finished from day one and each logo can land
+     independently as permission comes in. Tiles marked `pending`
+     render styled but unlinked.
+
+     Grayscale at rest, full colour on hover, per the brief. A
+     wordmark tile has no colour to drop, so it shifts weight and
+     border instead - same interaction, no dead-looking tile.
+     ========================================================= -->
+<section class="client-strip" aria-labelledby="client-strip-title">
+    <div class="container">
+        <h2 class="client-strip-label" id="client-strip-title">Trusted by</h2>
+        <ul class="client-strip-list">
+            {%- for client in site.data.clients %}
+            <li class="client-tile{% if client.pending %} client-tile--pending{% endif %}">
+                {%- if client.url and client.pending != true %}
+                <a class="client-tile-inner" href="{{ client.url | relative_url }}">
+                    {%- if client.logo %}
+                    <img src="{{ client.logo | relative_url }}" alt="{{ client.name }}" loading="lazy" width="300" height="168">
+                    {%- else %}
+                    <span class="client-wordmark">{{ client.name }}</span>
+                    {%- endif %}
+                </a>
+                {%- else %}
+                <div class="client-tile-inner">
+                    {%- if client.logo %}
+                    <img src="{{ client.logo | relative_url }}" alt="{{ client.name }}" loading="lazy" width="300" height="168">
+                    {%- else %}
+                    <span class="client-wordmark">{{ client.name }}</span>
+                    {%- endif %}
+                    {%- if client.pending %}<span class="client-tile-note">Engagement in progress</span>{% endif %}
+                </div>
+                {%- endif %}
+            </li>
+            {%- endfor %}
+        </ul>
+    </div>
+</section>

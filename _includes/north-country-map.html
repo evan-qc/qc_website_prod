@@ -1,0 +1,53 @@
+<!-- =========================================================
+     North Country map.
+
+     County geometry is generated (see tools/build_map.py) and
+     included below as paths only. Pins come from _data/map_pins.yml
+     so adding a client is a data edit, not an SVG edit.
+
+     Every fill and stroke is a CSS variable (.nc-map in
+     css/shared.css) so the map follows the theme rather than
+     baking one in. The base render needs no JavaScript at all:
+     pins are real <a> elements, so they work with a keyboard,
+     and the hover label is CSS. County names come through as
+     native <title> tooltips.
+     ========================================================= -->
+{% assign map = site.data.map_meta %}
+<div class="nc-map">
+    <svg class="nc-map-svg" viewBox="0 0 {{ map.width }} {{ map.height }}"
+         preserveAspectRatio="xMidYMid meet"
+         role="img" aria-labelledby="nc-map-title nc-map-desc">
+        <title id="nc-map-title">New York State, with the North Country highlighted</title>
+        <desc id="nc-map-desc">New York's 62 counties. Lewis, Jefferson and St. Lawrence counties, where most of our work is, are filled in the accent colour. Pins mark client locations: {% for pin in site.data.map_pins %}{{ pin.label }} in {{ pin.town }}{% unless forloop.last %}, {% endunless %}{% endfor %}.</desc>
+
+        <g class="nc-counties">{% include nc-counties.svg.html %}</g>
+
+        <g class="nc-pins">
+            {%- for pin in site.data.map_pins %}
+            {%- assign pin_class = 'nc-pin' %}
+            {%- if pin.status == 'in-progress' %}{% assign pin_class = 'nc-pin nc-pin--progress' %}{% endif %}
+            {%- if pin.url %}
+            <a class="{{ pin_class }}" href="{{ pin.url | relative_url }}" aria-label="{{ pin.label }}, {{ pin.town }}. Read the case study.">
+                <circle class="nc-pin-hit" cx="{{ pin.x }}" cy="{{ pin.y }}" r="16"></circle>
+                <circle class="nc-pin-halo" cx="{{ pin.x }}" cy="{{ pin.y }}" r="11"></circle>
+                <circle class="nc-pin-dot" cx="{{ pin.x }}" cy="{{ pin.y }}" r="5.5"></circle>
+                <g class="nc-pin-label" transform="translate({{ pin.x }} {{ pin.y }})">
+                    <text class="nc-pin-name" x="0" y="-20">{{ pin.label }}</text>
+                    <text class="nc-pin-town" x="0" y="-6">{{ pin.town }}</text>
+                </g>
+            </a>
+            {%- else %}
+            <g class="{{ pin_class }} nc-pin--static" role="img" aria-label="{{ pin.label }}, {{ pin.town }}{% if pin.status == 'in-progress' %}. Engagement in progress.{% endif %}">
+                <circle class="nc-pin-hit" cx="{{ pin.x }}" cy="{{ pin.y }}" r="16"></circle>
+                <circle class="nc-pin-halo" cx="{{ pin.x }}" cy="{{ pin.y }}" r="11"></circle>
+                <circle class="nc-pin-dot" cx="{{ pin.x }}" cy="{{ pin.y }}" r="5.5"></circle>
+                <g class="nc-pin-label" transform="translate({{ pin.x }} {{ pin.y }})">
+                    <text class="nc-pin-name" x="0" y="-20">{{ pin.label }}</text>
+                    <text class="nc-pin-town" x="0" y="-6">{{ pin.town }}{% if pin.status == 'in-progress' %} · in progress{% endif %}</text>
+                </g>
+            </g>
+            {%- endif %}
+            {%- endfor %}
+        </g>
+    </svg>
+</div>

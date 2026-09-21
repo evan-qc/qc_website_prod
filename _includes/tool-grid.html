@@ -1,0 +1,57 @@
+<!-- =========================================================
+     The platforms we build on. One component, two renderings:
+     include it bare for the full logo wall, or pass compact=true
+     for a names-only strip.
+
+     The full wall lives on /for-consulting-firms/, where a technical
+     buyer is reading it. The compact strip closes what-we-do.html,
+     where a county administrator only needs to see that we work in
+     the tools they already own.
+     ========================================================= -->
+{%- if include.compact %}
+<div class="tool-grid-compact">
+    <p class="muted">Airtable · Zapier · Power Automate · Power BI · Tableau · Looker Studio · Preset · BigQuery · Azure · dbt · Fivetran · MotherDuck</p>
+</div>
+{%- else %}
+<div class="tool-grid">
+    <h3 class="logo-group-heading">Automation &amp; Operations</h3>
+    <div class="logo-strip">
+        <div class="logo-tile" data-tooltip="Airtable"><img width="300" height="168" loading="lazy" src="{{ '/assets/partners/airtable.png' | relative_url }}" alt="Airtable"></div>
+        <div class="logo-tile" data-tooltip="Fillout"><img width="200" height="200" loading="lazy" src="{{ '/assets/partners/fillout.png' | relative_url }}" alt="Fillout"></div>
+        <div class="logo-tile" data-tooltip="Trello"><img width="3840" height="2160" loading="lazy" src="{{ '/assets/partners/trello.png' | relative_url }}" alt="Trello"></div>
+        <div class="logo-tile" data-tooltip="Zapier"><img width="306" height="165" loading="lazy" src="{{ '/assets/partners/zapier.png' | relative_url }}" alt="Zapier"></div>
+        <div class="logo-tile logo-tile-text" data-tooltip="Microsoft PowerAutomate">Microsoft PowerAutomate</div>
+        <div class="logo-tile logo-tile-text" data-tooltip="Google Workspace Studio">Google Workspace Studio</div>
+    </div>
+
+    <h3 class="logo-group-heading">Visualization &amp; Business Intelligence</h3>
+    <div class="logo-strip">
+        <div class="logo-tile" data-tooltip="Power BI"><img width="5625" height="1492" loading="lazy" src="{{ '/assets/partners/power-bi.png' | relative_url }}" alt="Power BI"></div>
+        <div class="logo-tile" data-tooltip="Tableau"><img width="300" height="168" loading="lazy" src="{{ '/assets/partners/tableau.png' | relative_url }}" alt="Tableau"></div>
+        <div class="logo-tile" data-tooltip="Preset"><img width="400" height="121" loading="lazy" src="{{ '/assets/partners/preset.png' | relative_url }}" alt="Preset"></div>
+    </div>
+
+    <h3 class="logo-group-heading">Data Storage &amp; Pipelines</h3>
+    <div class="logo-strip">
+        <div class="logo-tile" data-tooltip="BigQuery"><img width="300" height="168" loading="lazy" src="{{ '/assets/partners/bigquery.png' | relative_url }}" alt="BigQuery"></div>
+        <div class="logo-tile" data-tooltip="dbt"><img width="364" height="139" loading="lazy" src="{{ '/assets/partners/dbt.jpg' | relative_url }}" alt="dbt"></div>
+        <div class="logo-tile" data-tooltip="Fivetran"><img width="225" height="225" loading="lazy" src="{{ '/assets/partners/fivetran.png' | relative_url }}" alt="Fivetran"></div>
+        <div class="logo-tile" data-tooltip="Microsoft Azure"><img width="300" height="168" loading="lazy" src="{{ '/assets/partners/azure.png' | relative_url }}" alt="Microsoft Azure"></div>
+        <div class="logo-tile" data-tooltip="MotherDuck"><img width="310" height="163" loading="lazy" src="{{ '/assets/partners/motherduck.png' | relative_url }}" alt="MotherDuck"></div>
+    </div>
+
+    <h3 class="logo-group-heading">Connecting the rest of the stack</h3>
+    <div class="logo-strip">
+        <span class="ticker-chip" data-tooltip="Microsoft SharePoint"><img width="24" height="24" loading="lazy" src="{{ '/assets/partners/icons/sharepoint.svg' | relative_url }}" alt="">Microsoft SharePoint</span>
+        <span class="ticker-chip" data-tooltip="QuickBooks"><img width="24" height="24" loading="lazy" src="{{ '/assets/partners/icons/quickbooks.svg' | relative_url }}" alt="">QuickBooks</span>
+        <span class="ticker-chip" data-tooltip="Google Drive"><img width="24" height="24" loading="lazy" src="{{ '/assets/partners/icons/googledrive.svg' | relative_url }}" alt="">Google Drive</span>
+        <span class="ticker-chip" data-tooltip="Slack"><img width="24" height="24" loading="lazy" src="{{ '/assets/partners/icons/slack.svg' | relative_url }}" alt="">Slack</span>
+        <span class="ticker-chip" data-tooltip="HubSpot"><img width="24" height="24" loading="lazy" src="{{ '/assets/partners/icons/hubspot.svg' | relative_url }}" alt="">HubSpot</span>
+        <span class="ticker-chip" data-tooltip="Gmail"><img width="24" height="24" loading="lazy" src="{{ '/assets/partners/icons/gmail.svg' | relative_url }}" alt="">Gmail</span>
+        <span class="ticker-chip" data-tooltip="Outlook"><img width="24" height="24" loading="lazy" src="{{ '/assets/partners/icons/outlook.svg' | relative_url }}" alt="">Outlook</span>
+        <span class="ticker-chip" data-tooltip="Stripe"><img width="24" height="24" loading="lazy" src="{{ '/assets/partners/icons/stripe.svg' | relative_url }}" alt="">Stripe</span>
+        <span class="ticker-chip" data-tooltip="Twilio"><img width="24" height="24" loading="lazy" src="{{ '/assets/partners/icons/twilio.svg' | relative_url }}" alt="">Twilio</span>
+        <span class="ticker-chip" data-tooltip="Granola"><img width="24" height="24" loading="lazy" src="{{ '/assets/partners/icons/granola.svg' | relative_url }}" alt="">Granola</span>
+    </div>
+</div>
+{%- endif %}

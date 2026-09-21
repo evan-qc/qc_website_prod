@@ -6,10 +6,10 @@ rank: 20
 capabilities: [analytics, dashboards]
 summary: "We remodeled a county's existing but unusable HMIS data into a BigQuery-and-Tableau analytics platform that surfaces individual client journeys and program-level insight for tackling homelessness."
 description: "How we transformed a Northern New York county's raw HMIS exports into a homelessness analytics platform on BigQuery, Fivetran, and Tableau, turning isolated incident logs into client narratives and program insight now used in legislative decision-making."
-hero_image: "/assets/case-studies/homeless_person.jpg"
-hero_image_width: 940
-hero_image_height: 609
-hero_image_alt: "A person experiencing homelessness, the human reality behind the data this platform models"
+hero_image: "/assets/case-studies/sankey.jpg"
+hero_image_width: 1673
+hero_image_height: 742
+hero_image_alt: "A Sankey diagram from the platform, showing how clients flow between assistance programs and toward more stable housing over time"
 results:
   - stat: "~250K"
     label: "Daily client-program records modeled from roughly a thousand raw HMIS rows"
@@ -56,8 +56,6 @@ On top of that foundation we built a Tableau dashboard organized into three tabs
 - **Client-level metrics:** how many clients are being served on any given date, where they are on any given night, and similar point-in-time views of the served population.
 - **Program-level metrics:** utilization by program rather than by unique client (a single client can be enrolled in several programs at once). This is the view a program lead goes to, filtering down to their own program to see how it is being used.
 - **Client-journey deep dive:** the narrative tab. It includes a table sorted by number of unique program interactions, so you can click into a client who has touched many programs and drill into their individual story and trajectory. It is also home to a Sankey diagram we built to visualize how clients flow between programs and toward more stable housing over time.
-
-![Sankey diagram visualizing how clients flow between assistance programs and toward more stable housing over time]({{ "/assets/case-studies/sankey.jpg" | relative_url }})
 
 The full engagement ran about six months. Roughly four of those were spent in discussion and discovery, working through how to source the data and whether to build a collection system of the county's own, and roughly two were spent building the dashboard and running it through UAT cycles.
 

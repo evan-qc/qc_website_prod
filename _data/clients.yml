@@ -1,0 +1,39 @@
+# Homepage "Trusted by" carousel.
+#
+# Drop a logo in as permission lands: put the file in assets/clients/ and set
+# `logo`. Until then the tile renders the client's name as a wordmark, which is
+# the point of the component - the strip never looks half-built.
+#
+# Fields:
+#   name     client name. Used as the wordmark and as the image alt text.
+#   logo     path under /assets/. Omit for a wordmark tile.
+#   url      case study to link to. Omit to render an unlinked tile.
+#   pending  true for an engagement that is live but not yet publishable.
+#            Renders styled but unlinked, with a quiet "engagement in progress"
+#            note. Remove the flag and add `url` when it wraps.
+
+- name: "Lewis County"
+  url: "/case-studies/lewis-county-financial-transparency/"
+
+- name: "Development Authority of the North Country"
+  url: "/case-studies/north-country-landfill-financial-model/"
+
+- name: "Commercial Food Sanitation"
+  url: "/case-studies/commercial-food-sanitation-core-business-platform/"
+
+- name: "Double Play Community Center"
+  url: "/case-studies/double-play-grant-reporting/"
+
+- name: "North Country Handymen"
+  url: "/case-studies/nch-case-study/"
+
+# The logo we have for CCC is a JPG with a baked-in dark background, which
+# renders as a black box beside the light wordmark tiles. Left as a wordmark
+# until we get a transparent PNG or SVG, then set:
+#   logo: "/assets/clients/christian-community-center.png"
+- name: "Christian Community Center"
+  url: "/case-studies/christian-community-center-rental-automation/"
+
+# Reserved slot. Engagement in flight, not complete, no sign-off yet.
+- name: "Naturally Lewis"
+  pending: true

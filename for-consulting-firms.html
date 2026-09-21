@@ -1,0 +1,78 @@
+---
+layout: default
+permalink: /for-consulting-firms/
+title: For Consulting Firms
+seo_title: "Delivery Capacity for Consulting Firms | Quantify"
+description: "White-label build capacity for consulting firms with more sold than they can staff. Power BI, Tableau, dbt, Azure, BigQuery, Airtable, Zapier. US-based, three senior practitioners, no offshore handoff."
+active_nav: none
+---
+<!-- Hero -->
+<section class="hero hero-compact">
+    <div class="hero-content">
+        <span class="eyebrow">For Consulting Firms</span>
+        <h1>Delivery capacity for <span class="accent-word">consulting firms</span>.</h1>
+        <p class="lead">We take on white-label build work for firms that have more sold than they can staff. Power BI, Tableau, dbt, Azure, BigQuery, Airtable, Zapier. US-based, three senior practitioners, no offshore handoff, no bench of juniors.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container-narrow">
+        <!-- Availability. Driven by two fields in _config.yml so the number can
+             be updated in one place. If availability_hours is blank the whole
+             callout is suppressed rather than showing a stale number. -->
+        {%- if site.availability_hours and site.availability_hours != "" %}
+        <div class="availability">
+            <span class="availability-label">Current availability</span>
+            <span class="availability-value">{{ site.availability_hours }}</span>
+            {%- if site.availability_updated and site.availability_updated != "" %}
+            <span class="availability-meta">Updated {{ site.availability_updated }}</span>
+            {%- endif %}
+        </div>
+        {%- else %}
+        <div class="availability availability--unset">
+            <span class="availability-label">Current availability</span>
+            <span class="availability-value">Ask us</span>
+            <span class="availability-meta">Email for this quarter's capacity.</span>
+        </div>
+        {%- endif %}
+
+        <div class="section-heading">
+            <h2>Typical engagements</h2>
+        </div>
+        <ul class="arrow-list">
+            <li>Dashboard and semantic model builds</li>
+            <li>Warehouse and pipeline work</li>
+            <li>Airtable and low-code operational systems</li>
+            <li>Overflow analytics delivery</li>
+        </ul>
+
+        <div class="value-block u-mt-10">
+            <p>We've delivered under other firms' names since 2024 and we're comfortable with your paper, your client, your brand.</p>
+        </div>
+
+        <p class="u-mt-8"><a href="mailto:{{ site.email }}?subject=Delivery%20capacity" class="btn btn-primary">Email us about capacity</a></p>
+    </div>
+</section>
+
+<!-- The full tool wall, moved here from technologies-partners.html -->
+<section class="section section-alt" id="tools">
+    <div class="container">
+        <div class="section-heading">
+            <h2>The stack we work in</h2>
+        </div>
+        {% include tool-grid.html %}
+        <div class="value-block u-mt-10">
+            <p>This list keeps growing. We're always picking up new platforms, and the underlying skills - wrangling data, building pipelines, designing dashboards that people actually use - carry over almost every time. If your stack isn't listed here, chances are we can still work in it: we'd rather learn your tools than ask you to change them.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container-narrow">
+        <div class="section-heading">
+            <h2>Who you get</h2>
+        </div>
+        <p>Three senior practitioners, and the same three every time. Carnegie Mellon MBA and former AWS business intelligence engineer; a former county IT Director who came out of J.P. Morgan Chase technology; and an analyst who built reporting for a regional bank. <a href="{{ '/about.html' | relative_url }}">Full backgrounds here</a>.</p>
+        <p>Our regional work is public and specific, which is the fastest way to judge whether we build the way you need. <a href="{{ '/case-studies.html' | relative_url }}">All {{ site.case_studies.size }} projects</a>.</p>
+    </div>
+</section>
