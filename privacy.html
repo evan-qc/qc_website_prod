@@ -4,29 +4,34 @@ title: Privacy Policy
 seo_title: "Privacy Policy | Quantify"
 description: "What quantify.fyi collects, what it doesn't, and who it shares information with. Short, because the site does very little."
 active_nav: none
+
+# Bump this by hand when the policy text changes, and only then. It is
+# deliberately not {{ site.time }}: a build should not be able to claim the
+# policy was revised on a day nobody touched it.
+updated: "September 2026"
 ---
-<!--
-  DRAFT - Evan, read this before it goes live.
+{%- comment -%}
+  This page describes what the site actually does, and every claim in it is
+  checkable against this repository. Three of them are load-bearing. If one of
+  these changes, this page is wrong until it is updated:
 
-  It is written to describe what this site actually does today, which is very
-  little: a static Jekyll site on GitHub Pages, one embedded Airtable form, and
-  Google Fonts on two pages. Every claim below is checkable against the repo.
+    1. "No analytics, no pixels, no cookies set by us." True only while no
+       tracking script is added to _layouts/default.html or any page.
+    2. The Google Fonts paragraph names /assessment/ because that is the only
+       page requesting fonts.googleapis.com. Grep before trusting it.
+    3. The video paragraph covers the YouTube embed in the North Country
+       Handymen case study. It is the only third-party embed on the site
+       besides the Airtable form.
 
-  Two things will make it wrong the moment they change:
-    1. If analytics get installed (GA4 or anything else), the "we don't track
-       you" section stops being true and has to be rewritten.
-    2. If the Airtable form starts collecting anything beyond contact details
-       and a project description, update the list in "The contact form".
-
-  This is not legal advice and it has not been reviewed by a lawyer. If you
-  start handling client data subject to HIPAA, CJIS, or a state contract's
-  security schedule, that is a different document and this one does not cover it.
--->
+  Not legal advice, and not reviewed by a lawyer. If Quantify starts handling
+  client data under HIPAA, CJIS, or a state contract's security schedule, that
+  is a different document and this one does not reach it.
+{%- endcomment -%}
 <section class="hero hero-compact">
     <div class="hero-content">
         <span class="eyebrow">Privacy Policy</span>
         <h1>Privacy <span class="accent-word">Policy</span>.</h1>
-        <p class="lead">Short, because this site does very little. Last updated {{ 'now' | date: "%B %Y" }}.</p>
+        <p class="lead">Short, because this site does very little. Last updated {{ page.updated }}.</p>
     </div>
 </section>
 
@@ -35,34 +40,52 @@ active_nav: none
         <div class="section-heading">
             <h2>The short version</h2>
         </div>
-        <p>This website does not track you. There is no analytics package, no advertising pixel, no cookie banner, and no cookies set by us. The only information we receive is what you deliberately send us through the contact form or by email.</p>
+        <p>This website does not track you. There is no analytics package, no advertising pixel, no cookie banner, and no cookies set by us. We do not build a profile of you, we do not sell anything to anyone, and there is no marketing list to be added to. The only information we receive is what you deliberately send us through the contact form or by email.</p>
+        <p>Most privacy policies are long because the site behind them is doing a lot. This one is short for the opposite reason.</p>
 
         <div class="section-heading u-mt-10">
             <h2>The contact form</h2>
         </div>
-        <p>Our contact form is hosted by <a href="https://www.airtable.com/company/privacy">Airtable</a> and embedded on our <a href="{{ '/get-started.html' | relative_url }}">Let's Talk</a> page. When you submit it, what you type goes to Airtable and into our records: your name, your email address, your organization, and whatever you tell us about your project.</p>
-        <p>We use that to reply to you and to run the engagement if we end up working together. We do not sell it, we do not rent it, and we do not add you to a marketing list you did not ask for. Because the form is an embedded Airtable page, Airtable's own privacy policy also applies to the submission.</p>
+        <p>Our contact form is hosted by <a href="https://www.airtable.com/company/privacy">Airtable</a> and embedded on our <a href="{{ '/get-started.html' | relative_url }}">Let's Talk</a> page. It asks who you are, how to reach you, what organization you are with, and what you are trying to solve. When you submit it, what you typed goes to Airtable and into our records.</p>
+        <p>We use it to reply to you, and to run the engagement if we end up working together. That is the whole purpose. We do not sell it, we do not rent it, and we do not pass it to anyone who is not working on your inquiry.</p>
+        <p>Because the form is an embedded Airtable page rather than something we built ourselves, Airtable receives the submission directly and its own privacy policy applies to it alongside this one.</p>
 
         <div class="section-heading u-mt-10">
             <h2>Email</h2>
         </div>
-        <p>If you email us at <a href="mailto:{{ site.email }}">{{ site.email }}</a>, we keep the correspondence for as long as we need it to do business with you, the same way any firm keeps its email.</p>
+        <p>If you email us at <a href="mailto:{{ site.email }}">{{ site.email }}</a>, we keep the correspondence for as long as we need it to work with you, the same way any firm keeps its email. If you apply for a job at <a href="mailto:{{ site.careers_email }}">{{ site.careers_email }}</a>, the same applies to your application and your resume.</p>
 
         <div class="section-heading u-mt-10">
-            <h2>Hosting and fonts</h2>
+            <h2>Hosting</h2>
         </div>
         <p>This site is hosted on GitHub Pages. Like nearly every web host, GitHub records standard server request logs, which include IP addresses. We do not have access to those logs and we do not analyze them. See <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
-        <p>A small number of pages load typefaces from Google Fonts, which means your browser makes a request to Google to fetch them. See <a href="https://policies.google.com/privacy">Google's privacy policy</a>.</p>
+
+        <div class="section-heading u-mt-10">
+            <h2>Fonts and video</h2>
+        </div>
+        <p>Two pages load something from a third party, and it is worth naming both rather than burying them.</p>
+        <p>Our <a href="{{ '/assessment/' | relative_url }}">assessment</a> page loads its typefaces from Google Fonts, which means your browser requests them from Google when you open that page. See <a href="https://policies.google.com/privacy">Google's privacy policy</a>. No other page on this site does this.</p>
+        <p>One case study, <a href="{{ '/case-studies/nch-case-study/' | relative_url }}">North Country Handymen</a>, embeds a video from YouTube. YouTube is a Google product, and opening that page loads the player from Google, which can set cookies in your browser. That is Google's doing rather than ours, and it happens on that one page only.</p>
 
         <div class="section-heading u-mt-10">
             <h2>Client data</h2>
         </div>
-        <p>This policy covers this website only. Data we handle inside a client engagement is governed by that engagement's agreement, not by this page.</p>
+        <p>This policy covers this website. It does not cover the data we handle inside a client engagement, which is governed by that engagement's agreement and, where it applies, by the security and confidentiality terms your organization requires of its vendors. If you are evaluating us and need to know how we would handle your data specifically, ask us before you sign anything. We would rather answer it early.</p>
+
+        <div class="section-heading u-mt-10">
+            <h2>Children</h2>
+        </div>
+        <p>This site is for people doing their jobs. It is not directed at children, and we do not knowingly collect anything from them.</p>
 
         <div class="section-heading u-mt-10">
             <h2>Questions, or asking us to delete something</h2>
         </div>
-        <p>Email <a href="mailto:{{ site.email }}">{{ site.email }}</a> and ask. If you want us to delete a form submission or your correspondence, say so and we will, unless we are required to keep it for an active contract.</p>
+        <p>Email <a href="mailto:{{ site.email }}">{{ site.email }}</a> and ask. If you want to know what we hold, or you want a form submission or your correspondence deleted, say so and we will do it, unless we are required to keep it for an active contract or the law says otherwise. You do not need to cite a regulation at us to get a straight answer.</p>
+
+        <div class="section-heading u-mt-10">
+            <h2>Changes</h2>
+        </div>
+        <p>If this policy changes, the date at the top changes with it. There is no archive of old versions, because this site has never done enough for one to be interesting.</p>
 
         <address class="contact-address u-mt-8">
             Quantify Consulting<br>
