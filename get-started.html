@@ -2,7 +2,7 @@
 layout: default
 title: Let's Talk
 seo_title: "Let's Talk | Quantify"
-description: "Start with a free conversation. Quantify works with counties, authorities, agencies, and employers across Lewis, Jefferson, and St. Lawrence counties and the wider North Country. Based in Lowville, NY."
+description: "Start with a free conversation. Quantify works with counties, authorities, agencies, school districts, healthcare providers, nonprofits, and local employers across Lewis, Jefferson, and St. Lawrence counties and the wider North Country."
 active_nav: talk
 ---
 <!-- Hero -->
@@ -22,12 +22,9 @@ active_nav: talk
                 <div class="section-heading">
                     <h2>Tell us a bit about you</h2>
                 </div>
-                <p>This session is an opportunity to discuss your challenges and identify where the highest-leverage place to start is. We respond to every inquiry within 48 hours.</p>
+                <p>We respond within 48 hours. If you would rather just email, <a href="mailto:{{ site.email }}?subject=Free%20consultation">{{ site.email }}</a>.</p>
 
                 <div class="contact-block">
-                    <h3>Email</h3>
-                    <p><a class="contact-email" href="mailto:{{ site.email }}?subject=Free%20consultation">{{ site.email }}</a></p>
-
                     <h3>Office</h3>
                     <address class="contact-address">
                         Quantify Consulting<br>
@@ -36,7 +33,7 @@ active_nav: talk
                     </address>
 
                     <h3>Where we work</h3>
-                    <p class="muted">Lewis, Jefferson, and St. Lawrence counties, and across upstate New York.</p>
+                    <p class="muted">Lewis, Jefferson, and St. Lawrence counties, and the wider North Country.</p>
                 </div>
             </div>
             <div>
@@ -50,13 +47,49 @@ active_nav: talk
 <section class="section section-alt">
     <div class="container-narrow">
         <div class="section-heading">
-            <h2>Frequently Asked Questions</h2>
+            <h2>Questions people ask before the first call</h2>
         </div>
         <div class="faq">
             <details class="faq-item">
-                <summary>Do you have an average project cost?</summary>
+                <summary>What does a project cost?</summary>
                 <div class="faq-answer">
-                    <p>Our pricing is primarily based on the value we deliver to your organization, rather than the number of hours invested in the project. Project costs typically range from $10K to $50K+, depending on the scope and impact.</p>
+                    <p>We price on the value of the outcome rather than hours. Most engagements land between $10,000 and $50,000 depending on scope. We will give you a number before you commit to anything, and we would rather scope something small that works than something large that stalls.</p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Who do you work with?</summary>
+                <div class="faq-answer">
+                    <p>Counties, towns and villages, public authorities, development agencies, BOCES and school districts, chambers and economic development organizations, healthcare providers, nonprofits, and local employers. Most of our work is in Lewis, Jefferson and St. Lawrence counties and the wider North Country.</p>
+                </div>
+            </details>
+
+            {%- comment -%}
+              Both officials have approved being named here. Keep it that way:
+              if either leaves office or withdraws, pull the name before the
+              next deploy rather than after someone calls them.
+
+              Deliberately vague about the Jefferson County engagement, which
+              is not public. Ryan Piche is named as a peer who will take a call,
+              not as a case study. Do not add detail about that work here.
+            {%- endcomment -%}
+            <details class="faq-item">
+                <summary>Can we talk to someone who has worked with you?</summary>
+                <div class="faq-answer">
+                    <p>Yes, and we encourage it. Two North Country county leaders have agreed to take calls from peers considering us: Tim Hunt, County Manager of Lewis County, and Ryan Piche, County Administrator of Jefferson County.</p>
+                    <p>Not everything we do is published, so a call with someone who has worked with us is the fastest way to hear about the rest. If you are in this world you likely already know how to reach them. Tell us and we will let them know to expect you.</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Are you insured?</summary>
+                <div class="faq-answer">
+                    <p>We carry both general liability and professional liability coverage, and we can provide a certificate of insurance on request.</p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Do you respond to RFPs?</summary>
+                <div class="faq-answer">
+                    <p>Yes. Send it over and we will tell you honestly whether we are a real fit before you spend time evaluating us.</p>
                 </div>
             </details>
             <details class="faq-item">
@@ -68,33 +101,27 @@ active_nav: talk
                 </div>
             </details>
             <details class="faq-item">
-                <summary>What type of clients do you work with?</summary>
+                <summary>How long does an engagement take?</summary>
                 <div class="faq-answer">
-                    <p>Counties, authorities, agencies, school districts, and local employers. Most of our work is in Lewis, Jefferson, and St. Lawrence counties. We also work across upstate New York, and we take on delivery work for consulting firms outside the region.</p>
+                    <p>It ranges from a focused one to two week assessment to a multi-month build. Most of what we deliver is live in weeks rather than quarters. We scope it together in the first conversation, at no cost.</p>
                 </div>
             </details>
             <details class="faq-item">
-                <summary>Does my physical location matter?</summary>
+                <summary>What happens after the build?</summary>
                 <div class="faq-answer">
-                    <p>Being close helps, and a lot of our clients are within an hour's drive of Lowville, which means we can be in the room when it matters. But it isn't a requirement. We're open to discussing all project inquiries, regardless of where you're based.</p>
+                    <p>Some organizations want us gone once the system works. Others want us to keep it running and keep improving it, and we offer long-term service agreements for that. We will tell you honestly which one you are. <a href="{{ '/what-to-expect.html' | relative_url }}">More on how we work &rarr;</a></p>
                 </div>
             </details>
             <details class="faq-item">
-                <summary>How long does a typical engagement take?</summary>
+                <summary>Does our location matter?</summary>
                 <div class="faq-answer">
-                    <p>Engagement length varies with scope - from a focused 1–2 week data strategy workshop to multi-month implementation projects. We'll scope this together during your free consultation.</p>
-                </div>
-            </details>
-            <details class="faq-item">
-                <summary>What happens after the build is finished?</summary>
-                <div class="faq-answer">
-                    <p>We stay on. Systems need an owner, and most of our clients don't have an internal team to hand one to. When we finish a build we remain the team that maintains it, so when something breaks or changes there's a name attached. <a href="{{ '/what-to-expect.html' | relative_url }}">More on how we work →</a></p>
+                    <p>Most of our clients are within an hour of Lowville and we like being able to show up in person. We work outside that radius too. It is worth a conversation either way.</p>
                 </div>
             </details>
         </div>
         <div class="section-footnote">
             <h3>Still have questions?</h3>
-            <p class="muted">Email us at <a href="mailto:{{ site.email }}">{{ site.email }}</a> - we'll respond within 48 hours.</p>
+            <p class="muted">Email us at <a href="mailto:{{ site.email }}">{{ site.email }}</a>. We respond within 48 hours.</p>
         </div>
     </div>
 </section>

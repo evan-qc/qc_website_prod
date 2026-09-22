@@ -3,7 +3,7 @@ title: "How Lewis County Solid Waste Transformed Disconnected Data Systems Into 
 client: "Lewis County Solid Waste Department"
 sector: public
 rank: 60
-capabilities: [analytics, dashboards]
+capabilities: [dashboards, automation]
 summary: "We unified the Solid Waste Department's scale system, ERP, and Excel records into one Azure data warehouse powering real-time public and internal dashboards."
 description: "How Lewis County Solid Waste connected its Compu-Weigh scale data, Tyler Munis ERP, and Excel records into a single Azure SQL warehouse with Power BI dashboards for strategic decision-making and public transparency."
 hero_image: "/assets/case-studies/lewis-county-solid-waste-operations-intelligence-hero.jpg"

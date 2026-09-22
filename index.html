@@ -53,8 +53,22 @@ active_nav: home
     </div>
 </section>
 
-<!-- Capability menu -->
+<!-- Who we work with. Sits directly under the router because the router only
+     names two audiences, and a BOCES business official or a chamber director
+     needs to see their own organization type on the page before they will
+     believe either card is about them. -->
 <section class="section">
+    <div class="container-narrow">
+        <div class="section-heading">
+            <h2>Who we work with</h2>
+        </div>
+        <p class="lead">Counties, towns and villages. Public authorities and development agencies. BOCES and school districts. Chambers of commerce and economic development organizations. Healthcare providers. The nonprofits that serve all of them. And the local employers who keep the region running.</p>
+        <p>Most of our work is in Lewis, Jefferson and St. Lawrence counties. If you are an hour's drive from Lowville, we can be in your building this week.</p>
+    </div>
+</section>
+
+<!-- Capability menu -->
+<section class="section section-alt">
     <div class="container">
         <div class="section-heading">
             <h2>What we can do for you</h2>
@@ -67,7 +81,7 @@ active_nav: home
 </section>
 
 <!-- The three of us -->
-<section class="section section-alt">
+<section class="section">
     <div class="container">
         <div class="section-heading">
             <h2>Three people. Thirty years of it.</h2>
@@ -78,19 +92,19 @@ active_nav: home
                 <img class="team-strip-photo" src="{{ '/assets/evan.png' | relative_url }}" alt="Evan Jennings" width="800" height="800" loading="lazy">
                 <div class="team-strip-name">Evan Jennings</div>
                 <div class="team-strip-role">Founder</div>
-                <p>Carnegie Mellon MBA in finance, operations, and data. Former business intelligence engineer at Amazon Web Services. Back in Lewis County on purpose.</p>
+                <p>Carnegie Mellon MBA in analytics, finance and operations. Three years as a senior business intelligence engineer at Amazon Web Services. Grew up in Lewis County, and came back on purpose.</p>
             </article>
             <article class="team-strip-member">
                 <img class="team-strip-photo" src="{{ '/assets/conner.png' | relative_url }}" alt="Conner Biolsi" width="800" height="800" loading="lazy">
                 <div class="team-strip-name">Conner Biolsi</div>
                 <div class="team-strip-role">Principal Solutions Architect</div>
-                <p>Former IT Director for Lewis County government, where he rebuilt the county's entire infrastructure stack. Previously technology at J.P. Morgan Chase. Certified in Cybersecurity.</p>
+                <p>IT Director for Lewis County government for nearly six years, where he rebuilt the county's entire infrastructure stack. Elected to the state board that coordinates technology for New York's counties, schools and BOCES. Previously J.P. Morgan Chase. Certified in Cybersecurity.</p>
             </article>
             <article class="team-strip-member">
                 <img class="team-strip-photo" src="{{ '/assets/allen.png' | relative_url }}" alt="Allen Beaujon" width="800" height="800" loading="lazy">
                 <div class="team-strip-name">Allen Beaujon</div>
                 <div class="team-strip-role">Principal Data Solutions Consultant</div>
-                <p>Built reporting and analytics for a regional bank. Specializes in turning messy operational data into numbers a leadership team will actually act on.</p>
+                <p>Five years building credit and compliance analytics inside a regulated lender, where being wrong had consequences. Specializes in turning messy operational data into numbers a leadership team will act on.</p>
             </article>
         </div>
         <p class="section-footnote u-center">
@@ -101,7 +115,7 @@ active_nav: home
 
 <!-- Featured work: one per audience type -->
 {% assign featured_slugs = "lewis-county-financial-transparency,north-country-landfill-financial-model,commercial-food-sanitation-core-business-platform" | split: "," %}
-<section class="section">
+<section class="section section-alt">
     <div class="container">
         <div class="section-heading">
             <h2>Recent work</h2>

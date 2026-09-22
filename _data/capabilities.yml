@@ -1,14 +1,27 @@
-# The capability menu. One source of truth for both renderings:
-#   - the abbreviated 8-tile grid on the homepage (short + tagline)
-#   - the full sections on what-we-do.html (body, tools, proof)
+# The capability menu. One source of truth for every rendering:
+#   - the six-tile grid on the homepage (short + tile_line)
+#   - the full sections on what-we-do.html (tagline, body, tools, proofs)
+#   - the "What we did" filter chips on case-studies.html (slug + short)
 #
-# The rule for this page is that every claim points at evidence. `proof_url`
+# The rule for this page is that every claim points at evidence. `proofs`
 # should stay populated. If a capability has no case study behind it, set
 # `proof_note` instead so the gap is visible rather than papered over.
+#
+# `short` is the canonical label. It must read identically on the homepage,
+# on what-we-do.html, and on the case-study filter chips. Do not paraphrase.
+#
+# `slug` is the anchor on what-we-do.html and the tag used in case-study
+# front matter. `aliases` carries anchors retired in the eight-to-six
+# consolidation so old deep links keep resolving.
+#
+# `tile_line` is the homepage one-liner. It runs a little longer than the
+# on-page `tagline` because the tile is the only copy a homepage skimmer
+# reads. Omit it and the tagline is used instead.
 
 - slug: dashboards
   short: "Dashboards &amp; Reporting"
   title: "Dashboards &amp; Reporting"
+  aliases: [data-cleanup]
   tagline: "Numbers your board and your staff can see today, not at month end."
   body: >-
     Most organizations already collect what they need. The problem is that getting it
@@ -16,13 +29,21 @@
     monthly at best and nobody fully trusts the result. We build the pipeline and the
     reporting layer underneath, so the number is current, the number is right, and
     there is exactly one of it.
+  body_2: >-
+    Often the real work happens before any dashboard exists. Plenty of organizations
+    are sitting on years of records in a system that technically holds everything and
+    practically answers nothing. Modeling that data properly is sometimes the entire
+    project, and it is sometimes the most valuable thing we do.
   tools: "Power BI, Tableau, Looker Studio, or whatever you already own."
-  proof: "Lewis County went from three to five day budget reporting to live dashboards for staff and the public."
-  proof_url: "/case-studies/lewis-county-financial-transparency/"
+  proofs:
+    - text: "Lewis County went from three to five day budget reporting to live dashboards for staff and the public."
+      url: "/case-studies/lewis-county-financial-transparency/"
+    - text: "We remodeled a county's existing but unusable HMIS data into an analytics platform that surfaces individual client journeys and program-level insight on homelessness."
+      url: "/case-studies/anonymous-county-homelessness-analytics-from-existing-hmis-data/"
 
 - slug: custom-apps
-  short: "Custom Apps"
-  title: "Custom Apps"
+  short: "Custom Applications"
+  title: "Custom Applications"
   tagline: "Replace the pile of spreadsheets with one system your team runs the work in."
   body: >-
     There is a gap between a spreadsheet that has stopped coping and enterprise
@@ -31,57 +52,27 @@
     fields your work actually has, the automations your process actually needs, and a
     screen your team can use on a phone in a truck.
   tools: "Usually Airtable. Live in weeks."
-  proof: "Lewis County Building Codes replaced 24 disconnected spreadsheets with one inspection application. A five-person team now runs fire safety inspections county-wide from one place."
-  proof_url: "/case-studies/lewis-county-building-codes-inspection-app/"
-
-- slug: integration
-  short: "Connecting Your Systems"
-  title: "Connecting Your Systems"
-  tagline: "Stop entering the same information three times."
-  body: >-
-    Double entry is not a discipline problem, it is a plumbing problem. When your
-    scale system, your ERP, and somebody's Excel file have no way to talk, a person
-    becomes the integration. We remove the person from the middle: the data moves on
-    its own, and it matches on both ends.
-  proof: "We unified the Lewis County Solid Waste Department's scale system, ERP, and Excel records into one Azure data warehouse feeding live internal and public dashboards."
-  proof_url: "/case-studies/lewis-county-solid-waste-operations-intelligence/"
-
-- slug: automation
-  short: "Process Automation"
-  title: "Process Automation"
-  tagline: "The routine steps handled without anyone touching them."
-  body: >-
-    Forms that get re-keyed. Approvals that live in an email chain. A request that has
-    to be chased through four people before anyone knows where it stands. We map how
-    the work really happens, redesign it, then automate the parts that never needed a
-    human.
-  proof: "We replaced a county's manual, Adobe-form resolution process with an automated workflow that drafts, files, and tracks every submission, giving 30 departments real-time visibility."
-  proof_url: "/case-studies/workflow-automation-for-resolution-drafting-in-county-government/"
+  proofs:
+    - text: "Lewis County Building Codes replaced 24 disconnected spreadsheets with one inspection application. A five-person team now runs fire safety inspections county-wide from one place."
+      url: "/case-studies/lewis-county-building-codes-inspection-app/"
 
 - slug: modeling
-  short: "Financial Modeling"
+  short: "Financial Modeling &amp; Forecasting"
   title: "Financial Modeling &amp; Forecasting"
   tagline: "Scenario planning your leadership team can run themselves."
+  tile_line: "Long-range plans and rate analysis your leadership can run in the meeting."
   body: >-
     The financial model that matters most is usually the one nobody will touch: a
     workbook one person built, that breaks if you change a cell, that cannot answer
     the question the board just asked. We rebuild those as tools. You change an
     assumption, you see the consequence, in the meeting.
-  tools: "Capital planning, rate and fee analysis, long-range forecasting, cost-benefit analysis."
-  proof: "We turned the Development Authority of the North Country's brittle landfill workbook into a 50-year scenario-planning engine its leadership uses together."
-  proof_url: "/case-studies/north-country-landfill-financial-model/"
-
-- slug: data-cleanup
-  short: "Data Cleanup"
-  title: "Data Cleanup &amp; Consolidation"
-  tagline: "Take the data you already have and make it usable."
-  body: >-
-    Plenty of organizations are sitting on years of records in a system that
-    technically holds everything and practically answers nothing. Before any dashboard
-    is worth building, the underlying data has to be modeled properly. Sometimes that
-    is the entire project, and it is the most valuable thing we do.
-  proof: "We remodeled a county's existing but unusable HMIS data into an analytics platform that surfaces individual client journeys and program-level insight on homelessness."
-  proof_url: "/case-studies/anonymous-county-homelessness-analytics-from-existing-hmis-data/"
+  tools: >-
+    Capital planning, rate and fee analysis, long-range forecasting, cost-benefit
+    analysis, and the multi-decade models that authorities and utilities are required
+    to defend.
+  proofs:
+    - text: "We turned the Development Authority of the North Country's brittle landfill workbook into a 50-year scenario-planning engine its leadership uses together."
+      url: "/case-studies/north-country-landfill-financial-model/"
 
 - slug: grants
   short: "Grant &amp; Compliance Reporting"
@@ -93,17 +84,54 @@
     that tracks the commitments, the dollars, and the outcomes year-round, so the
     report is a query instead of a fire drill. It also makes the case: most
     organizations are worse at proving their own value than they are at creating it.
-  proof: "We consolidated 30-plus grant-tracking tables into one relational system and built a public dashboard showing that Lewis County's grant office brings home more than $5M a year."
-  proof_url: "/case-studies/lewis-county-grant-funding-transparency/"
+  proofs:
+    - text: "We consolidated 30-plus grant-tracking tables into one relational system and built a public dashboard showing that Lewis County's grant office brings home more than $5M a year."
+      url: "/case-studies/lewis-county-grant-funding-transparency/"
+
+- slug: automation
+  short: "Automation &amp; Integration"
+  title: "Automation &amp; Integration"
+  aliases: [integration]
+  tagline: "Stop entering the same information three times."
+  tile_line: "Stop entering the same information three times, and stop chasing approvals by email."
+  body: >-
+    Double entry is not a discipline problem, it is a plumbing problem. When your ERP,
+    your scale system, and somebody's Excel file have no way to talk, a person becomes
+    the integration. Same with the work itself: forms that get re-keyed, approvals
+    that live in an email chain, a request that has to be chased through four people
+    before anyone knows where it stands.
+  body_2: >-
+    We map how the work really happens, remove the person from the middle, and
+    automate the steps that never needed a human. The data moves on its own, and it
+    matches on both ends.
+  proofs:
+    - text: "We unified the Lewis County Solid Waste Department's scale system, ERP and Excel records into one Azure data warehouse feeding live internal and public dashboards."
+      url: "/case-studies/lewis-county-solid-waste-operations-intelligence/"
+    - text: "We replaced a county's manual, Adobe-form resolution process with an automated workflow that drafts, files and tracks every submission, giving 30 departments real-time visibility into where their requests stand."
+      url: "/case-studies/workflow-automation-for-resolution-drafting-in-county-government/"
 
 - slug: assessments
   short: "Technology &amp; Security Assessments"
   title: "Technology &amp; Security Assessments"
   tagline: "An honest read on where you stand and what to fix first."
+  tile_line: "An honest read on where you stand and what to fix first, from someone who has sat in your chair."
   body: >-
-    If you have an IT vendor but no IT director, nobody is on your side of the table.
-    We are. We assess what you are running, where the real risk sits, what your
-    insurer or your auditor is going to ask about, and what to do in what order. Then
-    we tell you plainly, including the parts you will not enjoy hearing.
-  tools: "Led by Conner Biolsi, former IT Director for Lewis County government."
-  proof_note: "No case study published yet. Add one as soon as we can."
+    If you have an IT vendor but no IT director, nobody is sitting on your side of the
+    table. That is the gap this fills.
+  body_2: >-
+    We assess what you are running, where the real risk sits, what your insurer or
+    your auditor is going to ask about, and what to do in what order. Then we tell you
+    plainly, including the parts you will not enjoy hearing.
+  # This capability's evidence is the practitioner rather than a published case
+  # study, so it renders as a "Who does this work" block instead of a proof line.
+  practitioner_label: "Who does this work"
+  practitioner: >-
+    Conner Biolsi spent nearly six years as IT Director for Lewis County government,
+    where he rebuilt the county's entire infrastructure stack, stood up secure remote
+    work across departments, and strengthened its cybersecurity posture on a
+    public-sector budget with public-sector accountability. He was elected to the
+    board of the New York State Local Government IT Directors Association,
+    coordinating technology across the state's municipalities, school districts,
+    BOCES, community colleges and authorities. He is Certified in Cybersecurity and
+    came out of J.P. Morgan Chase technology before that.
+  practitioner_kicker: "He has read the assessment from your side of the desk. Now he writes them."

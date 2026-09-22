@@ -3,7 +3,7 @@ title: "Homelessness Analytics from Existing HMIS Data"
 client: "Anonymous County"
 sector: public
 rank: 20
-capabilities: [analytics, dashboards]
+capabilities: [dashboards]
 summary: "We remodeled a county's existing but unusable HMIS data into a BigQuery-and-Tableau analytics platform that surfaces individual client journeys and program-level insight for tackling homelessness."
 description: "How we transformed a Northern New York county's raw HMIS exports into a homelessness analytics platform on BigQuery, Fivetran, and Tableau, turning isolated incident logs into client narratives and program insight now used in legislative decision-making."
 hero_image: "/assets/case-studies/sankey.jpg"

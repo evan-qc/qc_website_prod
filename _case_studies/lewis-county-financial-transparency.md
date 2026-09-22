@@ -3,8 +3,8 @@ title: "How Lewis County Moved from 5-Day Report Delays to Real-Time Financial T
 client: "Lewis County Government"
 sector: public
 rank: 10
-capabilities: [analytics, dashboards]
-summary: "We built a cloud analytics layer on top of Lewis County's existing Tyler ERP, turning 3–5 day budget reporting into real-time dashboards for staff and the public."
+capabilities: [dashboards]
+summary: "We built a cloud analytics layer on top of Lewis County's existing Tyler ERP, turning 3 to 5 day budget reporting into real-time dashboards for staff and the public."
 description: "How Quantify gave Lewis County Government real-time financial transparency - connecting its Tyler Munis ERP to an Azure data warehouse and Power BI dashboards for staff and citizens, in three months."
 
 hero_image: "/assets/case-studies/lewis-county-financial-transparency-hero.jpg"
