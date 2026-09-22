@@ -2,15 +2,15 @@
 layout: default
 title: Our Work
 seo_title: "Our Work | Quantify"
-description: "Eleven projects for counties, authorities, agencies, and local employers across New York's North Country. Real-time county financial reporting, custom inspection apps, 50-year financial models, and grant transparency dashboards."
+description: "Named clients and real numbers: county budget transparency, landfill financial modeling, inspection applications, grant reporting, and workflow automation, for counties, authorities, agencies, and local employers across New York's North Country."
 active_nav: work
 ---
 <!-- Hero -->
 <section class="hero hero-compact">
     <div class="hero-content">
         <span class="eyebrow">Our Work</span>
-        <h1>Real Stories. <span class="accent-word">Real Impact.</span></h1>
-        <p class="lead">A look at the work we've done - from county budget transparency to project workflow automation for trades businesses. Filter by sector or by what we did to find the stories that fit you.</p>
+        <h1>{{ site.case_studies.size }} projects. Named clients. <span class="accent-word">Real numbers.</span></h1>
+        <p class="lead">County budget transparency, landfill financial modeling, inspection applications, grant reporting, workflow automation for trades businesses. Filter by sector or by what we did.</p>
     </div>
 </section>
 
@@ -18,9 +18,6 @@ active_nav: work
 {% assign total = site.case_studies.size %}
 {% assign public_count = site.case_studies | where: "sector", "public" | size %}
 {% assign private_count = site.case_studies | where: "sector", "private" | size %}
-{% assign analytics_count = site.case_studies | where_exp: "s", "s.capabilities contains 'analytics'" | size %}
-{% assign automation_count = site.case_studies | where_exp: "s", "s.capabilities contains 'automation'" | size %}
-{% assign dashboards_count = site.case_studies | where_exp: "s", "s.capabilities contains 'dashboards'" | size %}
 
 <!-- Filterable case-study grid -->
 <section class="section">
@@ -33,12 +30,22 @@ active_nav: work
                 <button type="button" class="filter-chip" data-group="sector" data-value="public" aria-pressed="false">Counties, Authorities &amp; Agencies <span class="chip-count">{{ public_count }}</span></button>
                 <button type="button" class="filter-chip" data-group="sector" data-value="private" aria-pressed="false">Local Business <span class="chip-count">{{ private_count }}</span></button>
             </div>
+            {%- comment -%}
+              "What we did" is generated from _data/capabilities.yml so the chip
+              labels are the same six labels used on the homepage and on
+              what-we-do.html, and so a retag cannot leave a stale count behind.
+              A capability with nothing tagged to it is skipped rather than
+              shown as a chip that filters to an empty grid.
+            {%- endcomment -%}
             <div class="filter-group" data-group="capability" role="group" aria-label="Filter by capability">
                 <span class="filter-label">What we did</span>
                 <button type="button" class="filter-chip is-active" data-group="capability" data-value="all" aria-pressed="true">All</button>
-                <button type="button" class="filter-chip" data-group="capability" data-value="analytics" aria-pressed="false">Analytics <span class="chip-count">{{ analytics_count }}</span></button>
-                <button type="button" class="filter-chip" data-group="capability" data-value="automation" aria-pressed="false">Automation <span class="chip-count">{{ automation_count }}</span></button>
-                <button type="button" class="filter-chip" data-group="capability" data-value="dashboards" aria-pressed="false">Dashboards <span class="chip-count">{{ dashboards_count }}</span></button>
+                {%- for cap in site.data.capabilities %}
+                {%- assign cap_count = site.case_studies | where_exp: "s", "s.capabilities contains cap.slug" | size %}
+                {%- if cap_count > 0 %}
+                <button type="button" class="filter-chip" data-group="capability" data-value="{{ cap.slug }}" aria-pressed="false">{{ cap.short }} <span class="chip-count">{{ cap_count }}</span></button>
+                {%- endif %}
+                {%- endfor %}
             </div>
         </div>
 
@@ -50,7 +57,7 @@ active_nav: work
 
         <p class="filter-empty" id="filter-empty" hidden>No stories match those filters yet. <button type="button" class="link-btn" id="filter-reset">Clear filters</button> to see them all.</p>
         {% else %}
-        <p class="muted u-center">New client stories are on the way - check back soon.</p>
+        <p class="muted u-center">New client stories are on the way. Check back soon.</p>
         {% endif %}
     </div>
 </section>

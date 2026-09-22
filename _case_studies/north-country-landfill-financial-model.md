@@ -3,7 +3,7 @@ title: "A 50-Year Financial Model for the Landfill That Serves New York's North 
 client: "Development Authority of the North Country"
 sector: public
 rank: 70
-capabilities: [analytics, dashboards]
+capabilities: [modeling]
 summary: "We rebuilt the Development Authority of the North Country's brittle landfill Excel workbook into a 50-year scenario-planning engine its leadership team uses together."
 description: "How Quantify replaced the Development Authority of the North Country's aging landfill financial workbook with a 50-year, Excel-based scenario-planning engine - VBA workflows, SharePoint version control, and a Power BI scenario layer."
 

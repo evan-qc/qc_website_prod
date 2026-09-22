@@ -2409,9 +2409,11 @@ a.client-tile-inner {
     }
 }
 
+/* Three across, because the menu is six. A four-column track was right for
+   the old eight-tile menu and leaves a ragged 4+2 for six. */
 @media (min-width: 960px) {
     .capability-tiles {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -2573,6 +2575,28 @@ a.client-tile-inner {
 
 .capability-proof--none .capability-proof-label {
     color: var(--text-muted);
+}
+
+/* Assessments carry their evidence as the practitioner rather than a published
+   case study. Same box, neutral rule, so it reads as context and not as a
+   proof link that forgot its link. */
+.capability-proof--who {
+    border-left-color: var(--border-strong);
+}
+
+.capability-proof--who .capability-proof-label {
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 0.35rem;
+}
+
+/* Empty targets for anchors retired in the eight-to-six capability
+   consolidation. They occupy no space; they only give the old fragment
+   somewhere to land, clear of the sticky header. */
+.anchor-alias {
+    display: block;
+    height: 0;
+    scroll-margin-top: 90px;
 }
 
 /* ---------- Pull quote ---------- */

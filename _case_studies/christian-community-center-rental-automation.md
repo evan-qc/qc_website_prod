@@ -23,7 +23,7 @@ Christian Community Center (CCC) is a church in Turin, New York that rents porti
 
 ## The challenge
 
-With roughly 30–35 rental requests a month, the assistant pastor was fielding inquiries by phone and email, checking the calendar for conflicts, tracking approvals in his head, chasing payments, and - critically - remembering to text the building access code before every single rental.
+With roughly 30 to 35 rental requests a month, the assistant pastor was fielding inquiries by phone and email, checking the calendar for conflicts, tracking approvals in his head, chasing payments, and, critically, remembering to text the building access code before every single rental.
 
 There was no shared source of truth for availability and no automated way to collect payment. The constant mental overhead of "did I send that code yet?" was, in his own words, heavier than the hours the work consumed.
 

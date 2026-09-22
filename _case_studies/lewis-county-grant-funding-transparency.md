@@ -3,7 +3,7 @@ title: "How Lewis County Proved Its Grant Office Brings Home Over $5M a Year"
 client: "Lewis County Government"
 sector: public
 rank: 30
-capabilities: [analytics, dashboards]
+capabilities: [grants, dashboards]
 summary: "We consolidated 30-plus grant-tracking tables into a single relational system and built a public Power BI dashboard that shows residents and legislators exactly how much state and federal funding the county secures - and where every dollar goes."
 description: "How Quantify helped Lewis County's Planning and Community Development team turn 30-plus disconnected grant-tracking tables into one relational system and a public Power BI dashboard, making $5M+ a year in secured funding visible to residents and legislators."
 

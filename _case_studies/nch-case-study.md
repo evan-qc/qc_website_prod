@@ -3,7 +3,7 @@ title: "North Country Handymen: One System to Run the Whole Business"
 client: "North Country Handymen"
 sector: private
 rank: 100
-capabilities: [automation]
+capabilities: [custom-apps, automation]
 summary: "Quantify built North Country Handymen a Core Business Platform, one system that runs the whole operation, reclaiming 12 to 15 hours a week and consolidating scattered tools onto a single platform."
 description: "How Quantify built North Country Handymen a Core Business Platform: automating intake, invoicing, and project tracking, then consolidating the operation onto Airtable. 12 to 15 hours a week reclaimed."
 
@@ -16,7 +16,7 @@ thumbnail_image: "/assets/case-studies/nch-team.jpg"
 thumbnail_image_alt: "The North Country Handymen team"
 
 results:
-  - stat: "12–15"
+  - stat: "12 to 15"
     label: "Hours a week reclaimed from manual paperwork"
   - stat: "5+"
     label: "Systems triggered automatically by one intake form"

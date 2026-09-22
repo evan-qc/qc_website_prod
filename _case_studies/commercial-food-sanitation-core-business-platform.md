@@ -3,7 +3,7 @@ title: "From Six Spreadsheets to One Source of Truth"
 client: "Commercial Food Sanitation"
 sector: private
 rank: 5
-capabilities: [automation, dashboards]
+capabilities: [custom-apps, dashboards]
 summary: "We replaced Commercial Food Sanitation's fragile, Excel-based scheduling and reporting with a Core Business Platform built in Airtable, giving a global food-safety team one connected system they can run from the plant floor."
 description: "How Quantify replaced Commercial Food Sanitation's six-plus disconnected spreadsheets with a single Airtable Core Business Platform - relational scheduling, automated Outlook sync, and real-time KPI dashboards for a global team of Food Safety Specialists."
 

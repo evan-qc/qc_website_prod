@@ -2,35 +2,49 @@
 layout: default
 title: What We Do
 seo_title: "What We Do | Quantify"
-description: "Dashboards and reporting, custom applications, system integration, process automation, financial modeling, data cleanup, grant and compliance reporting, and technology assessments. Every capability backed by work we have actually delivered."
+description: "Dashboards and reporting, custom applications, financial modeling and forecasting, grant and compliance reporting, automation and integration, and technology and security assessments. Every capability backed by work we have actually delivered."
 active_nav: capabilities
 ---
 <!-- Hero -->
 <section class="hero hero-compact">
     <div class="hero-content">
         <span class="eyebrow">What We Do</span>
-        <h1>Eight things, and <span class="accent-word">proof</span> of each.</h1>
+        <h1>Six things, and <span class="accent-word">proof</span> of each.</h1>
         <p class="lead">Every capability below links to a project where we did it, for a named client, with a result you can read. If we cannot point at proof, it is not on this page.</p>
     </div>
 </section>
 
-<!-- The eight -->
+<!-- The six -->
 <section class="section">
     <div class="container-narrow">
         {%- for cap in site.data.capabilities %}
+        {%- comment -%}
+          Anchors retired in the eight-to-six consolidation are re-emitted here as
+          empty targets so old deep links (#integration, #data-cleanup) still land
+          on the section that absorbed them.
+        {%- endcomment -%}
+        {%- for alias in cap.aliases %}<span class="anchor-alias" id="{{ alias }}"></span>{% endfor %}
         <article class="capability" id="{{ cap.slug }}">
             <div class="capability-num" aria-hidden="true">{{ forloop.index }}</div>
             <div class="capability-body">
                 <h2>{{ cap.title }}</h2>
                 <p class="capability-tagline">{{ cap.tagline }}</p>
                 <p>{{ cap.body }}</p>
+                {%- if cap.body_2 %}<p>{{ cap.body_2 }}</p>{% endif %}
                 {%- if cap.tools %}<p class="capability-tools">{{ cap.tools }}</p>{% endif %}
-                {%- if cap.proof_url %}
+                {%- for proof in cap.proofs %}
                 <p class="capability-proof">
                     <span class="capability-proof-label">Proof</span>
-                    {{ cap.proof }}
-                    <a href="{{ cap.proof_url | relative_url }}" class="card-link">Read it</a>
+                    {{ proof.text }}
+                    <a href="{{ proof.url | relative_url }}" class="card-link">Read it</a>
                 </p>
+                {%- endfor %}
+                {%- if cap.practitioner %}
+                <p class="capability-proof capability-proof--who">
+                    <span class="capability-proof-label">{{ cap.practitioner_label | default: "Who does this work" }}</span>
+                    {{ cap.practitioner }}
+                </p>
+                {%- if cap.practitioner_kicker %}<p>{{ cap.practitioner_kicker }}</p>{% endif %}
                 {%- elsif cap.proof_note %}
                 <p class="capability-proof capability-proof--none">
                     <span class="capability-proof-label">Proof</span>
@@ -49,7 +63,7 @@ active_nav: capabilities
         <div class="section-heading">
             <h2>Analytics, automation, and AI are the toolkit, not the pitch.</h2>
         </div>
-        <p>Underneath all eight of those is the same set of tools: analytics and reporting, process automation, and AI where it genuinely earns its keep. We care much less about which one we reach for than about whether the thing we hand you actually gets used.</p>
+        <p>Underneath all six of those is the same set of tools: analytics and reporting, process automation, and AI where it genuinely earns its keep. We care much less about which one we reach for than about whether the thing we hand you actually gets used.</p>
         <p>On AI specifically, our position is simple.</p>
         <blockquote class="pull-quote">Most "AI" is a chatbot bolted onto a broken process.</blockquote>
         <p>The useful version is narrower and more boring: reading documents so nobody re-keys them, triaging requests, surfacing what deserves attention. We will tell you when it fits, and we will tell you when it does not.</p>
