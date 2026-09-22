@@ -65,7 +65,7 @@ North Country Handymen was the first business to run on what Quantify now calls 
 
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;border-radius:8px;">
   <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;"
-          src="https://www.youtube.com/embed/kAFnwygj-70"
+          src="https://www.youtube-nocookie.com/embed/kAFnwygj-70"
           title="North Country Handymen testimonial"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

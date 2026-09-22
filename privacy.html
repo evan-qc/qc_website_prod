@@ -20,8 +20,10 @@ updated: "September 2026"
     2. The Google Fonts paragraph names /assessment/ because that is the only
        page requesting fonts.googleapis.com. Grep before trusting it.
     3. The video paragraph covers the YouTube embed in the North Country
-       Handymen case study. It is the only third-party embed on the site
-       besides the Airtable form.
+       Handymen case study, which points at youtube-nocookie.com. If that
+       ever reverts to youtube.com, the "does not set tracking cookies"
+       sentence stops being true. It is the only third-party embed on the
+       site besides the Airtable form.
 
   Not legal advice, and not reviewed by a lawyer. If Quantify starts handling
   client data under HIPAA, CJIS, or a state contract's security schedule, that
@@ -65,7 +67,7 @@ updated: "September 2026"
         </div>
         <p>Two pages load something from a third party, and it is worth naming both rather than burying them.</p>
         <p>Our <a href="{{ '/assessment/' | relative_url }}">assessment</a> page loads its typefaces from Google Fonts, which means your browser requests them from Google when you open that page. See <a href="https://policies.google.com/privacy">Google's privacy policy</a>. No other page on this site does this.</p>
-        <p>One case study, <a href="{{ '/case-studies/nch-case-study/' | relative_url }}">North Country Handymen</a>, embeds a video from YouTube. YouTube is a Google product, and opening that page loads the player from Google, which can set cookies in your browser. That is Google's doing rather than ours, and it happens on that one page only.</p>
+        <p>One case study, <a href="{{ '/case-studies/nch-case-study/' | relative_url }}">North Country Handymen</a>, embeds a video. We use YouTube's privacy-enhanced player, which does not set tracking cookies in your browser unless you actually press play. Opening that page still fetches the player from Google, so Google sees the request. That is the trade for hosting the video somewhere other than our own server, and it happens on that one page only.</p>
 
         <div class="section-heading u-mt-10">
             <h2>Client data</h2>
