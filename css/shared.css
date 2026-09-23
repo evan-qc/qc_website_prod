@@ -2078,22 +2078,21 @@ textarea {
 }
 
 /* Home hero layout. Each piece is its own grid item so the phone order
-   (intro, CTAs, video, place line with its map) can differ from the desktop
-   columns (copy, place line and CTAs left, video right). */
+   (intro, CTAs, then the media: video with the place line and its map
+   under it) can differ from the desktop columns (copy and CTAs left,
+   media right). */
 .home-hero-grid {
     display: grid;
     grid-template-areas:
         "intro"
         "ctas"
-        "media"
-        "place";
+        "media";
     row-gap: 1.75rem;
 }
 
 .home-hero-intro  { grid-area: intro; }
 .home-hero-ctas   { grid-area: ctas; }
 .home-hero-media  { grid-area: media; min-width: 0; }
-.home-hero-place  { grid-area: place; }
 
 .home-hero-intro .lead {
     margin-bottom: 0;
@@ -2110,14 +2109,12 @@ textarea {
         grid-template-columns: minmax(0, 11fr) minmax(0, 9fr);
         grid-template-areas:
             "intro media"
-            "place media"
             "ctas  media";
-        grid-template-rows: auto auto 1fr;
+        grid-template-rows: auto 1fr;
         column-gap: 3rem;
         row-gap: 0;
     }
     .home-hero-intro { margin-bottom: 1.25rem; }
-    .home-hero-grid .home-hero-place { margin-bottom: 1.5rem; }
     .home-hero-ctas { align-self: start; }
     .home-hero-media { align-self: center; }
 }

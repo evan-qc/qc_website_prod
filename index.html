@@ -6,10 +6,10 @@ description: "Data, systems, finance, and IT help for counties, agencies, nonpro
 active_nav: home
 ---
 {%- assign home = site.data.home -%}
-<!-- 1. Hero: copy left, video right.
-     The pieces are separate grid items so the phone order can differ from the
-     desktop columns: eyebrow to credentials, CTAs, video, then the place line
-     with its small map. CTAs come before the video on phones so nobody
+<!-- 1. Hero: copy and CTAs left; video, then the place line with its small
+     map, right. The pieces are separate grid items so the phone order can
+     differ from the desktop columns: eyebrow to credentials, CTAs, video,
+     then the place line. CTAs come before the video on phones so nobody
      scrolls past the video looking for the buttons.
 
      The credentials line describes the current team. Keep it in step with
@@ -23,10 +23,6 @@ active_nav: home
             <p class="lead">We do the work those hires would do, at a price that fits an organization your size. We build the reports, the systems, and the financial models, then we stay to keep them running.</p>
             <p class="home-hero-credentials">Between us: former IT Director for Lewis County, business intelligence at Amazon Web Services, credit and compliance analytics at a regulated lender, and a Carnegie Mellon MBA in finance.</p>
         </div>
-        <div class="home-hero-place">
-            {% include nys-map.html size="small" alt="Map of New York State with the North Country counties highlighted and a star marking Lowville." %}
-            <p class="home-hero-region">Based in Lowville. Working across the North Country.</p>
-        </div>
         <div class="hero-cta-row home-hero-ctas">
             <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Talk to us</a>
             <a href="{{ '/case-studies.html' | relative_url }}" class="btn btn-ghost">See our work</a>
@@ -38,6 +34,10 @@ active_nav: home
                 </div>
                 <figcaption class="home-hero-video-label">{{ home.video.label }}</figcaption>
             </figure>
+            <div class="home-hero-place">
+                {% include nys-map.html size="small" alt="Map of New York State with the North Country counties highlighted and a star marking Lowville." %}
+                <p class="home-hero-region">Based in Lowville. Working across the North Country.</p>
+            </div>
         </div>
     </div>
 </section>
@@ -92,7 +92,7 @@ active_nav: home
             <p>That's backwards. We exist to fix it. Local organizations get big city results from people who live down the road. Local talent gets to do its best work for its neighbors. And the money stays here.</p>
         </div>
         <div class="statement-band-map">
-            {% include nys-map.html size="large" pins=true caption="Every pin is a client. Tap one to see the work." alt="Map of New York State with Oneida, Oswego, Herkimer, Lewis, Jefferson, St. Lawrence, Hamilton, and Franklin counties highlighted. A star marks Quantify's office in Lowville. Pins mark clients with published case studies in Lowville, Watertown, and Turin." %}
+            {% include nys-map.html size="large" pins=true star=false caption="Every pin is a client. Tap one to see the work." alt="Map of New York State with Oneida, Oswego, Herkimer, Lewis, Jefferson, St. Lawrence, Hamilton, and Franklin counties highlighted. Pins mark clients with published case studies in Lowville, Watertown, and Turin." %}
         </div>
         <div class="statement-band-close">
             <p class="statement-band-tagline">Small town values. Big city results.</p>

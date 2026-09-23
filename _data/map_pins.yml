@@ -10,7 +10,7 @@
 # ---------------------------------------------------------------------------
 # Office star. 5423 Shady Ave sits inside the Village of Lowville, so the
 # village centre (43.787, -75.492) is used: at statewide scale the two points
-# are the same pixel.
+# are the same pixel. Only the hero map shows it.
 # ---------------------------------------------------------------------------
 office:
   label: "Lowville"
@@ -18,22 +18,30 @@ office:
   y: 211.3
 
 # ---------------------------------------------------------------------------
-# Client pins. The rule: a pin means a published case study. Every pin needs a
-# `url`, and a client without a public case study gets no pin, whatever
-# permission we have for its logo.
+# Client pins, on the large "Why we're here" map. The rule: a pin means a
+# published case study. Every pin needs a `url`, and a client without a
+# public case study gets no pin, whatever permission we have for its logo.
 #
 # Fields:
 #   label    org name, shown on hover, tap and focus (required)
 #   town     shown after the name (required)
 #   url      the published case study the pin links to (required)
-#   dx, dy   optional nudge in CSS pixels, applied after the x/y position.
-#            Pixels rather than map units so the gap between pins stays the
-#            same at every screen size. Used to fan the Lowville clients out
-#            around the office star so every pin, and the star, stays visible
-#            and tappable. The current fan: Watertown keeps the north-west,
-#            the "Lowville" label sits west of the star, and the Lowville and
-#            Turin pins ring the star from north-east round to south-west.
-#            Check a new pin at 390px and 1366px wide before shipping it.
+#   x, y     the client's real location, from the towns table in
+#            _data/map_meta.yml
+#   dx, dy   optional nudge in CSS pixels, applied after x/y.
+#
+# Pins sit where the clients are. At statewide scale a mile is about one
+# pixel on a phone, so Turin lands 9px from Lowville and Watertown 19px. The
+# nudges below are the smallest that keep every dot separate and tappable at
+# 390px wide, and each one points the true direction from Lowville:
+#   Lewis County Government   Lowville, no nudge (the anchor)
+#   Double Play               slightly north-west of Lowville
+#   North Country Handymen    slightly east of Lowville
+#   Christian Community Ctr   Turin, south-south-east, pushed a little
+#                             further out along that line
+#   DANC                      Watertown, 6px west so Double Play fits
+#                             between it and Lowville
+# Check a new pin at 390px and 1366px wide before shipping it.
 #
 # Deliberately not pinned, and why:
 #   - Jefferson County. Logo permission only, no public case study.
@@ -50,38 +58,34 @@ pins:
     town: "Lowville"
     x: 509.9
     y: 211.3
-    dx: 14
-    dy: -20
     url: "/case-studies/lewis-county-financial-transparency/"
 
   - label: "Development Authority of the North Country"
     town: "Watertown"
     x: 461.9
     y: 182.1
-    dx: -12
-    dy: -8
+    dx: -6
     url: "/case-studies/north-country-landfill-financial-model/"
 
   - label: "Christian Community Center"
     town: "Turin"
     x: 519.0
     y: 235.7
-    dx: -18
-    dy: 12
+    dx: 2
+    dy: 10
     url: "/case-studies/christian-community-center-rental-automation/"
 
   - label: "Double Play Community Center"
     town: "Lowville"
     x: 509.9
     y: 211.3
-    dx: 26
-    dy: 4
+    dx: -6
+    dy: -16
     url: "/case-studies/double-play-grant-reporting/"
 
   - label: "North Country Handymen"
     town: "Lowville"
     x: 509.9
     y: 211.3
-    dx: 14
-    dy: 28
+    dx: 18
     url: "/case-studies/nch-case-study/"
