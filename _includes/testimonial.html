@@ -1,0 +1,19 @@
+<!-- Pull-quote testimonial. Content comes from `testimonial` in
+     _data/home.yml. Renders nothing at all unless a real quote and a named
+     person are both set, so no placeholder can ship. -->
+{%- assign t = site.data.home.testimonial %}
+{%- if t.quote and t.quote != "" and t.name and t.name != "" %}
+<section class="section section-tight" aria-label="What clients say">
+    <div class="container-narrow">
+        <figure class="testimonial">
+            <blockquote>
+                <p>{{ t.quote }}</p>
+            </blockquote>
+            <figcaption>
+                <span class="testimonial-name">{{ t.name }}</span>
+                <span class="testimonial-meta">{{ t.title }}{% if t.organization != "" %}, {{ t.organization }}{% endif %}{% if t.town != "" %}, {{ t.town }}{% endif %}</span>
+            </figcaption>
+        </figure>
+    </div>
+</section>
+{%- endif %}

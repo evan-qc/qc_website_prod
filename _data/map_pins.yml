@@ -1,7 +1,10 @@
-# Client pins on the homepage North Country map.
+# Client pins on the compact Northern New York map in the homepage hero
+# (_includes/nny-map.html).
 #
-# x/y are SVG user units in the viewBox recorded in _data/map_meta.yml, which
-# also carries a lookup table of projected town coordinates. To add a pin:
+# x/y are SVG user units in the statewide viewBox recorded in
+# _data/map_meta.yml, which also carries a lookup table of projected town
+# coordinates. The hero map is a crop of that same coordinate system, so the
+# numbers need no conversion. To add a pin:
 # copy the x/y for the town from that table, nudge by a few units if it would
 # collide with an existing pin, and add a row here. No script needed unless the
 # town is missing from the table.
@@ -10,16 +13,17 @@
 #   label    org name shown on hover and to screen readers (required)
 #   town     shown under the label on hover (required)
 #   url      case study to link to. Omit for an unlinked pin.
-#   status   omit for a normal pin, or "in-progress" for the ochre treatment
+#   status   omit for a normal pin, or "in-progress" for the hollow pin
 #            used for engagements that are live but not yet publishable.
 #
 # Deliberately not pinned, and why:
 #   - The two Anonymous County studies. Pinning them would identify the client.
-#   - Commercial Food Sanitation. Global operation, no North Country location
-#     to pin honestly.
+#   - Commercial Food Sanitation. Global operation, no Northern New York
+#     location to pin honestly.
 #   - Double Play Community Center and North Country Handymen. Both are local
-#     but neither case study states a town, and I won't guess one. Add them
-#     here once you confirm the towns.
+#     but neither case study states a town, and I won't guess one.
+#     TODO(Evan): confirm their towns and whether they get pins, then add them
+#     here.
 
 - label: "Lewis County Government"
   town: "Lowville"
@@ -40,8 +44,10 @@
   url: "/case-studies/christian-community-center-rental-automation/"
 
 # Engagement in flight. Unlinked until it wraps and we have sign-off.
+# Nudged south-west of the Lewis County pin so the two Lowville pins do not
+# sit on top of each other at hero size.
 - label: "Naturally Lewis"
   town: "Lowville"
-  x: 498.0
-  y: 220.0
+  x: 496.0
+  y: 224.0
   status: "in-progress"

@@ -1,0 +1,22 @@
+<!-- Phone and named email, from _config.yml. Used by the homepage closing
+     CTA, get-started.html and the footer. An empty value renders a clearly
+     marked TODO placeholder instead of a broken tel:/mailto: link.
+     Pass class="..." to add a modifier (e.g. direct-contact--on-dark). -->
+<ul class="direct-contact{% if include.class %} {{ include.class }}{% endif %}">
+    <li>
+        <span class="direct-contact-label">Call or text</span>
+        {%- if site.phone != "" %}
+        <a href="tel:+1{{ site.phone }}">{{ site.phone_display | default: site.phone }}</a>
+        {%- else %}
+        <span class="todo-placeholder">TODO(Evan): phone number</span>
+        {%- endif %}
+    </li>
+    <li>
+        <span class="direct-contact-label">Email</span>
+        {%- if site.named_email != "" %}
+        <a href="mailto:{{ site.named_email }}">{{ site.named_email }}</a>
+        {%- else %}
+        <span class="todo-placeholder">TODO(Evan): named email</span>
+        {%- endif %}
+    </li>
+</ul>

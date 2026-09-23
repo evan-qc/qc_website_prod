@@ -14,15 +14,24 @@
 # front matter. `aliases` carries anchors retired in the eight-to-six
 # consolidation so old deep links keep resolving.
 #
-# `tile_line` is the homepage one-liner. It runs a little longer than the
-# on-page `tagline` because the tile is the only copy a homepage skimmer
-# reads. Omit it and the tagline is used instead.
+# Homepage tile fields. Each tile leads with the buyer's problem, then what
+# we do, then a proof link:
+#   `tile_problem`     the problem, in the buyer's own voice (rendered italic)
+#   `tile_line`        what we do, one line. Omit it and the tagline is used.
+#   `tile_proof_name`  client named in "See it in action: [Client]"
+#   `tile_proof_url`   that client's case study. Omit both for no proof link.
+# TODO(Evan): confirm each tile_proof pairing matches what the project was.
+# They were matched from case study titles.
 
 - slug: dashboards
   short: "Dashboards &amp; Reporting"
   title: "Dashboards &amp; Reporting"
   aliases: [data-cleanup]
   tagline: "Numbers your board and your staff can see today, not at month end."
+  tile_problem: "The board asks a question and the answer takes a week."
+  tile_line: "Numbers your board and staff can see today, not at month end."
+  tile_proof_name: "Lewis County"
+  tile_proof_url: "/case-studies/lewis-county-financial-transparency/"
   body: >-
     Most organizations already collect what they need. The problem is that getting it
     into a usable form takes someone three days and a stack of exports, so it happens
@@ -45,6 +54,10 @@
   short: "Custom Applications"
   title: "Custom Applications"
   tagline: "Replace the pile of spreadsheets with one system your team runs the work in."
+  tile_problem: "Nine spreadsheets and a group text are running the operation."
+  tile_line: "One system your team actually runs the work in."
+  tile_proof_name: "Commercial Food Sanitation"
+  tile_proof_url: "/case-studies/commercial-food-sanitation-core-business-platform/"
   body: >-
     There is a gap between a spreadsheet that has stopped coping and enterprise
     software that costs six figures and eighteen months. Almost every organization we
@@ -60,7 +73,10 @@
   short: "Financial Modeling &amp; Forecasting"
   title: "Financial Modeling &amp; Forecasting"
   tagline: "Scenario planning your leadership team can run themselves."
-  tile_line: "Long-range plans and rate analysis your leadership can run in the meeting."
+  tile_problem: "Your long-range plan lives in one workbook that one person understands."
+  tile_line: "Models your leadership can run together, in the meeting."
+  tile_proof_name: "Development Authority of the North Country"
+  tile_proof_url: "/case-studies/north-country-landfill-financial-model/"
   body: >-
     The financial model that matters most is usually the one nobody will touch: a
     workbook one person built, that breaks if you change a cell, that cannot answer
@@ -78,6 +94,10 @@
   short: "Grant &amp; Compliance Reporting"
   title: "Grant &amp; Compliance Reporting"
   tagline: "Prove what you brought in and what it did, on the state's schedule."
+  tile_problem: "Grant reporting eats a week every quarter."
+  tile_line: "Prove what you brought in and what it did, on the state's schedule."
+  tile_proof_name: "Double Play Community Center"
+  tile_proof_url: "/case-studies/double-play-grant-reporting/"
   body: >-
     Grant and compliance reporting is annual, mandatory, and almost always assembled
     by hand under deadline by someone who has a different day job. We build the system
@@ -93,7 +113,10 @@
   title: "Automation &amp; Integration"
   aliases: [integration]
   tagline: "Stop entering the same information three times."
-  tile_line: "Stop entering the same information three times, and stop chasing approvals by email."
+  tile_problem: "You type the same information into three different places."
+  tile_line: "Enter it once, and stop chasing approvals by email."
+  tile_proof_name: "Christian Community Center"
+  tile_proof_url: "/case-studies/christian-community-center-rental-automation/"
   body: >-
     Double entry is not a discipline problem, it is a plumbing problem. When your ERP,
     your scale system, and somebody's Excel file have no way to talk, a person becomes
@@ -114,7 +137,8 @@
   short: "Technology &amp; Security Assessments"
   title: "Technology &amp; Security Assessments"
   tagline: "An honest read on where you stand and what to fix first."
-  tile_line: "An honest read on where you stand and what to fix first, from someone who has sat in your chair."
+  tile_problem: "You're not sure your IT would hold up on a bad day."
+  tile_line: "An honest read on where you stand and what to fix first, from someone who's run IT for a county."
   body: >-
     If you have an IT vendor but no IT director, nobody is sitting on your side of the
     table. That is the gap this fills.

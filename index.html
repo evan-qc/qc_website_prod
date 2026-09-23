@@ -1,119 +1,110 @@
 ---
 layout: default
 title: Home
-seo_title: "Quantify | Data, Systems & Reporting for New York's North Country"
-description: "Quantify is the fractional data and systems department for the counties, authorities, agencies, and employers of New York's North Country. Dashboards, custom apps, automation, and financial modeling. Based in Lowville, NY."
+seo_title: "Quantify | Tech, Data & Systems Help for Northern New York"
+description: "Data, systems, and IT help for counties, agencies, nonprofits, and businesses across Northern New York. Three people, based in Lowville."
 active_nav: home
 ---
-<!-- Hero -->
+{%- assign home = site.data.home -%}
+<!-- 1. Hero: copy left, video over a compact map right.
+     The pieces are separate grid items so the phone order can differ from the
+     desktop columns: eyebrow to body, CTAs, video, map, then the geo line.
+     CTAs come before the video on phones so nobody scrolls past the video
+     looking for the buttons. -->
 <section class="hero home-hero">
     <div class="hero-content home-hero-grid">
-        <div class="home-hero-copy">
-        <span class="eyebrow">New York's North Country</span>
-        <h1>You need a data analyst, an IT director, and an operations lead.</h1>
-        <p class="home-hero-sub">Hiring all three isn't realistic. So hire the three of us.</p>
-        <p class="lead">Quantify is the fractional data and systems department for organizations that will never have one on payroll. We build the reporting, the systems, and the models an internal team would build, then we stay on to keep them running.</p>
-        <p class="home-hero-region">Based in Lowville. Working across Lewis, Jefferson, and St. Lawrence counties, and the wider North Country.</p>
-        <div class="hero-cta-row">
-            <a href="{{ '/case-studies.html' | relative_url }}" class="btn btn-amber">See our work</a>
-            <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-ghost">Talk to us</a>
+        <div class="home-hero-intro">
+            <span class="eyebrow">Northern New York</span>
+            <h1>You need a data analyst, an IT director, and an operations lead.</h1>
+            <p class="home-hero-sub">You don't have the budget for all three. That's where we come in.</p>
+            {%- comment -%}
+              TODO(Evan): if all three team members are from the region, change the
+              first sentence to "We're three Northern New York locals who do the
+              work those hires would do..." Only once Evan confirms it's true.
+            {%- endcomment %}
+            <p class="lead">We're a three-person team in Lowville that does the work those hires would do, at a price that fits an organization your size. We build it, we explain it, and we stay to keep it running.</p>
         </div>
+        <p class="home-hero-region">Based in Lowville. Working across all eight counties of Northern New York.</p>
+        <div class="hero-cta-row home-hero-ctas">
+            <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Talk to us</a>
+            <a href="{{ '/case-studies.html' | relative_url }}" class="btn btn-ghost">See our work</a>
         </div>
-        <div class="home-hero-video">
-            <iframe src="https://share.descript.com/embed/xUmdb9oEpWW"
-                    title="Quantify introduction video"
-                    frameborder="0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen></iframe>
+        <div class="home-hero-media">
+            <figure class="home-hero-video">
+                <div class="video-facade" data-video-src="{{ home.video.src }}" data-video-title="{{ home.video.title }}">
+                    <button type="button" class="video-facade-btn" aria-label="Play video: {{ home.video.title }}">
+                        {%- if home.video.poster != "" %}
+                        <img class="video-facade-poster" src="{{ home.video.poster | relative_url }}" alt="{{ home.video.poster_alt }}" width="1280" height="720" fetchpriority="high">
+                        {%- else %}
+                        {%- comment -%}TODO(Evan): poster frame (see `video` in _data/home.yml). Neutral Linen placeholder until then.{%- endcomment %}
+                        <span class="video-facade-placeholder" aria-hidden="true"></span>
+                        {%- endif %}
+                        <span class="video-facade-play" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="28" height="28" focusable="false"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+                        </span>
+                    </button>
+                </div>
+                <figcaption class="home-hero-video-label">{{ home.video.label }}</figcaption>
+            </figure>
+            {% include nny-map.html %}
         </div>
     </div>
 </section>
 
-<!-- Client logos: sits directly under the hero, above everything else -->
+<script>
+  // Click-to-load video. The iframe (and everything Descript loads with it)
+  // is only requested once someone presses play.
+  (function () {
+    var facade = document.querySelector('.video-facade');
+    if (!facade) return;
+    var btn = facade.querySelector('.video-facade-btn');
+    btn.addEventListener('click', function () {
+      var iframe = document.createElement('iframe');
+      iframe.src = facade.getAttribute('data-video-src');
+      iframe.title = facade.getAttribute('data-video-title');
+      iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+      facade.replaceChildren(iframe);
+      facade.classList.add('is-playing');
+      iframe.focus();
+    });
+  })();
+</script>
+
+<!-- 2. Logo marquee -->
 {% include client-logos.html %}
 
-<!-- North Country map -->
-<section class="section section-tight">
-    <div class="container">
-        {% include north-country-map.html %}
-        <p class="nc-map-caption">Every pin is a client. Most of them are within an hour's drive.</p>
-    </div>
-</section>
-
-<!-- Audience router -->
-<section class="section section-alt">
-    <div class="container">
-        <div class="section-heading">
-            <h2>Where should you start?</h2>
-        </div>
-        <div class="audience-router">
-            <a class="audience-card" href="{{ '/case-studies.html' | relative_url }}?sector=public">
-                <h3>I run a county, authority, or agency</h3>
-                <p>Real-time financial reporting, grant and compliance tracking, custom applications, and long-range financial models. We have done this work for Lewis County and the Development Authority of the North Country.</p>
-                <span class="audience-card-cue">See our public-sector work →</span>
-            </a>
-            <a class="audience-card" href="{{ '/case-studies.html' | relative_url }}?sector=private">
-                <h3>I own a local business</h3>
-                <p>One system that runs the whole operation instead of nine spreadsheets and a group text. Built in weeks, not quarters, and priced for a company your size.</p>
-                <span class="audience-card-cue">See our work with local businesses →</span>
-            </a>
-        </div>
-        <p class="audience-aside">Consulting firm looking for delivery capacity? <a href="{{ '/for-consulting-firms/' | relative_url }}">Start here →</a></p>
-    </div>
-</section>
-
-<!-- Who we work with. Sits directly under the router because the router only
-     names two audiences, and a BOCES business official or a chamber director
-     needs to see their own organization type on the page before they will
-     believe either card is about them. -->
-<section class="section">
-    <div class="container-narrow">
-        <div class="section-heading">
-            <h2>Who we work with</h2>
-        </div>
-        <p class="lead">Counties, towns and villages. Public authorities and development agencies. BOCES and school districts. Chambers of commerce and economic development organizations. Healthcare providers. The nonprofits that serve all of them. And the local employers who keep the region running.</p>
-        <p>Most of our work is in Lewis, Jefferson and St. Lawrence counties. If you are an hour's drive from Lowville, we can be in your building this week.</p>
-    </div>
-</section>
-
-<!-- Capability menu -->
-<section class="section section-alt">
-    <div class="container">
-        <div class="section-heading">
-            <h2>What we can do for you</h2>
-        </div>
-        {% include capability-tiles.html %}
-        <p class="section-footnote u-center">
-            <a href="{{ '/what-we-do.html' | relative_url }}" class="card-link">See all capabilities</a>
-        </p>
-    </div>
-</section>
-
-<!-- The three of us -->
+<!-- 3. Team. The headline ties back to the three roles in the hero, and the
+     cards run in the same order: data, IT, operations. -->
 <section class="section">
     <div class="container">
         <div class="section-heading">
-            <h2>Three people. Thirty years of it.</h2>
+            <h2>Your data analyst. Your IT director. Your operations lead.</h2>
         </div>
-        <p class="lead u-mb-8">In a region this size, you are not hiring a firm. You are hiring the people who show up. Here is who shows up.</p>
+        <p class="lead u-mb-8">In a region this size, you're not hiring a firm. You're hiring the people who show up. Here's who shows up.</p>
         <div class="team-strip">
             <article class="team-strip-member">
-                <img class="team-strip-photo" src="{{ '/assets/evan.png' | relative_url }}" alt="Evan Jennings" width="800" height="800" loading="lazy">
-                <div class="team-strip-name">Evan Jennings</div>
-                <div class="team-strip-role">Founder</div>
-                <p>Carnegie Mellon MBA in analytics, finance and operations. Three years as a senior business intelligence engineer at Amazon Web Services. Grew up in Lewis County, and came back on purpose.</p>
+                <img class="team-strip-photo" src="{{ '/assets/allen.png' | relative_url }}" alt="Allen Beaujon" width="800" height="800" loading="lazy">
+                <span class="role-tag">Your data analyst</span>
+                <h3 class="team-strip-name">Allen Beaujon</h3>
+                <div class="team-strip-role">Principal Data Solutions Consultant</div>
+                {%- comment -%}TODO(Evan): one-line local hook for Allen (hometown, years in the region, or why he's here). Append it as the last sentence.{%- endcomment %}
+                <p>Five years building credit and compliance analytics inside a regulated lender, where being wrong had consequences. Specializes in turning messy operational data into numbers a leadership team will act on.</p>
             </article>
             <article class="team-strip-member">
                 <img class="team-strip-photo" src="{{ '/assets/conner.png' | relative_url }}" alt="Conner Biolsi" width="800" height="800" loading="lazy">
-                <div class="team-strip-name">Conner Biolsi</div>
+                <span class="role-tag">Your IT director</span>
+                <h3 class="team-strip-name">Conner Biolsi</h3>
                 <div class="team-strip-role">Principal Solutions Architect</div>
+                {%- comment -%}TODO(Evan): one-line local hook for Conner (hometown, years in the region, or why he's here). Append it as the last sentence.{%- endcomment %}
                 <p>IT Director for Lewis County government for nearly six years, where he rebuilt the county's entire infrastructure stack. Elected to the state board that coordinates technology for New York's counties, schools and BOCES. Previously J.P. Morgan Chase. Certified in Cybersecurity.</p>
             </article>
             <article class="team-strip-member">
-                <img class="team-strip-photo" src="{{ '/assets/allen.png' | relative_url }}" alt="Allen Beaujon" width="800" height="800" loading="lazy">
-                <div class="team-strip-name">Allen Beaujon</div>
-                <div class="team-strip-role">Principal Data Solutions Consultant</div>
-                <p>Five years building credit and compliance analytics inside a regulated lender, where being wrong had consequences. Specializes in turning messy operational data into numbers a leadership team will act on.</p>
+                <img class="team-strip-photo" src="{{ '/assets/evan.png' | relative_url }}" alt="Evan Jennings" width="800" height="800" loading="lazy">
+                <span class="role-tag">Your operations lead</span>
+                <h3 class="team-strip-name">Evan Jennings</h3>
+                <div class="team-strip-role">Founder</div>
+                <p>Carnegie Mellon MBA in analytics, finance and operations. Three years as a senior business intelligence engineer at Amazon Web Services. Grew up in Lewis County, and came back on purpose.</p>
             </article>
         </div>
         <p class="section-footnote u-center">
@@ -122,18 +113,35 @@ active_nav: home
     </div>
 </section>
 
-<!-- Featured work: one per audience type -->
-{% assign featured_slugs = "lewis-county-financial-transparency,north-country-landfill-financial-model,commercial-food-sanitation-core-business-platform" | split: "," %}
+<!-- 4. Why we exist. A deliberate pause in the page rhythm, and a second pass
+     at the story in the video for anyone who skipped it. -->
+<section class="statement-band">
+    <div class="statement-band-inner">
+        <h2>The talent is already here. It's just working for someone else.</h2>
+        <p>Northern New York is full of people who build data systems, run IT, and model finances for a living. Most of them do it remotely, for companies hundreds of miles away.</p>
+        <p>Meanwhile, the counties, agencies, and businesses next door can't hire for those roles full time. So they send the work to big city firms that have never driven Route 12.</p>
+        <p>That's backwards. We exist to fix it. Local organizations get big city results from people who live down the road. Local talent gets to do its best work for its neighbors. And the money stays here.</p>
+        <p class="statement-band-tagline">Small town values. Big city results.</p>
+        <p class="statement-band-aside">Live here and do this kind of work? <a href="{{ '/careers.html' | relative_url }}">We want to hear from you.</a></p>
+    </div>
+</section>
+
+<!-- 5. Recent work -->
 <section class="section section-alt">
     <div class="container">
         <div class="section-heading">
             <h2>Recent work</h2>
         </div>
+        <p class="lead">Counties, towns, and villages. Authorities and development agencies. School districts and BOCES. Healthcare providers, nonprofits, and the local employers who keep the region running.</p>
+        <nav class="sector-links" aria-label="Browse work by sector">
+            <a class="filter-chip" href="{{ '/case-studies.html' | relative_url }}?sector=public">Public sector work →</a>
+            <a class="filter-chip" href="{{ '/case-studies.html' | relative_url }}?sector=private">Local business work →</a>
+        </nav>
         <div class="card-grid case-grid">
-            {%- for slug in featured_slugs %}
-            {%- assign path = "_case_studies/" | append: slug | append: ".md" %}
+            {%- for item in home.featured_work %}
+            {%- assign path = "_case_studies/" | append: item.slug | append: ".md" %}
             {%- assign study = site.case_studies | where: "path", path | first %}
-            {%- if study %}{% include case-study-card.html study=study %}{% endif %}
+            {%- if study %}{% include case-study-card.html study=study title=item.headline summary=item.summary %}{% endif %}
             {%- endfor %}
         </div>
         <p class="section-footnote u-center">
@@ -142,12 +150,30 @@ active_nav: home
     </div>
 </section>
 
-<!-- Closing CTA -->
+<!-- 6. Testimonial. Renders nothing until _data/home.yml has a real quote. -->
+{% include testimonial.html %}
+
+<!-- 7. Capabilities: a menu of ideas, problem first -->
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <h2>What we can do for you</h2>
+        </div>
+        {% include capability-tiles.html %}
+        <p class="capability-ask">Don't see your problem here? <a href="{{ '/get-started.html' | relative_url }}">Ask anyway.</a> If we're not the right fit, we'll tell you who is.</p>
+        <p class="section-footnote u-center">
+            <a href="{{ '/what-we-do.html' | relative_url }}" class="card-link">See all capabilities</a>
+        </p>
+    </div>
+</section>
+
+<!-- 8. Closing CTA -->
 <section class="cta-banner">
     <div class="container">
         <h2>Start with a conversation, not a contract.</h2>
-        <p>The first one is free, and we lead with something useful whether or not you hire us. Tell us where the pain is and we will tell you straight whether we are the right people to fix it.</p>
+        <p>The first one is free, and we lead with something useful whether or not you hire us. Tell us where the pain is and we'll tell you straight whether we're the right people to fix it.</p>
+        <p>Anywhere in Northern New York, we can be in your building this week. Coffee's on us.</p>
         <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Talk to us</a>
-        <p class="cta-contact">{{ site.address_locality }}, {{ site.address_region }} · <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+        {% include direct-contact.html class="direct-contact--on-dark" %}
     </div>
 </section>

@@ -1,0 +1,57 @@
+# Homepage content that is data rather than layout.
+
+# ---------------------------------------------------------------------------
+# Recent work. Three case studies, with plain-language headlines and summaries
+# that override the study's own on the homepage card only. The case study
+# pages keep their detailed titles and technical language.
+# ---------------------------------------------------------------------------
+featured_work:
+  - slug: lewis-county-financial-transparency
+    headline: "Lewis County's budget reports went from five days to real time"
+    summary: "Staff and the public can now see the county's financial picture the moment it changes, built on top of the ERP the county already had."
+  - slug: north-country-landfill-financial-model
+    headline: "A 50-year plan for the landfill that serves the North Country"
+    summary: "We turned a fragile Excel workbook into a planning model the Authority's leadership runs together, in the room."
+  - slug: commercial-food-sanitation-core-business-platform
+    headline: "Six spreadsheets became one system, run from the plant floor"
+    summary: "A global food safety team now schedules and reports out of one connected platform instead of a stack of fragile files."
+
+# ---------------------------------------------------------------------------
+# Testimonial (pull quote under Recent work).
+#
+# The section renders ONLY when `quote` and `name` are both set. Leave it
+# empty and nothing ships: no heading, no placeholder.
+#
+# TODO(Evan): provide at least one real quote with a named person, ideally
+# from Lewis County or DANC, confirmed for homepage use. Two quotes are
+# already published on case study pages if you want to reuse one of those:
+#   - Tim Hunt, County Administrator, Lewis County (Lowville), in
+#     _case_studies/lewis-county-grant-funding-transparency.md
+#   - Carrie Tuttle, Chief Operating Officer, Development Authority of the
+#     North Country (Watertown), in
+#     _case_studies/north-country-landfill-financial-model.md
+# ---------------------------------------------------------------------------
+testimonial:
+  quote: ""
+  name: ""
+  title: ""
+  organization: ""
+  town: ""
+
+# ---------------------------------------------------------------------------
+# Hero video. Loads only on click (a static poster plus play button until
+# then), so the hero stays fast.
+#
+# TODO(Evan): poster frame image showing a real face (not a logo or title
+# card), 16:9, e.g. 1280x720. Drop it under assets/ and set `poster`. Until
+# then the facade shows a neutral Linen placeholder with the play button.
+# TODO(Evan): confirm the runtime in `label`.
+# TODO(Evan): turn captions on by default in Descript. The share embed has no
+# URL setting for it that we can control from the page.
+# ---------------------------------------------------------------------------
+video:
+  src: "https://share.descript.com/embed/xUmdb9oEpWW"
+  title: "Why we started Quantify"
+  label: "Why we started Quantify (2 min)"
+  poster: ""
+  poster_alt: ""
