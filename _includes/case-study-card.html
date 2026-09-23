@@ -1,6 +1,12 @@
+{% comment %}
+  Optional `title` and `summary` parameters override the study's own, so the
+  homepage can run plain-language copy without touching the case study page.
+{% endcomment %}
 {% assign caps = include.study.capabilities | join: " " %}
 {% assign card_image = include.study.thumbnail_image | default: include.study.hero_image %}
 {% assign card_image_alt = include.study.thumbnail_image_alt | default: include.study.hero_image_alt | default: include.study.title %}
+{% assign card_title = include.title | default: include.study.title %}
+{% assign card_summary = include.summary | default: include.study.summary %}
 <article class="card case-card" data-sector="{{ include.study.sector }}" data-capabilities="{{ caps }}">
     <a href="{{ include.study.url | relative_url }}" class="card-image"{% unless card_image %} data-label="Client photo"{% endunless %}>
         {% if card_image %}<img src="{{ card_image | relative_url }}" alt="{{ card_image_alt }}" width="1600" height="1000" loading="lazy">{% endif %}
@@ -8,8 +14,8 @@
     </a>
     <div class="card-body">
         {% if include.study.client %}<div class="card-meta">{{ include.study.client }}</div>{% endif %}
-        <h3>{{ include.study.title }}</h3>
-        {% if include.study.summary %}<p class="muted">{{ include.study.summary }}</p>{% endif %}
+        <h3>{{ card_title }}</h3>
+        {% if card_summary %}<p class="muted">{{ card_summary }}</p>{% endif %}
         <a href="{{ include.study.url | relative_url }}" class="card-link">Learn more</a>
     </div>
 </article>

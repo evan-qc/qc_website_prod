@@ -2,7 +2,7 @@
 layout: default
 title: Let's Talk
 seo_title: "Let's Talk | Quantify"
-description: "Start with a free conversation. Quantify works with counties, authorities, agencies, school districts, healthcare providers, nonprofits, and local employers across Lewis, Jefferson, and St. Lawrence counties and the wider North Country."
+description: "Start with a free conversation. Quantify works with counties, authorities, agencies, school districts, healthcare providers, nonprofits, and local employers across all eight counties of Northern New York."
 active_nav: talk
 ---
 <!-- Hero -->
@@ -22,7 +22,20 @@ active_nav: talk
                 <div class="section-heading">
                     <h2>Tell us a bit about you</h2>
                 </div>
-                <p>We respond within 48 hours. If you would rather just email, <a href="mailto:{{ site.email }}?subject=Free%20consultation">{{ site.email }}</a>.</p>
+                <p>We respond within 48 hours.</p>
+
+                <div class="contact-direct">
+                    <h3>Rather not fill in a form?</h3>
+                    {% include direct-contact.html %}
+                    <p class="muted u-mt-2">Or write to <a href="mailto:{{ site.email }}?subject=Free%20consultation">{{ site.email }}</a>.</p>
+                    {%- comment -%}
+                      Booking link slot. Stays hidden until `booking_url` is set in
+                      _config.yml. TODO(Evan): optional Calendly (or similar) link.
+                    {%- endcomment %}
+                    {%- if site.booking_url != "" %}
+                    <p class="u-mt-6"><a href="{{ site.booking_url }}" class="btn btn-ghost">Book a time on the calendar</a></p>
+                    {%- endif %}
+                </div>
 
                 <div class="contact-block">
                     <h3>Office</h3>
@@ -33,10 +46,17 @@ active_nav: talk
                     </address>
 
                     <h3>Where we work</h3>
-                    <p class="muted">Lewis, Jefferson, and St. Lawrence counties, and the wider North Country.</p>
+                    <p class="muted">All eight counties of Northern New York: Oneida, Oswego, Herkimer, Lewis, Jefferson, St. Lawrence, Hamilton, and Franklin.</p>
                 </div>
             </div>
             <div>
+                {%- comment -%}
+                  TODO(Evan): the form's fields live in Airtable, not in this repo.
+                  In the Airtable form builder, keep only Name, Email and a long
+                  text field labeled "What's going on?" (placeholder: "A sentence
+                  or two is plenty.") as required; make every other field optional
+                  or remove it.
+                {%- endcomment %}
                 <iframe class="airtable-embed" src="https://airtable.com/embed/appAqSGbcZW97E1aK/pagTaNts1aKm9mVmx/form" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;" title="Contact form"></iframe>
             </div>
         </div>
@@ -59,7 +79,7 @@ active_nav: talk
             <details class="faq-item">
                 <summary>Who do you work with?</summary>
                 <div class="faq-answer">
-                    <p>Counties, towns and villages, public authorities, development agencies, BOCES and school districts, chambers and economic development organizations, healthcare providers, nonprofits, and local employers. Most of our work is in Lewis, Jefferson and St. Lawrence counties and the wider North Country.</p>
+                    <p>Counties, towns and villages, public authorities, development agencies, BOCES and school districts, chambers and economic development organizations, healthcare providers, nonprofits, and local employers, across all eight counties of Northern New York.</p>
                 </div>
             </details>
 
@@ -75,7 +95,7 @@ active_nav: talk
             <details class="faq-item">
                 <summary>Can we talk to someone who has worked with you?</summary>
                 <div class="faq-answer">
-                    <p>Yes, and we encourage it. Two North Country county leaders have agreed to take calls from peers considering us: Tim Hunt, County Manager of Lewis County, and Ryan Piche, County Administrator of Jefferson County.</p>
+                    <p>Yes, and we encourage it. Two Northern New York county leaders have agreed to take calls from peers considering us: Tim Hunt, County Manager of Lewis County, and Ryan Piche, County Administrator of Jefferson County.</p>
                     <p>Not everything we do is published, so a call with someone who has worked with us is the fastest way to hear about the rest. If you are in this world you likely already know how to reach them. Tell us and we will let them know to expect you.</p>
                 </div>
             </details>
@@ -115,7 +135,7 @@ active_nav: talk
             <details class="faq-item">
                 <summary>Does our location matter?</summary>
                 <div class="faq-answer">
-                    <p>Most of our clients are within an hour of Lowville and we like being able to show up in person. We work outside that radius too. It is worth a conversation either way.</p>
+                    <p>Anywhere in Northern New York, we can be in your building this week, and we like being able to show up in person. We work outside the region too. It is worth a conversation either way.</p>
                 </div>
             </details>
         </div>

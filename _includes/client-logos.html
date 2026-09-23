@@ -1,43 +1,40 @@
 <!-- =========================================================
-     Client logo strip. Driven entirely by _data/clients.yml, so
-     adding a logo is a data edit: drop the file in assets/clients/
-     and set `logo` on that client's row.
+     "Trusted by" logo marquee. Driven by _data/clients.yml, so
+     adding a logo is a data edit.
 
-     Tiles with no logo render the client's name as a wordmark, so
-     the strip looks finished from day one and each logo can land
-     independently as permission comes in. Tiles marked `pending`
-     render styled but unlinked.
+     The set renders twice so the -50% translate loops with no gap
+     (with six logos, one set is narrower than a wide screen). The
+     second copy is aria-hidden and its links are taken out of the
+     tab order, so names are announced once and focus visits each
+     logo once.
 
-     Grayscale at rest, full colour on hover, per the brief. A
-     wordmark tile has no colour to drop, so it shifts weight and
-     border instead - same interaction, no dead-looking tile.
+     Grayscale at rest, full colour on hover or focus. The track
+     pauses on hover and while anything inside has keyboard focus.
+     Under prefers-reduced-motion it becomes a static, centred,
+     wrapping row (the copy is hidden). Clients with no logo file
+     render as clean text.
      ========================================================= -->
-<section class="client-strip" aria-labelledby="client-strip-title">
+<section class="client-marquee" aria-labelledby="client-marquee-title">
     <div class="container">
-        <h2 class="client-strip-label" id="client-strip-title">Trusted by</h2>
-        <ul class="client-strip-list">
-            {%- for client in site.data.clients %}
-            <li class="client-tile{% if client.pending %} client-tile--pending{% endif %}">
-                {%- if client.url and client.pending != true %}
-                <a class="client-tile-inner" href="{{ client.url | relative_url }}">
-                    {%- if client.logo %}
-                    <img src="{{ client.logo | relative_url }}" alt="{{ client.name }}" loading="lazy" width="300" height="168">
-                    {%- else %}
-                    <span class="client-wordmark">{{ client.name }}</span>
-                    {%- endif %}
-                </a>
-                {%- else %}
-                <div class="client-tile-inner">
-                    {%- if client.logo %}
-                    <img src="{{ client.logo | relative_url }}" alt="{{ client.name }}" loading="lazy" width="300" height="168">
-                    {%- else %}
-                    <span class="client-wordmark">{{ client.name }}</span>
-                    {%- endif %}
-                    {%- if client.pending %}<span class="client-tile-note">Engagement in progress</span>{% endif %}
-                </div>
-                {%- endif %}
-            </li>
+        <h2 class="client-marquee-label" id="client-marquee-title">Trusted by</h2>
+    </div>
+    <div class="client-marquee-viewport">
+        <div class="client-marquee-track">
+            {%- for copy in (1..2) %}
+            <ul class="client-marquee-group"{% if copy == 2 %} aria-hidden="true"{% endif %}>
+                {%- for client in site.data.clients %}
+                <li class="client-logo">
+                    <a class="client-logo-link" href="{{ client.url | relative_url }}"{% if copy == 2 %} tabindex="-1"{% endif %}>
+                        {%- if client.logo %}
+                        <img src="{{ client.logo | relative_url }}" alt="{% if copy == 1 %}{{ client.name }}{% endif %}" width="{{ client.logo_width }}" height="{{ client.logo_height }}" loading="lazy" decoding="async">
+                        {%- else %}
+                        <span class="client-logo-text">{{ client.name }}</span>
+                        {%- endif %}
+                    </a>
+                </li>
+                {%- endfor %}
+            </ul>
             {%- endfor %}
-        </ul>
+        </div>
     </div>
 </section>

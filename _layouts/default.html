@@ -14,6 +14,11 @@
             <a href="{{ '/index.html' | relative_url }}" class="site-logo">
                 <img src="{{ '/assets/qc_logo_black_on_transparent.png' | relative_url }}" alt="Quantify" width="659" height="174" />
             </a>
+            {%- if site.phone != "" %}
+            <a href="tel:+1{{ site.phone }}" class="header-phone" aria-label="Call or text Quantify at {{ site.phone_display | default: site.phone }}">
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+            </a>
+            {%- endif %}
             <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-controls="site-nav" aria-expanded="false">
                 <span class="nav-toggle-box" aria-hidden="true">
                     <span class="nav-toggle-bar"></span>
@@ -26,6 +31,9 @@
                 <a href="{{ '/what-we-do.html' | relative_url }}" class="nav-link{% if page.active_nav == 'capabilities' %} active{% endif %}">What We Do</a>
                 <a href="{{ '/about.html' | relative_url }}" class="nav-link{% if page.active_nav == 'team' %} active{% endif %}">Our Team</a>
                 <a href="{{ '/what-to-expect.html' | relative_url }}" class="nav-link{% if page.active_nav == 'how' %} active{% endif %}">How We Work</a>
+                {%- if site.phone != "" %}
+                <a href="tel:+1{{ site.phone }}" class="nav-phone">{{ site.phone_display | default: site.phone }}</a>
+                {%- endif %}
                 <a href="{{ '/get-started.html' | relative_url }}" class="cta">Let's Talk</a>
             </nav>
         </div>
@@ -41,8 +49,9 @@
                     <a href="{{ '/index.html' | relative_url }}" class="site-logo">
                         <img src="{{ '/assets/qc_logo_black_on_transparent.png' | relative_url }}" alt="Quantify" width="659" height="174" loading="lazy" />
                     </a>
-                    <p>The fractional data and systems department for New York's North Country.</p>
-                    <p class="footer-region">{{ site.address_locality }}, {{ site.address_region }} · Serving Lewis, Jefferson, and St. Lawrence counties and the wider North Country.</p>
+                    <p>Data, systems, and IT help for Northern New York.</p>
+                    <p class="footer-region">{{ site.address_locality }}, {{ site.address_region }} · Serving Oneida, Oswego, Herkimer, Lewis, Jefferson, St. Lawrence, Hamilton, and Franklin counties.</p>
+                    <p class="footer-towns">Serving Watertown, Utica, Rome, Oswego, Ogdensburg, Potsdam, Canton, Malone, Herkimer, Old Forge, Lowville, and everywhere in between.</p>
                 </div>
                 <div>
                     <h4>Quantify</h4>
@@ -69,6 +78,7 @@
                         <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
                         <li><a href="{{ site.linkedin_url }}">LinkedIn</a></li>
                     </ul>
+                    {% include direct-contact.html class="direct-contact--footer" %}
                     <address class="footer-address">
                         {{ site.address_street }}<br>
                         {{ site.address_locality }}, {{ site.address_region }} {{ site.address_postal }}

@@ -1,16 +1,21 @@
-# Homepage "Trusted by" carousel.
+# Homepage "Trusted by" marquee (_includes/client-logos.html).
 #
-# Drop a logo in as permission lands: put the file in assets/clients/ and set
-# `logo`. Until then the tile renders the client's name as a wordmark, which is
-# the point of the component - the strip never looks half-built.
+# Drop a logo in as permission lands: put the file under assets/ and set
+# `logo`, `logo_width` and `logo_height` (the file's pixel size, so the tile
+# reserves space and the page does not shift). Until then the tile renders the
+# client's name as clean text. Never recreate or approximate a client's logo.
 #
 # Fields:
-#   name     client name. Used as the wordmark and as the image alt text.
-#   logo     path under /assets/. Omit for a wordmark tile.
-#   url      case study to link to. Omit to render an unlinked tile.
-#   pending  true for an engagement that is live but not yet publishable.
-#            Renders styled but unlinked, with a quiet "engagement in progress"
-#            note. Remove the flag and add `url` when it wraps.
+#   name     client name. Used as the text fallback and as the image alt text.
+#   logo     path under /assets/. Omit for a text tile.
+#   url      case study to link to (required: logos imply finished work).
+#
+# Only completed engagements belong here. Naturally Lewis stays off until that
+# engagement wraps; it lives in _data/work_in_progress.yml meanwhile.
+#
+# TODO(Evan): logo files still missing for Lewis County, Development Authority
+# of the North Country, Commercial Food Sanitation, Double Play Community
+# Center, and Christian Community Center (see note below).
 
 - name: "Lewis County"
   url: "/case-studies/lewis-county-financial-transparency/"
@@ -26,14 +31,12 @@
 
 - name: "North Country Handymen"
   url: "/case-studies/nch-case-study/"
+  logo: "/assets/case-studies/nch_logo.webp"
+  logo_width: 2000
+  logo_height: 1250
 
 # The logo we have for CCC is a JPG with a baked-in dark background, which
-# renders as a black box beside the light wordmark tiles. Left as a wordmark
-# until we get a transparent PNG or SVG, then set:
-#   logo: "/assets/clients/christian-community-center.png"
+# renders as a black box beside the light tiles. Left as text until we get a
+# transparent PNG or SVG.
 - name: "Christian Community Center"
   url: "/case-studies/christian-community-center-rental-automation/"
-
-# Reserved slot. Engagement in flight, not complete, no sign-off yet.
-- name: "Naturally Lewis"
-  pending: true

@@ -23,6 +23,9 @@ html {
     --brand-iris: #5B4BCC;
     --brand-iris-soft: #8B7BE8;
     --brand-amber: #F4B860;
+    /* Deep Ochre: the brand's sparing accent (5-10% of a view). Used where a
+       single warm accent has to hold contrast on Charcoal. */
+    --brand-ochre: #C68A1E;
     --brand-linen: #F1EEE7;
     --brand-white: #FFFFFF;
 
@@ -50,7 +53,8 @@ html {
 
     --text-primary: #1B1A2E;
     --text-secondary: rgba(27, 26, 46, 0.72);
-    --text-muted: rgba(27, 26, 46, 0.55);
+    /* 0.64 clears 4.5:1 on every light surface, including surface-3. */
+    --text-muted: rgba(27, 26, 46, 0.64);
     --text-heading: var(--brand-charcoal);
     --text-on-brand: var(--brand-white);
 
@@ -2014,8 +2018,9 @@ textarea {
 
 /* =========================================================
    Restructure components
-   Homepage (logo strip, map, audience router, capability
-   tiles, team strip), What We Do, /for-consulting-firms,
+   Homepage (hero video + map, logo marquee, team strip,
+   statement band, testimonial, capability tiles), What We Do,
+   /for-consulting-firms,
    and the Our Work "in progress" band.
    ========================================================= */
 
@@ -2023,15 +2028,15 @@ textarea {
    Kept as variables so the map follows a theme change instead of
    hardcoding one, and so a dark mode only needs this block redefined. */
 :root {
-    --nc-land: #E6E1D6;
-    --nc-land-stroke: rgba(14, 17, 22, 0.20);
-    --nc-focus: var(--brand-iris);
-    --nc-focus-stroke: rgba(255, 255, 255, 0.55);
-    --nc-pin: var(--brand-charcoal);
-    --nc-pin-halo: var(--brand-white);
-    --nc-pin-progress: var(--cta-amber);
-    --nc-label-ink: var(--brand-charcoal);
-    --nc-label-halo: var(--brand-white);
+    --nny-bg: var(--brand-linen);
+    --nny-county: var(--brand-iris);
+    --nny-county-hover: #4a3bb5;
+    --nny-county-stroke: rgba(255, 255, 255, 0.7);
+    --nny-pin: var(--brand-white);
+    --nny-pin-ring: var(--brand-charcoal);
+    --nny-inset-state: rgba(14, 17, 22, 0.10);
+    --nny-inset-stroke: rgba(14, 17, 22, 0.35);
+    --nny-inset-region: var(--brand-iris);
 }
 
 /* ---------- Hero: contrast fixes + home variant ---------- */
@@ -2067,32 +2072,91 @@ textarea {
     max-width: 32ch;
 }
 
-/* Hero video: stacks under the copy on phones, sits beside it on desktop. */
+/* Home hero layout. Each piece is its own grid item so the phone order
+   (intro, CTAs, video, map, geo line) can differ from the desktop columns
+   (copy left, media right). */
 .home-hero-grid {
     display: grid;
-    gap: 2.5rem;
-    align-items: center;
+    grid-template-areas:
+        "intro"
+        "ctas"
+        "media"
+        "region";
+    row-gap: 1.75rem;
+}
+
+.home-hero-intro  { grid-area: intro; }
+.home-hero-ctas   { grid-area: ctas; }
+.home-hero-media  { grid-area: media; min-width: 0; }
+.home-hero-region { grid-area: region; }
+
+.home-hero-intro .lead {
+    margin-bottom: 0;
 }
 
 @media (min-width: 960px) {
+    .home-hero {
+        padding: 3.25rem 0 3.5rem;
+    }
+    .home-hero h1 {
+        font-size: clamp(2.25rem, 3.4vw, 3rem);
+    }
     .home-hero-grid {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-        gap: 3rem;
+        grid-template-columns: minmax(0, 11fr) minmax(0, 9fr);
+        grid-template-areas:
+            "intro  media"
+            "region media"
+            "ctas   media";
+        grid-template-rows: auto auto 1fr;
+        column-gap: 3rem;
+        row-gap: 0;
+    }
+    .home-hero-intro { margin-bottom: 1.25rem; }
+    .home-hero-grid .home-hero-region { margin-bottom: 1.5rem; }
+    .home-hero-ctas { align-self: start; }
+    .home-hero-media { align-self: center; }
+}
+
+/* County line under the body copy: supporting detail, not a display line. */
+.home-hero-region {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.68);
+    max-width: 52ch;
+    margin: 0;
+}
+
+.home-hero-media {
+    display: grid;
+    gap: 1rem;
+    /* On tablets the column is full width; keep the media from ballooning. */
+    max-width: 600px;
+}
+
+@media (min-width: 960px) {
+    .home-hero-media {
+        max-width: none;
     }
 }
 
+/* ---------- Hero video: click-to-load facade ---------- */
 .home-hero-video {
+    margin: 0;
+}
+
+.video-facade {
     position: relative;
     aspect-ratio: 16 / 9;
     width: 100%;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.35);
+    background: var(--brand-linen);
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
-.home-hero-video iframe {
+.video-facade iframe {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -2100,332 +2164,427 @@ textarea {
     border: 0;
 }
 
-/* County names read as supporting detail, not a display line. */
-.home-hero-region {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    letter-spacing: 0.01em;
-    color: rgba(255, 255, 255, 0.68);
-    max-width: 52ch;
-    margin: -1rem 0 2rem;
+.video-facade-btn {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: var(--brand-linen);
+    cursor: pointer;
 }
 
-/* ---------- Client logo strip ---------- */
-.client-strip {
+.video-facade-poster,
+.video-facade-placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-facade-play {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 68px;
+    height: 68px;
+    padding-left: 4px;
+    border-radius: 50%;
+    background: var(--brand-iris);
+    color: var(--brand-white);
+    box-shadow: 0 8px 24px rgba(14, 17, 22, 0.3);
+    transition: transform 0.2s, background 0.2s;
+}
+
+@media (hover: hover) {
+    .video-facade-btn:hover .video-facade-play {
+        transform: scale(1.06);
+        background: var(--accent-hover);
+    }
+}
+
+.video-facade-btn:focus-visible {
+    outline: 3px solid var(--brand-white);
+    outline-offset: -6px;
+}
+
+.video-facade-btn:focus-visible .video-facade-play {
+    box-shadow: 0 0 0 4px var(--brand-white), 0 8px 24px rgba(14, 17, 22, 0.3);
+}
+
+.home-hero-video-label {
+    margin-top: 0.55rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* ---------- Compact Northern New York map (hero) ----------
+   Supporting context, not a feature: a quiet Linen panel a little under
+   the video's height, eight Iris counties, a state inset in the corner. */
+.nny-map {
+    margin: 0;
+}
+
+.nny-map-box {
+    position: relative;
+    aspect-ratio: 2 / 1;
+    padding: 0.5rem;
+    background: var(--nny-bg);
+    border-radius: var(--radius-lg);
+}
+
+@media (min-width: 600px) {
+    .nny-map-box {
+        aspect-ratio: 2.4 / 1;
+    }
+}
+
+.nny-map-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.nny-county {
+    fill: var(--nny-county);
+    stroke: var(--nny-county-stroke);
+    stroke-width: 1.25;
+    stroke-linejoin: round;
+    transition: fill 0.15s ease;
+}
+
+@media (hover: hover) {
+    .nny-county:hover {
+        fill: var(--nny-county-hover);
+    }
+}
+
+.nny-pin-hit {
+    fill: transparent;
+}
+
+.nny-pin-halo {
+    fill: var(--nny-pin-ring);
+}
+
+.nny-pin-dot {
+    fill: var(--nny-pin);
+}
+
+.nny-pin {
+    cursor: pointer;
+}
+
+/* Engagement in progress: hollow and dimmer, and not a link. */
+.nny-pin--progress {
+    cursor: default;
+}
+
+.nny-pin--progress .nny-pin-dot {
+    fill: none;
+    stroke: var(--nny-pin);
+    stroke-width: 2.5;
+    opacity: 0.8;
+}
+
+.nny-inset {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    width: 24%;
+    max-width: 92px;
+    height: auto;
+}
+
+.nny-inset-state {
+    fill: var(--nny-inset-state);
+    stroke: var(--nny-inset-stroke);
+    stroke-width: 6;
+    stroke-linejoin: round;
+}
+
+.nny-inset-region {
+    fill: var(--nny-inset-region);
+}
+
+.nny-tip {
+    position: absolute;
+    z-index: 2;
+    transform: translate(-50%, calc(-100% - 6px));
+    padding: 0.3rem 0.55rem;
+    border-radius: var(--radius-sm);
+    background: var(--brand-charcoal);
+    color: var(--brand-white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    pointer-events: none;
+    box-shadow: var(--shadow-sm);
+}
+
+.nny-tip[hidden] {
+    display: none;
+}
+
+.nny-map-caption {
+    margin-top: 0.55rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+/* ---------- "Trusted by" logo marquee ---------- */
+.client-marquee {
     padding: 2.25rem 0;
     background: var(--bg-surface);
     border-bottom: 1px solid var(--border-subtle);
 }
 
-.client-strip-label {
+.client-marquee-label {
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     text-align: center;
     margin-bottom: 1.25rem;
 }
 
-.client-strip-list {
+.client-marquee-viewport {
+    overflow: hidden;
+    /* room for the focus ring, which overflow would otherwise clip */
+    padding: 6px 0;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.client-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: client-marquee-scroll 40s linear infinite;
+}
+
+/* Pause while a pointer is over it, and while anything inside has focus. */
+.client-marquee-viewport:hover .client-marquee-track,
+.client-marquee-viewport:focus-within .client-marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes client-marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.client-marquee-group {
     list-style: none;
     display: flex;
-    gap: 0.75rem;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    padding-bottom: 0.5rem;
-    -webkit-overflow-scrolling: touch;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+    padding-right: 1rem;
+    flex-shrink: 0;
+    /* One set of six is narrower than a wide screen. Each copy is at least
+       viewport wide, so the loop never shows both copies side by side. */
+    min-width: 100vw;
 }
 
-/* Flex rather than grid on desktop so a wrapped final tile centres under the
-   row instead of orphaning hard left. The list length changes every time a
-   client is added, so the layout has to look deliberate at any count. */
-@media (min-width: 768px) {
-    .client-strip-list {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.75rem;
-        overflow: visible;
-    }
-    .client-tile {
-        flex: 1 1 158px;
-        max-width: 220px;
-    }
-}
-
-.client-tile {
-    flex: 0 0 62%;
-    scroll-snap-align: start;
-}
-
-@media (min-width: 768px) {
-    .client-tile {
-        flex: initial;
-    }
-}
-
-.client-tile-inner {
+.client-logo-link {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.3rem;
-    height: 100%;
-    min-height: 88px;
-    padding: 0.9rem 0.85rem;
+    width: 190px;
+    height: 76px;
+    padding: 0.75rem 1rem;
     text-align: center;
     background: var(--surface-1);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    transition: border-color 0.2s, filter 0.2s, opacity 0.2s;
+    transition: border-color 0.2s;
 }
 
-a.client-tile-inner {
-    border-bottom: 1px solid var(--border-subtle);
-}
-
-.client-tile img {
+.client-logo-link img {
     max-width: 100%;
-    max-height: 46px;
+    max-height: 48px;
     width: auto;
     height: auto;
     object-fit: contain;
-    /* Grayscale at rest, full colour on hover, per the brief. */
+    /* Grayscale at rest, full colour on hover or focus. */
     filter: grayscale(1);
     opacity: 0.75;
     transition: filter 0.2s, opacity 0.2s;
 }
 
-.client-wordmark {
-    font-size: 0.82rem;
+.client-logo-text {
+    font-size: 0.85rem;
     font-weight: 600;
-    line-height: 1.35;
-    color: var(--text-muted);
+    line-height: 1.3;
+    color: var(--text-secondary);
     transition: color 0.2s;
 }
 
-@media (hover: hover) {
-    a.client-tile-inner:hover {
-        border-color: var(--accent);
-    }
-    a.client-tile-inner:hover img {
-        filter: grayscale(0);
-        opacity: 1;
-    }
-    /* A wordmark has no colour to restore, so it gains weight instead. */
-    a.client-tile-inner:hover .client-wordmark {
-        color: var(--accent);
-    }
+.client-logo-link:hover,
+.client-logo-link:focus-visible {
+    border-color: var(--accent);
 }
 
-/* Engagement in flight: styled, but deliberately not a link. */
-.client-tile--pending .client-tile-inner {
-    border-style: dashed;
-    background: transparent;
-}
-
-.client-tile--pending .client-wordmark {
-    color: var(--text-muted);
-}
-
-.client-tile-note {
-    font-size: 0.66rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-    opacity: 0.8;
-}
-
-/* ---------- North Country map ---------- */
-.nc-map {
-    max-width: 780px;
-    margin: 0 auto;
-}
-
-.nc-map-svg {
-    display: block;
-    width: 100%;
-    height: auto;
-    overflow: visible;
-}
-
-.nc-county {
-    fill: var(--nc-land);
-    stroke: var(--nc-land-stroke);
-    stroke-width: 0.75;
-    stroke-linejoin: round;
-}
-
-.nc-county--focus {
-    fill: var(--nc-focus);
-    stroke: var(--nc-focus-stroke);
-    stroke-width: 1;
-}
-
-.nc-pin-hit {
-    fill: transparent;
-}
-
-.nc-pin-halo {
-    fill: var(--nc-pin-halo);
-    opacity: 0.9;
-}
-
-.nc-pin-dot {
-    fill: var(--nc-pin);
-    transition: r 0.15s ease;
-}
-
-.nc-pin--progress .nc-pin-dot {
-    fill: var(--nc-pin-progress);
-}
-
-.nc-pin {
-    cursor: pointer;
-}
-
-.nc-pin--static {
-    cursor: default;
-}
-
-/* Labels are hidden until hover or keyboard focus, so the map reads as
-   geography first. paint-order puts a halo stroke behind the glyphs, which
-   keeps them legible over any county fill without needing a backing rect. */
-.nc-pin-label {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease;
-}
-
-.nc-pin-name,
-.nc-pin-town {
-    text-anchor: middle;
-    paint-order: stroke fill;
-    stroke: var(--nc-label-halo);
-    stroke-width: 4;
-    stroke-linejoin: round;
-    fill: var(--nc-label-ink);
-    font-family: inherit;
-}
-
-.nc-pin-name {
-    font-size: 15px;
-    font-weight: 700;
-}
-
-.nc-pin-town {
-    font-size: 13px;
-    font-weight: 500;
-    opacity: 0.75;
-}
-
-.nc-pin:hover .nc-pin-label,
-.nc-pin:focus .nc-pin-label,
-.nc-pin:focus-visible .nc-pin-label,
-.nc-pin:focus-within .nc-pin-label {
+.client-logo-link:hover img,
+.client-logo-link:focus-visible img {
+    filter: grayscale(0);
     opacity: 1;
 }
 
-.nc-pin:hover .nc-pin-dot {
-    r: 7.5;
-}
-
-.nc-pin:focus-visible {
-    outline: none;
-}
-
-.nc-pin:focus-visible .nc-pin-halo {
-    stroke: var(--accent);
-    stroke-width: 2.5;
-}
-
-/* At phone width the whole state is about 340px across, which shrinks pins and
-   labels to a few pixels. Scale the pin geometry up in user units so they stay
-   visible; the SVG scales them back down. Fine-grained pin tapping is still a
-   desktop affordance - four North Country pins land within ~25px of each other
-   at this size - so nothing depends on it: the logo strip above and Our Work
-   both reach the same case studies. */
-@media (max-width: 700px) {
-    .nc-pin-hit { r: 30; }
-    .nc-pin-halo { r: 20; }
-    .nc-pin-dot { r: 11; }
-    .nc-pin:hover .nc-pin-dot { r: 13; }
-    .nc-pin-name { font-size: 32px; stroke-width: 7; }
-    .nc-pin-town { font-size: 27px; stroke-width: 7; }
-    /* The label group carries an SVG translate attribute; a CSS transform on it
-       would replace that and stack every label in one spot. Nudge the two text
-       elements instead, which have no attribute transform of their own. */
-    .nc-pin-name { transform: translateY(-22px); }
-    .nc-pin-town { transform: translateY(-12px); }
-}
-
-.nc-map-caption {
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-top: 0.75rem;
-}
-
-/* ---------- Audience router ---------- */
-.audience-router {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-}
-
-@media (min-width: 768px) {
-    .audience-router {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-.audience-card {
-    display: block;
-    padding: 1.75rem;
-    background: var(--surface-1);
-    border: 1px solid var(--border-soft);
-    border-left: 4px solid var(--accent);
-    border-radius: var(--radius-lg);
-    color: var(--text-primary);
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-}
-
-.audience-card h3 {
-    font-size: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
-    color: var(--text-heading);
-    margin-bottom: 0.6rem;
-}
-
-.audience-card p {
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-}
-
-.audience-card-cue {
-    font-weight: 600;
+/* A text tile has no colour to restore, so it takes the accent instead. */
+.client-logo-link:hover .client-logo-text,
+.client-logo-link:focus-visible .client-logo-text {
     color: var(--accent);
 }
 
-@media (hover: hover) {
-    .audience-card:hover {
-        transform: translateY(-3px);
-        box-shadow: var(--shadow-sm);
-        border-color: var(--border-strong);
-        border-left-color: var(--accent);
-        color: var(--text-primary);
+.client-logo-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Reduced motion: a static, centred, wrapping row. The duplicate is hidden. */
+@media (prefers-reduced-motion: reduce) {
+    .client-marquee-viewport {
+        -webkit-mask-image: none;
+        mask-image: none;
     }
-    .audience-card:hover .audience-card-cue {
-        color: var(--accent-warm);
+    .client-marquee-track {
+        animation: none;
+        width: auto;
+        justify-content: center;
+    }
+    .client-marquee-group {
+        min-width: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 var(--gutter);
+    }
+    .client-marquee-group[aria-hidden="true"] {
+        display: none;
     }
 }
 
-/* The third audience, deliberately quiet: indexed and findable, invisible
-   unless you are looking for it. No card, no icon, no button. */
-.audience-aside {
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    text-align: center;
+/* ---------- Recent work: sector filter links ---------- */
+.sector-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1.25rem 0 1.75rem;
+}
+
+.sector-links .filter-chip {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+@media (hover: hover) {
+    .sector-links .filter-chip:hover {
+        background: var(--accent);
+        color: var(--brand-white);
+    }
+}
+
+/* ---------- Why we exist: statement band ---------- */
+.statement-band {
+    background: var(--brand-charcoal);
+    color: var(--brand-white);
+    padding: 3.5rem 0;
+}
+
+@media (min-width: 768px) {
+    .statement-band {
+        padding: 5rem 0;
+    }
+}
+
+/* The band is full width; the text is held to a comfortable measure. */
+.statement-band-inner {
+    max-width: calc(68ch + 2 * var(--gutter));
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    font-size: clamp(1.02rem, 0.98rem + 0.3vw, 1.15rem);
+}
+
+.statement-band h2 {
+    color: var(--brand-white);
+    margin-bottom: 1.5rem;
+}
+
+.statement-band p {
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 1.1rem;
+}
+
+/* The single accent in the band. Ochre rather than Iris: Iris on Charcoal
+   falls under 3:1, Ochre clears 6:1. */
+.statement-band .statement-band-tagline {
+    margin: 2rem 0;
+    font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--brand-ochre);
+}
+
+.statement-band .statement-band-aside {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.statement-band-aside a {
+    color: var(--brand-white);
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+@media (hover: hover) {
+    .statement-band-aside a:hover {
+        color: var(--brand-white);
+        border-bottom-color: var(--brand-white);
+    }
+}
+
+.statement-band a:focus-visible {
+    outline: 2px solid var(--brand-white);
+    outline-offset: 2px;
+}
+
+/* ---------- Testimonial ---------- */
+.testimonial {
+    margin: 0;
+    padding: 1.75rem 2rem;
+    background: var(--brand-linen);
+    border-left: 4px solid var(--brand-iris);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.testimonial blockquote p {
+    font-size: clamp(1.1rem, 1rem + 0.6vw, 1.35rem);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text-heading);
+}
+
+.testimonial figcaption {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.testimonial-name {
+    display: block;
+    font-weight: 700;
+    color: var(--text-heading);
+}
+
+.testimonial-meta {
+    color: var(--text-secondary);
 }
 
 /* ---------- Capability tiles (homepage) ---------- */
@@ -2442,44 +2601,101 @@ a.client-tile-inner {
     }
 }
 
-/* Three across, because the menu is six. A four-column track was right for
-   the old eight-tile menu and leaves a ragged 4+2 for six. */
+/* Three across, because the menu is six. */
 @media (min-width: 960px) {
     .capability-tiles {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-.capability-tile a {
-    display: block;
-    height: 100%;
-    padding: 1.1rem 1.15rem;
+/* The tile is not an <a>. The name link stretches over it with ::after, and
+   the proof link is lifted above that layer, so both work and neither nests
+   inside the other. */
+.capability-tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.15rem 1.2rem;
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-primary);
     transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
 .capability-tile h3 {
-    font-size: 0.98rem;
+    font-size: 1rem;
+    margin-bottom: 0.45rem;
+}
+
+.capability-tile-link {
     color: var(--text-heading);
-    margin-bottom: 0.35rem;
+}
+
+.capability-tile-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+}
+
+.capability-tile-link:focus-visible {
+    outline: none;
+}
+
+.capability-tile-link:focus-visible::after {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 .capability-tile p {
-    font-size: 0.86rem;
+    font-size: 0.88rem;
     line-height: 1.5;
     color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.capability-tile .capability-tile-problem {
+    font-style: italic;
+    color: var(--text-primary);
+}
+
+.capability-tile-proof {
+    position: relative;
+    z-index: 1;
+    align-self: flex-start;
+    margin-top: auto;
+    padding-top: 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.capability-tile-proof:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 @media (hover: hover) {
-    .capability-tile a:hover {
+    .capability-tile:hover {
         transform: translateY(-2px);
         border-color: var(--accent);
         box-shadow: var(--shadow-sm);
-        color: var(--text-primary);
     }
+    .capability-tile-link:hover {
+        color: var(--text-heading);
+        border-bottom-color: transparent;
+    }
+}
+
+.capability-ask {
+    margin-top: 1.75rem;
+    text-align: center;
+    font-weight: 500;
+    color: var(--text-heading);
+}
+
+.capability-ask a {
+    font-weight: 600;
 }
 
 /* ---------- Team strip (homepage) ---------- */
@@ -2505,10 +2721,25 @@ a.client-tile-inner {
     margin-bottom: 0.9rem;
 }
 
+/* The role each person fills, tying back to the three hires in the hero. */
+.role-tag {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brand-white);
+    background: var(--brand-iris);
+    border-radius: var(--radius-pill);
+}
+
 .team-strip-name {
     font-weight: 700;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     color: var(--text-heading);
+    margin-bottom: 0.15rem;
 }
 
 .team-strip-role {
@@ -2708,6 +2939,19 @@ a.client-tile-inner {
 }
 
 /* ---------- Contact + footer details ---------- */
+/* get-started.html: the way in for people who hate forms. */
+.contact-direct {
+    margin-top: 1.5rem;
+    padding: 1.25rem 1.4rem;
+    background: var(--brand-linen);
+    border-radius: var(--radius-md);
+}
+
+.contact-direct h3 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+}
+
 .contact-block {
     margin-top: 1.75rem;
 }
@@ -2750,25 +2994,135 @@ a.client-tile-inner {
     margin-top: 0.85rem;
 }
 
-.cta-contact {
-    font-size: 0.9rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0;
+.footer-towns {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
 }
 
-.cta-banner .cta-contact,
-.cta-banner .cta-contact a {
-    color: rgba(255, 255, 255, 0.78);
+/* ---------- Direct contact (phone + named email) ---------- */
+.direct-contact {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2rem;
 }
 
-.cta-banner .cta-contact a {
+.direct-contact li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.direct-contact-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+}
+
+.direct-contact a {
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+/* Closing CTA on the dark banner: centred under the button, and big enough
+   to read as a real alternative to it. */
+.direct-contact--on-dark {
+    justify-content: center;
+    margin-top: 1.75rem;
+}
+
+.cta-banner .direct-contact-label {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.cta-banner .direct-contact a {
+    font-size: 1.2rem;
+    color: var(--brand-white);
     border-bottom-color: rgba(255, 255, 255, 0.4);
 }
 
 @media (hover: hover) {
-    .cta-banner .cta-contact a:hover {
+    .cta-banner .direct-contact a:hover {
         color: var(--brand-white);
         border-bottom-color: var(--brand-white);
+    }
+}
+
+.cta-banner .direct-contact a:focus-visible {
+    outline: 2px solid var(--brand-white);
+    outline-offset: 2px;
+}
+
+.direct-contact--footer {
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.85rem;
+}
+
+.site-footer .direct-contact a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    min-height: 0;
+}
+
+/* A slot still waiting on real content. Deliberately loud, so nobody
+   mistakes it for finished copy or ships it to production unnoticed. */
+.todo-placeholder {
+    display: inline-block;
+    padding: 0.1rem 0.45rem;
+    font-size: 0.85rem;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--accent-warm);
+    background: rgba(198, 138, 30, 0.12);
+    border: 1px dashed var(--brand-ochre);
+    border-radius: var(--radius-sm);
+}
+
+.cta-banner .todo-placeholder {
+    color: var(--brand-white);
+    background: rgba(198, 138, 30, 0.25);
+}
+
+/* ---------- Header phone ----------
+   Icon button beside the menu toggle below 1024px, a plain nav link above. */
+.header-phone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--tap-target);
+    height: var(--tap-target);
+    margin-left: auto;
+    color: var(--accent);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+}
+
+.header-phone + .nav-toggle {
+    margin-left: 0.5rem;
+}
+
+.header-phone:focus-visible,
+.site-nav .nav-phone:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.site-nav .nav-phone {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .header-phone {
+        display: none;
+    }
+    .site-nav .nav-phone {
+        display: flex;
+        font-weight: 600;
+        color: var(--accent);
     }
 }
 
@@ -2786,16 +3140,15 @@ a.client-tile-inner {
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-    .audience-card,
-    .capability-tile a,
-    .client-tile-inner,
-    .client-tile img,
-    .nc-pin-label,
-    .nc-pin-dot {
+    .capability-tile,
+    .client-logo-link,
+    .client-logo-link img,
+    .nny-county,
+    .video-facade-play {
         transition: none;
     }
-    .audience-card:hover,
-    .capability-tile a:hover {
+    .capability-tile:hover,
+    .video-facade-btn:hover .video-facade-play {
         transform: none;
     }
 }

@@ -1,5 +1,5 @@
 title: Quantify
-description: "Quantify is the fractional data and systems department for the counties, authorities, agencies, and employers of New York's North Country. Dashboards, custom apps, automation, and financial modeling. Based in Lowville, NY."
+description: "Data, systems, and IT help for counties, agencies, nonprofits, and businesses across Northern New York. Three people, based in Lowville."
 baseurl: ""   # served at the root of the custom domain (quantify.fyi)
 
 # ---------------------------------------------------------------------------
@@ -16,8 +16,23 @@ address_region: "NY"
 address_postal: "13367"
 linkedin_url: "https://www.linkedin.com/company/quantify-consulting-llc"
 
-# Deliberately no phone number. Email and the Airtable form are the two
-# contact channels; see get-started.html.
+# Direct contact, shown in the header, the homepage closing CTA, the footer,
+# and next to the form on get-started.html. Small-town buyers call, and people
+# write more easily to a name than to hello@.
+#
+# While a value is empty, the body copy shows a clearly marked
+# "TODO(Evan)" placeholder in its place (the header phone link is simply
+# omitted). Fill these in and every placement updates.
+#
+# TODO(Evan): phone number, e.g. phone: "3155551234" (digits only, used in
+#             the tel: link) and phone_display: "(315) 555-1234".
+# TODO(Evan): named email, e.g. named_email: "evan@quantify-consulting.com".
+# TODO(Evan): optional booking link (Calendly or similar). Shown on
+#             get-started.html only when set.
+phone: ""
+phone_display: ""
+named_email: ""
+booking_url: ""
 
 # ---------------------------------------------------------------------------
 # Consulting-firm delivery capacity.
