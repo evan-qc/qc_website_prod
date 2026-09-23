@@ -69,7 +69,7 @@ Three years of applications, once scattered across 30-plus tables, are now unifi
   <blockquote>
     <p>"The efficiencies and data-driven metrics they provide enhance transparency and efficiency, ultimately improving the service delivery of local government."</p>
   </blockquote>
-  <figcaption>Tim Hunt<span>County Administrator, Lewis County</span></figcaption>
+  <figcaption>Tim Hunt<span>County Manager, Lewis County</span></figcaption>
 </figure>
 
 <p class="cs-cta" style="margin-top: 2.5rem;"><a class="btn btn-amber" href="mailto:hello@quantify-consulting.com?subject=Interested%20in%20results%20like%20these">Email us</a></p>

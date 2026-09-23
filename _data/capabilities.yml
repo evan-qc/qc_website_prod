@@ -20,8 +20,7 @@
 #   `tile_line`        what we do, one line. Omit it and the tagline is used.
 #   `tile_proof_name`  client named in "See it in action: [Client]"
 #   `tile_proof_url`   that client's case study. Omit both for no proof link.
-# TODO(Evan): confirm each tile_proof pairing matches what the project was.
-# They were matched from case study titles.
+# Pick a study whose front matter `capabilities` includes this tile's slug.
 
 - slug: dashboards
   short: "Dashboards &amp; Reporting"

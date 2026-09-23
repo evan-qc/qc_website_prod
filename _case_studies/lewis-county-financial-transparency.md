@@ -27,7 +27,7 @@ Lewis County Government - a municipal government of 275 employees in Lowville, N
 
 ## The challenge
 
-Lewis County's financial data was trapped. Despite a complete record in the Tyler ERP, only a handful of specialists could pull meaningful information out of it. Department heads waited three to five days for budget reports. County Administrator Tim Hunt had no real-time visibility into spending patterns. And citizens saw how their tax dollars were used only through lengthy annual PDF budget books.
+Lewis County's financial data was trapped. Despite a complete record in the Tyler ERP, only a handful of specialists could pull meaningful information out of it. Department heads waited three to five days for budget reports. County Manager Tim Hunt had no real-time visibility into spending patterns. And citizens saw how their tax dollars were used only through lengthy annual PDF budget books.
 
 The county wasn't lacking data - it was lacking access and clarity.
 
@@ -64,7 +64,7 @@ The whole transformation took three months, not three years. The county didn't r
   <blockquote>
     <p>"Evan approached the project with a clear vision and structured methodology. He not only met the project objectives but exceeded expectations in terms of quality and impact."</p>
   </blockquote>
-  <figcaption>Tim Hunt<span>County Administrator, Lewis County</span></figcaption>
+  <figcaption>Tim Hunt<span>County Manager, Lewis County</span></figcaption>
 </figure>
 
 **[See it live → lewiscountyny.gov/analytics](https://lewiscountyny.gov/analytics/)**
