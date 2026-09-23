@@ -1,5 +1,5 @@
 title: Quantify
-description: "Data, systems, and IT help for counties, agencies, nonprofits, and businesses across Northern New York. Three people, based in Lowville."
+description: "Data, systems, finance, and IT help for counties, agencies, nonprofits, and businesses across New York's North Country. Based in Lowville."
 baseurl: ""   # served at the root of the custom domain (quantify.fyi)
 
 # ---------------------------------------------------------------------------
@@ -16,16 +16,8 @@ address_region: "NY"
 address_postal: "13367"
 linkedin_url: "https://www.linkedin.com/company/quantify-consulting-llc"
 
-# Phone, shown in the header, the homepage closing CTA, the footer, and next
-# to the form on get-started.html (with `email` above). Digits only.
-#
-# The number never appears in the page source as written. Pages carry it
-# reversed in a data attribute and a few lines of script in the default layout
-# turn it back into a tel: link on load (_includes/phone-link.html). That
-# defeats scrapers that grep HTML for phone patterns; a scraper that runs
-# JavaScript will still see it. Without JavaScript the link falls back to
-# "Call or text us" pointing at get-started.html.
-phone: "3154863742"
+# No phone number. We do not publish one anywhere on the site: no tel: or
+# sms: links, no telephone field in structured data. Email is the direct line.
 
 # ---------------------------------------------------------------------------
 # Consulting-firm delivery capacity.

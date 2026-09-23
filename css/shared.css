@@ -2026,17 +2026,22 @@ textarea {
 
 /* ---------- Map tokens ----------
    Kept as variables so the map follows a theme change instead of
-   hardcoding one, and so a dark mode only needs this block redefined. */
-:root {
-    --nny-bg: var(--brand-linen);
-    --nny-county: var(--brand-iris);
-    --nny-county-hover: #4a3bb5;
-    --nny-county-stroke: rgba(255, 255, 255, 0.7);
-    --nny-pin: var(--brand-white);
-    --nny-pin-ring: var(--brand-charcoal);
-    --nny-inset-state: rgba(14, 17, 22, 0.10);
-    --nny-inset-stroke: rgba(14, 17, 22, 0.35);
-    --nny-inset-region: var(--brand-iris);
+   hardcoding one. The large map is the default; the hero variant
+   (.nys-map--small) redefines them for a softer read on purple. */
+.nys-map {
+    --map-panel-bg: var(--brand-linen);
+    --map-county: #DCD7CB;
+    --map-county-stroke: rgba(255, 255, 255, 0.9);
+    --map-focus: var(--brand-iris);
+    --map-focus-stroke: rgba(255, 255, 255, 0.75);
+    --map-stroke-width: 0.75px;
+    --map-star: var(--brand-ochre);
+    --map-star-stroke: var(--brand-white);
+    --map-star-size: 26px;
+    --map-label: var(--brand-charcoal);
+    --map-label-bg: rgba(255, 255, 255, 0.92);
+    --map-pin: var(--brand-charcoal);
+    --map-pin-ring: var(--brand-white);
 }
 
 /* ---------- Hero: contrast fixes + home variant ---------- */
@@ -2060,7 +2065,7 @@ textarea {
 }
 
 .home-hero h1 {
-    max-width: 18ch;
+    max-width: 24ch;
 }
 
 .home-hero-sub {
@@ -2073,22 +2078,22 @@ textarea {
 }
 
 /* Home hero layout. Each piece is its own grid item so the phone order
-   (intro, CTAs, video, map, geo line) can differ from the desktop columns
-   (copy left, media right). */
+   (intro, CTAs, video, place line with its map) can differ from the desktop
+   columns (copy, place line and CTAs left, video right). */
 .home-hero-grid {
     display: grid;
     grid-template-areas:
         "intro"
         "ctas"
         "media"
-        "region";
+        "place";
     row-gap: 1.75rem;
 }
 
 .home-hero-intro  { grid-area: intro; }
 .home-hero-ctas   { grid-area: ctas; }
 .home-hero-media  { grid-area: media; min-width: 0; }
-.home-hero-region { grid-area: region; }
+.home-hero-place  { grid-area: place; }
 
 .home-hero-intro .lead {
     margin-bottom: 0;
@@ -2104,20 +2109,49 @@ textarea {
     .home-hero-grid {
         grid-template-columns: minmax(0, 11fr) minmax(0, 9fr);
         grid-template-areas:
-            "intro  media"
-            "region media"
-            "ctas   media";
+            "intro media"
+            "place media"
+            "ctas  media";
         grid-template-rows: auto auto 1fr;
         column-gap: 3rem;
         row-gap: 0;
     }
     .home-hero-intro { margin-bottom: 1.25rem; }
-    .home-hero-grid .home-hero-region { margin-bottom: 1.5rem; }
+    .home-hero-grid .home-hero-place { margin-bottom: 1.5rem; }
     .home-hero-ctas { align-self: start; }
     .home-hero-media { align-self: center; }
 }
 
-/* County line under the body copy: supporting detail, not a display line. */
+/* Credentials: supporting proof in smaller type under the body copy. */
+.home-hero-credentials {
+    margin: 1rem 0 0;
+    max-width: 60ch;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+/* The place line and the small statewide map beside it. The map is a
+   supporting graphic: small enough that it never competes with the H1 or
+   the video. */
+.home-hero-place {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.home-hero-place .nys-map {
+    flex: 0 0 auto;
+    width: 128px;
+}
+
+@media (min-width: 600px) {
+    .home-hero-place .nys-map {
+        width: 150px;
+    }
+}
+
+/* Place line: supporting detail, not a display line. */
 .home-hero-region {
     font-size: 0.9rem;
     line-height: 1.6;
@@ -2171,119 +2205,222 @@ textarea {
     color: rgba(255, 255, 255, 0.85);
 }
 
-/* ---------- Compact Northern New York map (hero) ----------
-   Supporting context, not a feature: a quiet Linen panel a little under
-   the video's height, eight Iris counties, a state inset in the corner. */
-.nny-map {
+/* ---------- Shared New York State map ----------
+   _includes/nys-map.html. All 62 counties, the North Country in the accent,
+   a star on the Lowville office. The star, its label and the pins are HTML
+   laid over the SVG, so their pixel size holds at any map width. */
+.nys-map {
     margin: 0;
 }
 
-.nny-map-box {
-    position: relative;
-    aspect-ratio: 2 / 1;
-    padding: 0.5rem;
-    background: var(--nny-bg);
+.nys-map-panel {
+    padding: 0.75rem;
+    background: var(--map-panel-bg);
     border-radius: var(--radius-lg);
 }
 
 @media (min-width: 600px) {
-    .nny-map-box {
-        aspect-ratio: 2.4 / 1;
+    .nys-map-panel {
+        padding: 1.25rem;
     }
 }
 
-.nny-map-svg {
+.nys-map-box {
+    position: relative;
+}
+
+.nys-map-svg {
     display: block;
     width: 100%;
-    height: 100%;
-}
-
-.nny-county {
-    fill: var(--nny-county);
-    stroke: var(--nny-county-stroke);
-    stroke-width: 1.25;
-    stroke-linejoin: round;
-    transition: fill 0.15s ease;
-}
-
-@media (hover: hover) {
-    .nny-county:hover {
-        fill: var(--nny-county-hover);
-    }
-}
-
-.nny-pin-hit {
-    fill: transparent;
-}
-
-.nny-pin-halo {
-    fill: var(--nny-pin-ring);
-}
-
-.nny-pin-dot {
-    fill: var(--nny-pin);
-}
-
-.nny-pin {
-    cursor: pointer;
-}
-
-/* Engagement in progress: hollow and dimmer, and not a link. */
-.nny-pin--progress {
-    cursor: default;
-}
-
-.nny-pin--progress .nny-pin-dot {
-    fill: none;
-    stroke: var(--nny-pin);
-    stroke-width: 2.5;
-    opacity: 0.8;
-}
-
-.nny-inset {
-    position: absolute;
-    top: 0.6rem;
-    left: 0.6rem;
-    width: 24%;
-    max-width: 92px;
     height: auto;
 }
 
-.nny-inset-state {
-    fill: var(--nny-inset-state);
-    stroke: var(--nny-inset-stroke);
-    stroke-width: 6;
+.nys-county {
+    fill: var(--map-county);
+    stroke: var(--map-county-stroke);
+    stroke-width: var(--map-stroke-width);
     stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
 }
 
-.nny-inset-region {
-    fill: var(--nny-inset-region);
+.nys-county--focus {
+    fill: var(--map-focus);
+    stroke: var(--map-focus-stroke);
 }
 
-.nny-tip {
+/* The office: a star centred on Lowville, the name to its left. The Lowville
+   client pins fan out above, right and below it, so the left side is clear. */
+.nys-map-office {
     position: absolute;
-    z-index: 2;
-    transform: translate(-50%, calc(-100% - 6px));
-    padding: 0.3rem 0.55rem;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.nys-map-star {
+    position: absolute;
+    width: var(--map-star-size);
+    height: var(--map-star-size);
+    left: calc(var(--map-star-size) / -2);
+    top: calc(var(--map-star-size) / -2);
+    overflow: visible;
+}
+
+.nys-map-star path {
+    fill: var(--map-star);
+    stroke: var(--map-star-stroke);
+    stroke-width: 1.5px;
+    stroke-linejoin: round;
+    paint-order: stroke;
+}
+
+.nys-map-office-label {
+    position: absolute;
+    right: calc(var(--map-star-size) / 2 + 3px);
+    top: 4px;
+    transform: translateY(-50%);
+    padding: 0.1rem 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    color: var(--map-label);
+    background: var(--map-label-bg);
+    border-radius: var(--radius-sm);
+}
+
+/* Client pins: small Charcoal dots, smaller than the star and a different
+   shape and colour, inside a 48px round hit area. dx/dy from
+   _data/map_pins.yml nudge a pin in pixels. */
+.nys-map-pin {
+    position: absolute;
+    z-index: 1;
+    width: var(--tap-target);
+    height: var(--tap-target);
+    margin: calc(var(--tap-target) / -2) 0 0 calc(var(--tap-target) / -2);
+    transform: translate(var(--dx, 0px), var(--dy, 0px));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 50%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nys-map-pin-dot {
+    width: 14px;
+    height: 14px;
+    background: var(--map-pin);
+    border: 2px solid var(--map-pin-ring);
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(14, 17, 22, 0.35);
+    transition: transform 0.15s ease;
+}
+
+.nys-map-pin-tip {
+    position: absolute;
+    left: 50%;
+    bottom: calc(50% + 12px);
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: min(240px, 70vw);
+    padding: 0.35rem 0.6rem;
     border-radius: var(--radius-sm);
     background: var(--brand-charcoal);
     color: var(--brand-white);
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     font-weight: 600;
-    line-height: 1.2;
-    white-space: nowrap;
-    pointer-events: none;
+    line-height: 1.3;
+    text-align: center;
     box-shadow: var(--shadow-sm);
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.15s ease;
 }
 
-.nny-tip[hidden] {
-    display: none;
+.nys-map-pin:focus-visible {
+    outline: none;
 }
 
-.nny-map-caption {
-    margin-top: 0.55rem;
-    font-size: 0.85rem;
+.nys-map-pin:focus-visible .nys-map-pin-dot {
+    outline: 3px solid var(--brand-iris);
+    outline-offset: 2px;
+}
+
+.nys-map-pin:focus-visible,
+.nys-map-pin.is-active {
+    z-index: 2;
+}
+
+.nys-map-pin:focus-visible .nys-map-pin-tip,
+.nys-map-pin.is-active .nys-map-pin-tip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.nys-map-pin:focus-visible .nys-map-pin-dot,
+.nys-map-pin.is-active .nys-map-pin-dot {
+    transform: scale(1.25);
+}
+
+@media (hover: hover) {
+    .nys-map-pin:hover {
+        z-index: 2;
+    }
+    .nys-map-pin:hover .nys-map-pin-tip {
+        visibility: visible;
+        opacity: 1;
+    }
+    .nys-map-pin:hover .nys-map-pin-dot {
+        transform: scale(1.25);
+    }
+}
+
+.nys-map-caption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.78);
+}
+
+/* Hero variant: small, static, and quieter. No panel, lighter outlines and a
+   muted fill, sitting straight on the purple. */
+.nys-map--small {
+    --map-panel-bg: transparent;
+    --map-county: rgba(255, 255, 255, 0.10);
+    --map-county-stroke: rgba(255, 255, 255, 0.28);
+    --map-focus: rgba(139, 123, 232, 0.72);
+    --map-focus-stroke: rgba(255, 255, 255, 0.32);
+    --map-stroke-width: 0.5px;
+    --map-star-size: 16px;
+    --map-star-stroke: var(--hero-purple-deep);
+    --map-label: var(--brand-white);
+    --map-label-bg: transparent;
+}
+
+.nys-map--small .nys-map-panel {
+    padding: 0;
+}
+
+.nys-map--small .nys-map-office-label {
+    padding: 0;
+    font-size: 0.72rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Screen-reader-only text. */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* ---------- "Trusted by" logo marquee ---------- */
@@ -2341,7 +2478,10 @@ textarea {
     min-width: 100vw;
 }
 
-.client-logo-link {
+/* Shared tile. Linked tiles (.client-logo-link) add the hover and focus
+   states below; unlinked tiles (.client-logo-static) keep only this rest
+   state, with no pointer, lift or colour change. */
+.client-logo-tile {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2355,7 +2495,7 @@ textarea {
     transition: border-color 0.2s;
 }
 
-.client-logo-link img {
+.client-logo-tile img {
     max-width: 100%;
     max-height: 48px;
     width: auto;
@@ -2373,6 +2513,10 @@ textarea {
     line-height: 1.3;
     color: var(--text-secondary);
     transition: color 0.2s;
+}
+
+.client-logo-static {
+    cursor: default;
 }
 
 .client-logo-link:hover,
@@ -2452,12 +2596,42 @@ textarea {
     }
 }
 
-/* The band is full width; the text is held to a comfortable measure. */
-.statement-band-inner {
-    max-width: calc(68ch + 2 * var(--gutter));
+/* The band is full width; the copy is held to a comfortable measure and the
+   map takes the other column on desktop. Phones stack copy, map, close. */
+.statement-band-grid {
+    max-width: var(--container-max);
     margin: 0 auto;
     padding: 0 var(--gutter);
     font-size: clamp(1.02rem, 0.98rem + 0.3vw, 1.15rem);
+    display: grid;
+    grid-template-areas:
+        "copy"
+        "map"
+        "close";
+    row-gap: 2rem;
+}
+
+.statement-band-copy  { grid-area: copy; max-width: 68ch; }
+.statement-band-map   { grid-area: map; min-width: 0; }
+.statement-band-close { grid-area: close; max-width: 68ch; }
+
+@media (min-width: 960px) {
+    .statement-band-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+        grid-template-areas:
+            "copy  map"
+            "close map";
+        grid-template-rows: auto 1fr;
+        column-gap: 3.5rem;
+        row-gap: 0;
+    }
+    .statement-band-map { align-self: center; }
+}
+
+/* Section eyebrow on the dark band: the light amber, as on the heroes, since
+   the default dark amber fails contrast on Charcoal. */
+.statement-band .eyebrow {
+    color: var(--brand-amber);
 }
 
 .statement-band h2 {
@@ -2678,20 +2852,6 @@ textarea {
     border: 3px solid var(--surface-1);
     box-shadow: var(--shadow-sm);
     margin-bottom: 0.9rem;
-}
-
-/* The role each person fills, tying back to the three hires in the hero. */
-.role-tag {
-    display: inline-block;
-    margin-bottom: 0.5rem;
-    padding: 0.25rem 0.7rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--brand-white);
-    background: var(--brand-iris);
-    border-radius: var(--radius-pill);
 }
 
 .team-strip-name {
@@ -2959,7 +3119,7 @@ textarea {
     margin-top: 0.5rem;
 }
 
-/* ---------- Direct contact (phone + named email) ---------- */
+/* ---------- Direct contact (email) ---------- */
 .direct-contact {
     list-style: none;
     display: flex;
@@ -3015,57 +3175,6 @@ textarea {
     outline-offset: 2px;
 }
 
-.direct-contact--footer {
-    flex-direction: column;
-    gap: 0.6rem;
-    margin-top: 0.85rem;
-}
-
-.site-footer .direct-contact a {
-    font-size: 0.9rem;
-    font-weight: 600;
-    min-height: 0;
-}
-
-/* ---------- Header phone ----------
-   Icon button beside the menu toggle below 1024px, a plain nav link above. */
-.header-phone {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--tap-target);
-    height: var(--tap-target);
-    margin-left: auto;
-    color: var(--accent);
-    border: 1px solid var(--border-strong);
-    border-radius: var(--radius-md);
-}
-
-.header-phone + .nav-toggle {
-    margin-left: 0.5rem;
-}
-
-.header-phone:focus-visible,
-.site-nav .nav-phone:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-}
-
-.site-nav .nav-phone {
-    display: none;
-}
-
-@media (min-width: 1024px) {
-    .header-phone {
-        display: none;
-    }
-    .site-nav .nav-phone {
-        display: flex;
-        font-weight: 600;
-        color: var(--accent);
-    }
-}
-
 /* ---------- Logo ticker: stop the loop reading as a duplicate ----------
    The track holds two identical groups so the -50% translate loops seamlessly.
    With only ten chips a group was narrower than a wide viewport, so both
@@ -3081,9 +3190,10 @@ textarea {
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
     .capability-tile,
-    .client-logo-link,
-    .client-logo-link img,
-    .nny-county {
+    .client-logo-tile,
+    .client-logo-tile img,
+    .nys-map-pin-dot,
+    .nys-map-pin-tip {
         transition: none;
     }
     .capability-tile:hover {

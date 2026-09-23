@@ -1,0 +1,63 @@
+# Purge the CDN after every GitHub Pages build, then check that the root URL
+# and /index.html serve the same build.
+#
+# Why: https://quantify.fyi/ and https://quantify.fyi/index.html are cached as
+# two separate objects, and the root kept serving an old build after deploys.
+#
+# Setup (repo Settings > Secrets and variables > Actions):
+#   CLOUDFLARE_ZONE_ID     zone ID for quantify.fyi
+#   CLOUDFLARE_API_TOKEN   token with Zone > Cache Purge permission
+# If either secret is missing the purge step is skipped and only the check
+# runs. If the CDN in front of the site is not Cloudflare, swap the purge step
+# for that provider's purge-everything call.
+#
+# Cache-Control for HTML is set in the CDN, not here: GitHub Pages does not
+# allow custom headers. Give HTML a short TTL (max-age=0, must-revalidate, or
+# a few minutes) and keep long TTLs for CSS, JS and images only.
+name: Purge CDN and verify homepage
+
+on:
+  page_build:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  purge-and-verify:
+    runs-on: ubuntu-latest
+    env:
+      SITE: https://quantify.fyi
+    steps:
+      - name: Purge the whole site from Cloudflare
+        env:
+          ZONE: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$ZONE" ] || [ -z "$TOKEN" ]; then
+            echo "::warning::CLOUDFLARE_ZONE_ID or CLOUDFLARE_API_TOKEN not set; skipping purge."
+            exit 0
+          fi
+          # Give the Pages build a moment to reach the origin before purging.
+          sleep 60
+          curl -fsS -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE/purge_cache" \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}'
+
+      - name: Root URL and /index.html serve the same H1
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            root=$(curl -fsS "$SITE/" | grep -o "<h1[^>]*>.*</h1>" || true)
+            index=$(curl -fsS "$SITE/index.html" | grep -o "<h1[^>]*>.*</h1>" || true)
+            echo "/           : $root"
+            echo "/index.html : $index"
+            if [ -n "$root" ] && [ "$root" = "$index" ]; then
+              echo "Match."
+              exit 0
+            fi
+            echo "Mismatch, retrying in 30s ($attempt/6)"
+            sleep 30
+          done
+          echo "::error::The root URL and /index.html serve different builds."
+          exit 1

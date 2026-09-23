@@ -5,7 +5,7 @@ sector: public
 rank: 20
 capabilities: [dashboards]
 summary: "We remodeled a county's existing but unusable HMIS data into a BigQuery-and-Tableau analytics platform that surfaces individual client journeys and program-level insight for tackling homelessness."
-description: "How we transformed a Northern New York county's raw HMIS exports into a homelessness analytics platform on BigQuery, Fivetran, and Tableau, turning isolated incident logs into client narratives and program insight now used in legislative decision-making."
+description: "How we transformed a North Country county's raw HMIS exports into a homelessness analytics platform on BigQuery, Fivetran, and Tableau, turning isolated incident logs into client narratives and program insight now used in legislative decision-making."
 hero_image: "/assets/case-studies/sankey.jpg"
 hero_image_width: 1673
 hero_image_height: 742
@@ -21,7 +21,7 @@ results:
     label: "The only manual step, one file drop, with the rest of the pipeline automated"
 ---
 
-We first approached this Northern New York county to show them something we were proud of: a greenfield, Microsoft-based tech stack and a set of solid-waste analytics we had built for Lewis County's solid waste department off the data in their comp-plan system. The pitch was simple. Would they want something similar?
+We first approached this North Country county to show them something we were proud of: a greenfield, Microsoft-based tech stack and a set of solid-waste analytics we had built for Lewis County's solid waste department off the data in their comp-plan system. The pitch was simple. Would they want something similar?
 
 Their answer reframed the entire engagement. They loved the idea of building out data-analytics capability, but they had a far more pressing need than waste metrics: homelessness in the county. What followed was a project that, in the end, came down not to collecting new data but to making sense of data they already had.
 

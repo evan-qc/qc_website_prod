@@ -5,10 +5,17 @@
 # reserves space and the page does not shift). Until then the tile renders the
 # client's name as clean text. Never recreate or approximate a client's logo.
 #
+# Both marquee copies render from this one list, so an edit here changes both.
+#
 # Fields:
-#   name     client name. Used as the text fallback and as the image alt text.
+#   name     client name. The visible text, the image alt text, and the
+#            link's aria-label.
 #   logo     path under /assets/. Omit for a text tile.
-#   url      case study to link to (required: logos imply finished work).
+#   url      case study to link to. Omit ONLY for a client whose logo we have
+#            permission to show but who has no public case study: the tile
+#            then renders unlinked, with no hover or pointer affordance. Never
+#            point an unlinked client at a case study page, and never add one
+#            to the map or the Our Work page.
 #
 # Only completed engagements belong here. Naturally Lewis stays off until that
 # engagement wraps; it lives in _data/work_in_progress.yml meanwhile.
@@ -18,6 +25,12 @@
   logo: "/assets/clients/lewis-county.png"
   logo_width: 738
   logo_height: 249
+
+# Logo permission only; no public case study. Unlinked on purpose.
+- name: "Jefferson County"
+  logo: "/assets/clients/jc_logo.jpg"
+  logo_width: 271
+  logo_height: 271
 
 - name: "Development Authority of the North Country"
   url: "/case-studies/north-country-landfill-financial-model/"
@@ -46,5 +59,5 @@
 # The logo we have for CCC is a JPG with a baked-in dark background, which
 # renders as a black box beside the light tiles. Left as text until we get a
 # transparent PNG or SVG.
-- name: "Christian Community Center"
+- name: "Christian Community Center, Turin NY"
   url: "/case-studies/christian-community-center-rental-automation/"

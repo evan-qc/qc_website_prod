@@ -1,16 +1,21 @@
 <!-- =========================================================
      "Trusted by" logo marquee. Driven by _data/clients.yml, so
-     adding a logo is a data edit.
+     adding a logo is a data edit, and both copies below always
+     carry the same names, alt text and aria-labels.
 
      The set renders twice so the -50% translate loops with no gap
-     (with six logos, one set is narrower than a wide screen). The
-     second copy is aria-hidden and its links are taken out of the
-     tab order, so names are announced once and focus visits each
-     logo once.
+     (with a handful of logos, one set is narrower than a wide
+     screen). The second copy is aria-hidden and its links are taken
+     out of the tab order, so names are announced once and focus
+     visits each logo once.
 
-     Grayscale at rest, full colour on hover or focus. The track
-     pauses on hover and while anything inside has keyboard focus.
-     Under prefers-reduced-motion it becomes a static, centred,
+     A client with a `url` is a link to its case study: grayscale at
+     rest, full colour on hover or focus. A client without one (logo
+     permission, no public case study) is a plain, unlinked tile that
+     looks the same at rest and does nothing on hover.
+
+     The track pauses on hover and while anything inside has keyboard
+     focus. Under prefers-reduced-motion it becomes a static, centred,
      wrapping row (the copy is hidden). Clients with no logo file
      render as clean text.
      ========================================================= -->
@@ -24,13 +29,20 @@
             <ul class="client-marquee-group"{% if copy == 2 %} aria-hidden="true"{% endif %}>
                 {%- for client in site.data.clients %}
                 <li class="client-logo">
-                    <a class="client-logo-link" href="{{ client.url | relative_url }}"{% if copy == 2 %} tabindex="-1"{% endif %}>
+                    {%- capture tile_inner %}
                         {%- if client.logo %}
                         <img src="{{ client.logo | relative_url }}" alt="{% if copy == 1 %}{{ client.name }}{% endif %}" width="{{ client.logo_width }}" height="{{ client.logo_height }}" loading="lazy" decoding="async">
                         {%- else %}
                         <span class="client-logo-text">{{ client.name }}</span>
                         {%- endif %}
+                    {%- endcapture %}
+                    {%- if client.url %}
+                    <a class="client-logo-tile client-logo-link" href="{{ client.url | relative_url }}" aria-label="{{ client.name }}"{% if copy == 2 %} tabindex="-1"{% endif %}>{{ tile_inner }}
                     </a>
+                    {%- else %}
+                    <span class="client-logo-tile client-logo-static">{{ tile_inner }}
+                    </span>
+                    {%- endif %}
                 </li>
                 {%- endfor %}
             </ul>
