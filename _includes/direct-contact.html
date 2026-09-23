@@ -1,12 +1,7 @@
-<!-- Phone and email, from _config.yml. Used by the homepage closing CTA,
-     get-started.html and the footer. The phone link is scraper-resistant;
-     see _includes/phone-link.html.
-     Pass class="..." to add a modifier (e.g. direct-contact--on-dark). -->
+<!-- Email, from _config.yml. Used by the homepage closing CTA and
+     get-started.html. We publish no phone number, so email is the one
+     direct line. Pass class="..." to add a modifier (e.g. direct-contact--on-dark). -->
 <ul class="direct-contact{% if include.class %} {{ include.class }}{% endif %}">
-    <li>
-        <span class="direct-contact-label">Call or text</span>
-        {% include phone-link.html %}
-    </li>
     <li>
         <span class="direct-contact-label">Email</span>
         <a href="mailto:{{ site.email }}">{{ site.email }}</a>

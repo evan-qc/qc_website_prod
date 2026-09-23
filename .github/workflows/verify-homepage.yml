@@ -1,0 +1,38 @@
+# After every GitHub Pages build, check that https://quantify.fyi/ and
+# https://quantify.fyi/index.html serve the same build (the same H1).
+#
+# The site is served straight from GitHub Pages. GitHub keeps a copy of each
+# page for up to 10 minutes, and there is nothing to purge or configure, so
+# a stale page clears on its own. This check waits out that window and fails
+# only if the two URLs still disagree after it.
+name: Verify homepage after deploy
+
+on:
+  page_build:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      SITE: https://quantify.fyi
+    steps:
+      - name: Root URL and /index.html serve the same H1
+        run: |
+          for attempt in $(seq 1 13); do
+            root=$(curl -fsS "$SITE/" | grep -o "<h1[^>]*>.*</h1>" || true)
+            index=$(curl -fsS "$SITE/index.html" | grep -o "<h1[^>]*>.*</h1>" || true)
+            echo "/           : $root"
+            echo "/index.html : $index"
+            if [ -n "$root" ] && [ "$root" = "$index" ]; then
+              echo "Match."
+              exit 0
+            fi
+            echo "Mismatch, retrying in 60s ($attempt/13)"
+            sleep 60
+          done
+          echo "::error::The root URL and /index.html still serve different builds after 12 minutes."
+          exit 1

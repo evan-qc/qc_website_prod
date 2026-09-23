@@ -7,6 +7,10 @@
 # should stay populated. If a capability has no case study behind it, set
 # `proof_note` instead so the gap is visible rather than papered over.
 #
+# List order is display order, on the homepage and on what-we-do.html alike:
+# Dashboards, Custom Applications, Technology & Security Assessments,
+# Financial Modeling, Grant & Compliance Reporting, Automation & Integration.
+#
 # `short` is the canonical label. It must read identically on the homepage,
 # on what-we-do.html, and on the case-study filter chips. Do not paraphrase.
 #
@@ -69,6 +73,33 @@
   proofs:
     - text: "Lewis County Building Codes replaced 24 disconnected spreadsheets with one inspection application. A five-person team now runs fire safety inspections county-wide from one place."
       url: "/case-studies/lewis-county-building-codes-inspection-app/"
+
+- slug: assessments
+  short: "Technology &amp; Security Assessments"
+  title: "Technology &amp; Security Assessments"
+  tagline: "An honest read on where you stand and what to fix first."
+  tile_problem: "You're not sure your IT would hold up on a bad day."
+  tile_line: "An honest read on where you stand and what to fix first, from someone who's run IT for a county."
+  body: >-
+    If you have an IT vendor but no IT director, nobody is sitting on your side of the
+    table. That is the gap this fills.
+  body_2: >-
+    We assess what you are running, where the real risk sits, what your insurer or
+    your auditor is going to ask about, and what to do in what order. Then we tell you
+    plainly, including the parts you will not enjoy hearing.
+  # This capability's evidence is the practitioner rather than a published case
+  # study, so it renders as a "Who does this work" block instead of a proof line.
+  practitioner_label: "Who does this work"
+  practitioner: >-
+    Conner Biolsi spent nearly six years as IT Director for Lewis County government,
+    where he rebuilt the county's entire infrastructure stack, stood up secure remote
+    work across departments, and strengthened its cybersecurity posture on a
+    public-sector budget with public-sector accountability. He was elected to the
+    board of the New York State Local Government IT Directors Association,
+    coordinating technology across the state's municipalities, school districts,
+    BOCES, community colleges and authorities. He is Certified in Cybersecurity and
+    came out of J.P. Morgan Chase technology before that.
+  practitioner_kicker: "He has read the assessment from your side of the desk. Now he writes them."
 
 - slug: modeling
   short: "Financial Modeling &amp; Forecasting"
@@ -140,30 +171,3 @@
       url: "/case-studies/lewis-county-solid-waste-operations-intelligence/"
     - text: "We replaced a county's manual, Adobe-form resolution process with an automated workflow that drafts, files and tracks every submission, giving 30 departments real-time visibility into where their requests stand."
       url: "/case-studies/workflow-automation-for-resolution-drafting-in-county-government/"
-
-- slug: assessments
-  short: "Technology &amp; Security Assessments"
-  title: "Technology &amp; Security Assessments"
-  tagline: "An honest read on where you stand and what to fix first."
-  tile_problem: "You're not sure your IT would hold up on a bad day."
-  tile_line: "An honest read on where you stand and what to fix first, from someone who's run IT for a county."
-  body: >-
-    If you have an IT vendor but no IT director, nobody is sitting on your side of the
-    table. That is the gap this fills.
-  body_2: >-
-    We assess what you are running, where the real risk sits, what your insurer or
-    your auditor is going to ask about, and what to do in what order. Then we tell you
-    plainly, including the parts you will not enjoy hearing.
-  # This capability's evidence is the practitioner rather than a published case
-  # study, so it renders as a "Who does this work" block instead of a proof line.
-  practitioner_label: "Who does this work"
-  practitioner: >-
-    Conner Biolsi spent nearly six years as IT Director for Lewis County government,
-    where he rebuilt the county's entire infrastructure stack, stood up secure remote
-    work across departments, and strengthened its cybersecurity posture on a
-    public-sector budget with public-sector accountability. He was elected to the
-    board of the New York State Local Government IT Directors Association,
-    coordinating technology across the state's municipalities, school districts,
-    BOCES, community colleges and authorities. He is Certified in Cybersecurity and
-    came out of J.P. Morgan Chase technology before that.
-  practitioner_kicker: "He has read the assessment from your side of the desk. Now he writes them."

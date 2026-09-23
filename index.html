@@ -1,25 +1,32 @@
 ---
 layout: default
 title: Home
-seo_title: "Quantify | Tech, Data & Systems Help for Northern New York"
-description: "Data, systems, and IT help for counties, agencies, nonprofits, and businesses across Northern New York. Three people, based in Lowville."
+seo_title: "Quantify | Tech, Data & Systems Help for the North Country"
+description: "Data, systems, finance, and IT help for counties, agencies, nonprofits, and businesses across New York's North Country. Based in Lowville."
 active_nav: home
 ---
 {%- assign home = site.data.home -%}
-<!-- 1. Hero: copy left, video over a compact map right.
+<!-- 1. Hero: copy left, video right.
      The pieces are separate grid items so the phone order can differ from the
-     desktop columns: eyebrow to body, CTAs, video, map, then the geo line.
-     CTAs come before the video on phones so nobody scrolls past the video
-     looking for the buttons. -->
+     desktop columns: eyebrow to credentials, CTAs, video, then the place line
+     with its small map. CTAs come before the video on phones so nobody
+     scrolls past the video looking for the buttons.
+
+     The credentials line describes the current team. Keep it in step with
+     the bios below and on about.html if the roster changes. -->
 <section class="hero home-hero">
     <div class="hero-content home-hero-grid">
         <div class="home-hero-intro">
-            <span class="eyebrow">Northern New York</span>
-            <h1>You need a data analyst, an IT director, and an operations lead.</h1>
-            <p class="home-hero-sub">You don't have the budget for all three. That's where we come in.</p>
-            <p class="lead">We're three Northern New York locals who do the work those hires would do, at a price that fits an organization your size. We build it, we explain it, and we stay to keep it running.</p>
+            <span class="eyebrow">New York's North Country</span>
+            <h1>You need an analytics director, an IT director, and a director of finance and operations.</h1>
+            <p class="home-hero-sub">Hiring all three isn't realistic. Hiring us is.</p>
+            <p class="lead">We do the work those hires would do, at a price that fits an organization your size. We build the reports, the systems, and the financial models, then we stay to keep them running.</p>
+            <p class="home-hero-credentials">Between us: former IT Director for Lewis County, business intelligence at Amazon Web Services, credit and compliance analytics at a regulated lender, and a Carnegie Mellon MBA in finance.</p>
         </div>
-        <p class="home-hero-region">Based in Lowville. Working across all eight counties of Northern New York.</p>
+        <div class="home-hero-place">
+            {% include nys-map.html size="small" alt="Map of New York State with the North Country counties highlighted and a star marking Lowville." %}
+            <p class="home-hero-region">Based in Lowville. Working across the North Country.</p>
+        </div>
         <div class="hero-cta-row home-hero-ctas">
             <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Talk to us</a>
             <a href="{{ '/case-studies.html' | relative_url }}" class="btn btn-ghost">See our work</a>
@@ -31,7 +38,6 @@ active_nav: home
                 </div>
                 <figcaption class="home-hero-video-label">{{ home.video.label }}</figcaption>
             </figure>
-            {% include nny-map.html %}
         </div>
     </div>
 </section>
@@ -39,35 +45,31 @@ active_nav: home
 <!-- 2. Logo marquee -->
 {% include client-logos.html %}
 
-<!-- 3. Team. The headline ties back to the three roles in the hero, and the
-     cards run in the same order: data, IT, operations. -->
+<!-- 3. Team. Same order as about.html: Evan, Allen, Conner. -->
 <section class="section">
     <div class="container">
         <div class="section-heading">
-            <h2>Your data analyst. Your IT director. Your operations lead.</h2>
+            <h2>Here's who shows up.</h2>
         </div>
-        <p class="lead u-mb-8">In a region this size, you're not hiring a firm. You're hiring the people who show up. Here's who shows up.</p>
+        <p class="lead u-mb-8">In a region this size, you're not hiring a firm. You're hiring the people behind it.</p>
         <div class="team-strip">
             <article class="team-strip-member">
+                <img class="team-strip-photo" src="{{ '/assets/evan.png' | relative_url }}" alt="Evan Jennings" width="800" height="800" loading="lazy">
+                <h3 class="team-strip-name">Evan Jennings</h3>
+                <div class="team-strip-role">Founder</div>
+                <p>Carnegie Mellon MBA in analytics, finance and operations. Three years as a senior business intelligence engineer at Amazon Web Services. Grew up in Lewis County, and came back on purpose.</p>
+            </article>
+            <article class="team-strip-member">
                 <img class="team-strip-photo" src="{{ '/assets/allen.png' | relative_url }}" alt="Allen Beaujon" width="800" height="800" loading="lazy">
-                <span class="role-tag">Your data analyst</span>
                 <h3 class="team-strip-name">Allen Beaujon</h3>
                 <div class="team-strip-role">Principal Data Solutions Consultant</div>
                 <p>Five years building credit and compliance analytics inside a regulated lender, where being wrong had consequences. Specializes in turning messy operational data into numbers a leadership team will act on.</p>
             </article>
             <article class="team-strip-member">
                 <img class="team-strip-photo" src="{{ '/assets/conner.png' | relative_url }}" alt="Conner Biolsi" width="800" height="800" loading="lazy">
-                <span class="role-tag">Your IT director</span>
                 <h3 class="team-strip-name">Conner Biolsi</h3>
                 <div class="team-strip-role">Principal Solutions Architect</div>
                 <p>IT Director for Lewis County government for nearly six years, where he rebuilt the county's entire infrastructure stack. Elected to the state board that coordinates technology for New York's counties, schools and BOCES. Previously J.P. Morgan Chase. Certified in Cybersecurity.</p>
-            </article>
-            <article class="team-strip-member">
-                <img class="team-strip-photo" src="{{ '/assets/evan.png' | relative_url }}" alt="Evan Jennings" width="800" height="800" loading="lazy">
-                <span class="role-tag">Your operations lead</span>
-                <h3 class="team-strip-name">Evan Jennings</h3>
-                <div class="team-strip-role">Founder</div>
-                <p>Carnegie Mellon MBA in analytics, finance and operations. Three years as a senior business intelligence engineer at Amazon Web Services. Grew up in Lewis County, and came back on purpose.</p>
             </article>
         </div>
         <p class="section-footnote u-center">
@@ -76,16 +78,26 @@ active_nav: home
     </div>
 </section>
 
-<!-- 4. Why we exist. A deliberate pause in the page rhythm, and a second pass
-     at the story in the video for anyone who skipped it. -->
-<section class="statement-band">
-    <div class="statement-band-inner">
-        <h2>The talent is already here. It's just working for someone else.</h2>
-        <p>Northern New York is full of people who build data systems, run IT, and model finances for a living. Most of them do it remotely, for companies hundreds of miles away.</p>
-        <p>Meanwhile, the counties, agencies, and businesses next door can't hire for those roles full time. So they send the work to big city firms that have never driven Route 12.</p>
-        <p>That's backwards. We exist to fix it. Local organizations get big city results from people who live down the road. Local talent gets to do its best work for its neighbors. And the money stays here.</p>
-        <p class="statement-band-tagline">Small town values. Big city results.</p>
-        <p class="statement-band-aside">Live here and do this kind of work? <a href="{{ '/careers.html' | relative_url }}">We want to hear from you.</a></p>
+<!-- 4. Why we're here. A deliberate pause in the page rhythm, and a second
+     pass at the story in the video for anyone who skipped it. The large map
+     pins every client with a published case study (_data/map_pins.yml).
+     Phones: copy, map, then the tagline. Desktop: copy left, map right. -->
+<section class="statement-band" aria-labelledby="why-here-title">
+    <div class="statement-band-grid">
+        <div class="statement-band-copy">
+            <span class="eyebrow">Why we're here</span>
+            <h2 id="why-here-title">The talent is already here. It's just working for someone else.</h2>
+            <p>The North Country is full of people who build data systems, run IT, and model finances for a living. Most of them do it remotely, for companies hundreds of miles away.</p>
+            <p>Meanwhile, the counties, agencies, and businesses next door can't hire for those roles full time. So they send the work to big city firms that have never driven Route 12.</p>
+            <p>That's backwards. We exist to fix it. Local organizations get big city results from people who live down the road. Local talent gets to do its best work for its neighbors. And the money stays here.</p>
+        </div>
+        <div class="statement-band-map">
+            {% include nys-map.html size="large" pins=true caption="Every pin is a client. Tap one to see the work." alt="Map of New York State with Oneida, Oswego, Herkimer, Lewis, Jefferson, St. Lawrence, Hamilton, and Franklin counties highlighted. A star marks Quantify's office in Lowville. Pins mark clients with published case studies in Lowville, Watertown, and Turin." %}
+        </div>
+        <div class="statement-band-close">
+            <p class="statement-band-tagline">Small town values. Big city results.</p>
+            <p class="statement-band-aside">Live here and do this kind of work? <a href="{{ '/careers.html' | relative_url }}">We want to hear from you.</a></p>
+        </div>
     </div>
 </section>
 
@@ -135,7 +147,7 @@ active_nav: home
     <div class="container">
         <h2>Start with a conversation, not a contract.</h2>
         <p>The first one is free, and we lead with something useful whether or not you hire us. Tell us where the pain is and we'll tell you straight whether we're the right people to fix it.</p>
-        <p>Anywhere in Northern New York, we can be in your building this week. Coffee's on us.</p>
+        <p>Anywhere in the North Country, we can be in your building this week. Coffee's on us.</p>
         <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Talk to us</a>
         {% include direct-contact.html class="direct-contact--on-dark" %}
     </div>
