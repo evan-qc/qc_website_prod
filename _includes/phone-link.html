@@ -1,0 +1,16 @@
+{%- comment -%}
+  Scraper-resistant phone link. The number from `phone` in _config.yml is
+  written reversed into data-p and assembled by the script at the bottom of
+  _layouts/default.html, so the plain number is never in the page source.
+  Without JavaScript it is a "Call or text us" link to get-started.html.
+
+  Params: class (extra classes), icon (true for the header icon button).
+{%- endcomment -%}
+{%- assign phone_rev = site.phone | split: "" | reverse | join: "" -%}
+{%- if include.icon -%}
+<a href="{{ '/get-started.html' | relative_url }}" class="{{ include.class }}" data-p="{{ phone_rev }}" data-phone-icon aria-label="Call or text Quantify">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+</a>
+{%- else -%}
+<a href="{{ '/get-started.html' | relative_url }}"{% if include.class %} class="{{ include.class }}"{% endif %} data-p="{{ phone_rev }}">Call or text us</a>
+{%- endif -%}

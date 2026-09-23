@@ -19,39 +19,30 @@ featured_work:
 # ---------------------------------------------------------------------------
 # Testimonial (pull quote under Recent work).
 #
-# The section renders ONLY when `quote` and `name` are both set. Leave it
-# empty and nothing ships: no heading, no placeholder.
+# The section renders ONLY when `quote` and `name` are both set. Empty them
+# and nothing ships: no heading, no placeholder.
 #
-# TODO(Evan): provide at least one real quote with a named person, ideally
-# from Lewis County or DANC, confirmed for homepage use. Two quotes are
-# already published on case study pages if you want to reuse one of those:
-#   - Tim Hunt, County Administrator, Lewis County (Lowville), in
-#     _case_studies/lewis-county-grant-funding-transparency.md
-#   - Carrie Tuttle, Chief Operating Officer, Development Authority of the
-#     North Country (Watertown), in
-#     _case_studies/north-country-landfill-financial-model.md
+# Quotes are reused verbatim from published case studies. This one is from
+# _case_studies/lewis-county-grant-funding-transparency.md. To swap in Darin
+# Zehr instead (from commercial-food-sanitation-core-business-platform.md):
+#   quote: "We chose Quantify because they brought the right combination of agility, curiosity, and partnership. They were willing to take the time to understand our business, ask thoughtful questions, and tailor their approach to our needs rather than offering a one-size-fits-all solution."
+#   name: "Darin Zehr"
+#   title: "General Manager"
+#   organization: "Commercial Food Sanitation"
+#   town: ""
 # ---------------------------------------------------------------------------
 testimonial:
-  quote: ""
-  name: ""
-  title: ""
-  organization: ""
-  town: ""
+  quote: "The efficiencies and data-driven metrics they provide enhance transparency and efficiency, ultimately improving the service delivery of local government."
+  name: "Tim Hunt"
+  title: "County Administrator"
+  organization: "Lewis County"
+  town: "Lowville"
 
 # ---------------------------------------------------------------------------
-# Hero video. Loads only on click (a static poster plus play button until
-# then), so the hero stays fast.
-#
-# TODO(Evan): poster frame image showing a real face (not a logo or title
-# card), 16:9, e.g. 1280x720. Drop it under assets/ and set `poster`. Until
-# then the facade shows a neutral Linen placeholder with the play button.
-# TODO(Evan): confirm the runtime in `label`.
-# TODO(Evan): turn captions on by default in Descript. The share embed has no
-# URL setting for it that we can control from the page.
+# Hero video. A plain Descript embed, so it shows Descript's own thumbnail
+# and plays on the first click. Captions are switched on inside Descript.
 # ---------------------------------------------------------------------------
 video:
   src: "https://share.descript.com/embed/xUmdb9oEpWW"
   title: "Why we started Quantify"
-  label: "Why we started Quantify (2 min)"
-  poster: ""
-  poster_alt: ""
+  label: "Why we started Quantify (1 min)"

@@ -12,22 +12,30 @@
 #
 # Only completed engagements belong here. Naturally Lewis stays off until that
 # engagement wraps; it lives in _data/work_in_progress.yml meanwhile.
-#
-# TODO(Evan): logo files still missing for Lewis County, Development Authority
-# of the North Country, Commercial Food Sanitation, Double Play Community
-# Center, and Christian Community Center (see note below).
 
 - name: "Lewis County"
   url: "/case-studies/lewis-county-financial-transparency/"
+  logo: "/assets/clients/lewis-county.png"
+  logo_width: 738
+  logo_height: 249
 
 - name: "Development Authority of the North Country"
   url: "/case-studies/north-country-landfill-financial-model/"
+  logo: "/assets/clients/development-authority-of-the-north-country.jpg"
+  logo_width: 200
+  logo_height: 143
 
 - name: "Commercial Food Sanitation"
   url: "/case-studies/commercial-food-sanitation-core-business-platform/"
+  logo: "/assets/clients/commercial-food-sanitation.png"
+  logo_width: 500
+  logo_height: 162
 
 - name: "Double Play Community Center"
   url: "/case-studies/double-play-grant-reporting/"
+  logo: "/assets/clients/double-play-community-center.png"
+  logo_width: 731
+  logo_height: 273
 
 - name: "North Country Handymen"
   url: "/case-studies/nch-case-study/"

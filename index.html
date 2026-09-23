@@ -17,12 +17,7 @@ active_nav: home
             <span class="eyebrow">Northern New York</span>
             <h1>You need a data analyst, an IT director, and an operations lead.</h1>
             <p class="home-hero-sub">You don't have the budget for all three. That's where we come in.</p>
-            {%- comment -%}
-              TODO(Evan): if all three team members are from the region, change the
-              first sentence to "We're three Northern New York locals who do the
-              work those hires would do..." Only once Evan confirms it's true.
-            {%- endcomment %}
-            <p class="lead">We're a three-person team in Lowville that does the work those hires would do, at a price that fits an organization your size. We build it, we explain it, and we stay to keep it running.</p>
+            <p class="lead">We're three Northern New York locals who do the work those hires would do, at a price that fits an organization your size. We build it, we explain it, and we stay to keep it running.</p>
         </div>
         <p class="home-hero-region">Based in Lowville. Working across all eight counties of Northern New York.</p>
         <div class="hero-cta-row home-hero-ctas">
@@ -31,18 +26,8 @@ active_nav: home
         </div>
         <div class="home-hero-media">
             <figure class="home-hero-video">
-                <div class="video-facade" data-video-src="{{ home.video.src }}" data-video-title="{{ home.video.title }}">
-                    <button type="button" class="video-facade-btn" aria-label="Play video: {{ home.video.title }}">
-                        {%- if home.video.poster != "" %}
-                        <img class="video-facade-poster" src="{{ home.video.poster | relative_url }}" alt="{{ home.video.poster_alt }}" width="1280" height="720" fetchpriority="high">
-                        {%- else %}
-                        {%- comment -%}TODO(Evan): poster frame (see `video` in _data/home.yml). Neutral Linen placeholder until then.{%- endcomment %}
-                        <span class="video-facade-placeholder" aria-hidden="true"></span>
-                        {%- endif %}
-                        <span class="video-facade-play" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="28" height="28" focusable="false"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
-                        </span>
-                    </button>
+                <div class="video-embed">
+                    <iframe src="{{ home.video.src }}" title="{{ home.video.title }}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <figcaption class="home-hero-video-label">{{ home.video.label }}</figcaption>
             </figure>
@@ -50,26 +35,6 @@ active_nav: home
         </div>
     </div>
 </section>
-
-<script>
-  // Click-to-load video. The iframe (and everything Descript loads with it)
-  // is only requested once someone presses play.
-  (function () {
-    var facade = document.querySelector('.video-facade');
-    if (!facade) return;
-    var btn = facade.querySelector('.video-facade-btn');
-    btn.addEventListener('click', function () {
-      var iframe = document.createElement('iframe');
-      iframe.src = facade.getAttribute('data-video-src');
-      iframe.title = facade.getAttribute('data-video-title');
-      iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
-      iframe.setAttribute('allowfullscreen', '');
-      facade.replaceChildren(iframe);
-      facade.classList.add('is-playing');
-      iframe.focus();
-    });
-  })();
-</script>
 
 <!-- 2. Logo marquee -->
 {% include client-logos.html %}
@@ -88,7 +53,6 @@ active_nav: home
                 <span class="role-tag">Your data analyst</span>
                 <h3 class="team-strip-name">Allen Beaujon</h3>
                 <div class="team-strip-role">Principal Data Solutions Consultant</div>
-                {%- comment -%}TODO(Evan): one-line local hook for Allen (hometown, years in the region, or why he's here). Append it as the last sentence.{%- endcomment %}
                 <p>Five years building credit and compliance analytics inside a regulated lender, where being wrong had consequences. Specializes in turning messy operational data into numbers a leadership team will act on.</p>
             </article>
             <article class="team-strip-member">
@@ -96,7 +60,6 @@ active_nav: home
                 <span class="role-tag">Your IT director</span>
                 <h3 class="team-strip-name">Conner Biolsi</h3>
                 <div class="team-strip-role">Principal Solutions Architect</div>
-                {%- comment -%}TODO(Evan): one-line local hook for Conner (hometown, years in the region, or why he's here). Append it as the last sentence.{%- endcomment %}
                 <p>IT Director for Lewis County government for nearly six years, where he rebuilt the county's entire infrastructure stack. Elected to the state board that coordinates technology for New York's counties, schools and BOCES. Previously J.P. Morgan Chase. Certified in Cybersecurity.</p>
             </article>
             <article class="team-strip-member">

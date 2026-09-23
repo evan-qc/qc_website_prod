@@ -16,23 +16,16 @@ address_region: "NY"
 address_postal: "13367"
 linkedin_url: "https://www.linkedin.com/company/quantify-consulting-llc"
 
-# Direct contact, shown in the header, the homepage closing CTA, the footer,
-# and next to the form on get-started.html. Small-town buyers call, and people
-# write more easily to a name than to hello@.
+# Phone, shown in the header, the homepage closing CTA, the footer, and next
+# to the form on get-started.html (with `email` above). Digits only.
 #
-# While a value is empty, the body copy shows a clearly marked
-# "TODO(Evan)" placeholder in its place (the header phone link is simply
-# omitted). Fill these in and every placement updates.
-#
-# TODO(Evan): phone number, e.g. phone: "3155551234" (digits only, used in
-#             the tel: link) and phone_display: "(315) 555-1234".
-# TODO(Evan): named email, e.g. named_email: "evan@quantify-consulting.com".
-# TODO(Evan): optional booking link (Calendly or similar). Shown on
-#             get-started.html only when set.
-phone: ""
-phone_display: ""
-named_email: ""
-booking_url: ""
+# The number never appears in the page source as written. Pages carry it
+# reversed in a data attribute and a few lines of script in the default layout
+# turn it back into a tel: link on load (_includes/phone-link.html). That
+# defeats scrapers that grep HTML for phone patterns; a scraper that runs
+# JavaScript will still see it. Without JavaScript the link falls back to
+# "Call or text us" pointing at get-started.html.
+phone: "3154863742"
 
 # ---------------------------------------------------------------------------
 # Consulting-firm delivery capacity.

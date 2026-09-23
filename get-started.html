@@ -27,14 +27,6 @@ active_nav: talk
                 <div class="contact-direct">
                     <h3>Rather not fill in a form?</h3>
                     {% include direct-contact.html %}
-                    <p class="muted u-mt-2">Or write to <a href="mailto:{{ site.email }}?subject=Free%20consultation">{{ site.email }}</a>.</p>
-                    {%- comment -%}
-                      Booking link slot. Stays hidden until `booking_url` is set in
-                      _config.yml. TODO(Evan): optional Calendly (or similar) link.
-                    {%- endcomment %}
-                    {%- if site.booking_url != "" %}
-                    <p class="u-mt-6"><a href="{{ site.booking_url }}" class="btn btn-ghost">Book a time on the calendar</a></p>
-                    {%- endif %}
                 </div>
 
                 <div class="contact-block">
