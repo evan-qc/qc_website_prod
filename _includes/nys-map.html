@@ -7,14 +7,16 @@
         Hero. Static: counties and the Lowville star only. No pins, no
         links, no hover states, no caption.
 
-    {% include nys-map.html size="large" pins=true alt="..." caption="..." %}
-        "Why we're here". Adds a clickable pin per published case study,
+    {% include nys-map.html size="large" pins=true star=false alt="..." caption="..." %}
+        "Why we're here". No star; a clickable pin per published case study,
         from _data/map_pins.yml, plus a text list of the same links for
         screen readers.
 
   Params:
     size     "small" or "large" (default "large"). Styling only.
     pins     true to render client pins. Omit for none.
+    star     false to leave out the Lowville office star and its label.
+             Default true.
     alt      alt text for the map image (required).
     caption  optional visible caption. Only rendered alongside pins.
 
@@ -31,6 +33,8 @@
 {%- assign meta = site.data.map_meta -%}
 {%- assign office = site.data.map_pins.office -%}
 {%- assign map_size = include.size | default: "large" -%}
+{%- assign show_star = true -%}
+{%- if include.star == false %}{% assign show_star = false %}{% endif -%}
 <figure class="nys-map nys-map--{{ map_size }}"{% if include.pins %} data-nys-map-pins{% endif %}>
     <div class="nys-map-panel">
         <div class="nys-map-box">
@@ -40,10 +44,12 @@
                 </g>
             </svg>
 
+            {%- if show_star %}
             <span class="nys-map-office" style="left: {{ office.x | times: 100.0 | divided_by: meta.width | round: 3 }}%; top: {{ office.y | times: 100.0 | divided_by: meta.height | round: 3 }}%;" aria-hidden="true">
                 <svg class="nys-map-star" viewBox="0 0 24 24" focusable="false"><path d="M12 1.8l3.05 6.5 7.1.82-5.27 4.84 1.43 7.04L12 17.44 5.69 21l1.43-7.04L1.85 9.12l7.1-.82z"/></svg>
                 <span class="nys-map-office-label">{{ office.label }}</span>
             </span>
+            {%- endif %}
 
             {%- if include.pins %}
             <div class="nys-map-pins">
