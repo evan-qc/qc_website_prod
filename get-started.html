@@ -27,14 +27,6 @@ active_nav: talk
                 <div class="contact-direct">
                     <h3>Rather not fill in a form?</h3>
                     {% include direct-contact.html %}
-                    <p class="muted u-mt-2">Or write to <a href="mailto:{{ site.email }}?subject=Free%20consultation">{{ site.email }}</a>.</p>
-                    {%- comment -%}
-                      Booking link slot. Stays hidden until `booking_url` is set in
-                      _config.yml. TODO(Evan): optional Calendly (or similar) link.
-                    {%- endcomment %}
-                    {%- if site.booking_url != "" %}
-                    <p class="u-mt-6"><a href="{{ site.booking_url }}" class="btn btn-ghost">Book a time on the calendar</a></p>
-                    {%- endif %}
                 </div>
 
                 <div class="contact-block">
@@ -50,13 +42,6 @@ active_nav: talk
                 </div>
             </div>
             <div>
-                {%- comment -%}
-                  TODO(Evan): the form's fields live in Airtable, not in this repo.
-                  In the Airtable form builder, keep only Name, Email and a long
-                  text field labeled "What's going on?" (placeholder: "A sentence
-                  or two is plenty.") as required; make every other field optional
-                  or remove it.
-                {%- endcomment %}
                 <iframe class="airtable-embed" src="https://airtable.com/embed/appAqSGbcZW97E1aK/pagTaNts1aKm9mVmx/form" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;" title="Contact form"></iframe>
             </div>
         </div>

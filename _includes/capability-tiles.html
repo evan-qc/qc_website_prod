@@ -1,12 +1,12 @@
 <!-- Homepage capability menu, from _data/capabilities.yml. Six problem-first
      tiles: capability name, the buyer's problem in their own words, what we
-     do, then a proof link to a case study. The full sections live on
+     do, then one or more proof links to case studies. The full sections live on
      what-we-do.html.
 
      The whole tile still goes to its what-we-do.html anchor, but without
      wrapping the tile in an <a>: the name link stretches over the tile with
-     ::after, and the proof link sits above that layer as its own, separate
-     link. No anchor inside an anchor. -->
+     ::after, and the proof links sit above that layer as their own, separate
+     links. No anchor inside an anchor. -->
 <ul class="capability-tiles">
     {%- for cap in site.data.capabilities %}
     <li class="capability-tile">
@@ -15,8 +15,13 @@
         <p class="capability-tile-problem">{{ cap.tile_problem }}</p>
         {%- endif %}
         <p>{{ cap.tile_line | default: cap.tagline }}</p>
-        {%- if cap.tile_proof_url %}
-        <a class="capability-tile-proof" href="{{ cap.tile_proof_url | relative_url }}">See it in action: {{ cap.tile_proof_name }} →</a>
+        {%- if cap.tile_proofs %}
+        <div class="capability-tile-proofs">
+            <span class="capability-tile-proofs-label">See it in action:</span>
+            {%- for proof in cap.tile_proofs %}
+            <a class="capability-tile-proof" href="{{ proof.url | relative_url }}">{{ proof.name }}&nbsp;→</a>
+            {%- endfor %}
+        </div>
         {%- endif %}
     </li>
     {%- endfor %}
