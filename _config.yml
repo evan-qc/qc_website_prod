@@ -1,6 +1,35 @@
 title: Quantify
-description: "We're a systems integrator for SMBs - meaning we help small and mid-sized businesses get the tools they already own to actually work together. Most of our clients are drowning in spreadsheets, forms, and disconnected software, doing the same work three times because nothing is connected. We embed with one team, figure out how the work really happens, redesign it, and automate the repetitive parts using whatever tools fit best - Airtable, BigQuery, Zapier, Tableau. What we sell is leverage: more output, more consistency, no extra headcount. We're the 5-to-10-year answer for businesses that have outgrown Excel but aren't ready to drop six figures on enterprise software."
+description: "Data, systems, finance, and IT help for counties, agencies, nonprofits, and businesses across New York's North Country. Based in Lowville."
 baseurl: ""   # served at the root of the custom domain (quantify.fyi)
+
+# ---------------------------------------------------------------------------
+# Contact and org details.
+#
+# These are the single source of truth. Every page pulls from here, so a change
+# in this block updates the whole site. Do not hardcode any of them in a page.
+# ---------------------------------------------------------------------------
+email: "hello@quantify-consulting.com"
+careers_email: "careers@quantify-consulting.com"
+address_street: "5423 Shady Ave"
+address_locality: "Lowville"
+address_region: "NY"
+address_postal: "13367"
+linkedin_url: "https://www.linkedin.com/company/quantify-consulting-llc"
+
+# No phone number. We do not publish one anywhere on the site: no tel: or
+# sms: links, no telephone field in structured data. Email is the direct line.
+
+# ---------------------------------------------------------------------------
+# Consulting-firm delivery capacity.
+#
+# This is the line that makes /for-consulting-firms convert, and it is stale
+# the moment it is wrong. Update `availability_hours` monthly and set
+# `availability_updated` to the month it reflects. Leave availability_hours
+# empty ("") to hide the availability callout entirely rather than show a
+# number nobody has checked.
+# ---------------------------------------------------------------------------
+availability_hours: ""            # e.g. "30 hours/week"
+availability_updated: ""          # e.g. "September 2026"
 
 # Collections
 collections:
@@ -12,11 +41,12 @@ collections:
 defaults:
   - scope:
       path: ""
-      type: posts
-    values:
-      layout: post
-  - scope:
-      path: ""
       type: case_studies
     values:
       layout: case-study
+      # `rank` controls order on the Our Work grid, lowest first.
+      # Ranks are spaced by 10 (10, 20, 30 ...) so a new study can be
+      # slotted mid-lineup with an in-between value (e.g. 25) without
+      # renumbering the others. Unranked studies fall back to 9999 (last).
+      rank: 9999
+      capabilities: []  # keeps capability filtering safe when none are tagged
