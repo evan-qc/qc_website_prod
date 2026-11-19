@@ -6,10 +6,19 @@
      The whole tile still goes to its what-we-do.html anchor, but without
      wrapping the tile in an <a>: the name link stretches over the tile with
      ::after, and the proof links sit above that layer as their own, separate
-     links. No anchor inside an anchor. -->
+     links. No anchor inside an anchor.
+
+     Each tile carries its position in _data/home.yml `capability_order`
+     for each audience as --order-public / --order-private. shared.css turns
+     those into CSS `order` once a visitor has picked an audience, so the
+     grid leads with what that audience buys most. -->
+{%- assign order = site.data.home.capability_order %}
 <ul class="capability-tiles">
     {%- for cap in site.data.capabilities %}
-    <li class="capability-tile">
+    {%- assign op = 99 %}{% assign opv = 99 %}
+    {%- for slug in order.public %}{% if slug == cap.slug %}{% assign op = forloop.index %}{% endif %}{% endfor %}
+    {%- for slug in order.private %}{% if slug == cap.slug %}{% assign opv = forloop.index %}{% endif %}{% endfor %}
+    <li class="capability-tile" style="--order-public: {{ op }}; --order-private: {{ opv }};">
         <h3><a class="capability-tile-link" href="{{ '/what-we-do.html' | relative_url }}#{{ cap.slug }}">{{ cap.short }}</a></h3>
         {%- if cap.tile_problem %}
         <p class="capability-tile-problem">{{ cap.tile_problem }}</p>

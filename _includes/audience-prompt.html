@@ -1,0 +1,70 @@
+<!-- First-visit audience prompt. Homepage only.
+
+     Opens once per browser: any answer, including "Just looking", Esc, the
+     close button, or a click outside, is saved and the prompt never opens
+     again in that browser. A visitor who arrives on an ?audience= link is
+     never prompted. If browser storage is blocked the prompt stays off
+     rather than nagging on every visit.
+
+     The answer flips <html data-audience>, which swaps the homepage copy
+     (see the [data-aud] rules in shared.css). The [data-set-audience]
+     buttons in the hero let a visitor change it afterwards. -->
+<dialog class="audience-dialog" id="audience-dialog" aria-labelledby="audience-dialog-title" aria-describedby="audience-dialog-desc">
+    <form method="dialog" class="audience-dialog-form">
+        <span class="eyebrow">Welcome</span>
+        <h2 id="audience-dialog-title" tabindex="-1" autofocus>What brings you here?</h2>
+        <p id="audience-dialog-desc" class="audience-dialog-desc">Pick one and we'll show you the work that fits. You can switch anytime.</p>
+        <div class="audience-options">
+            <button type="submit" value="public" class="audience-option">
+                <span class="audience-option-title">Government or public sector&nbsp;→</span>
+                <span class="audience-option-detail">County, town, village, authority, school district, or BOCES</span>
+            </button>
+            <button type="submit" value="private" class="audience-option">
+                <span class="audience-option-title">Business or nonprofit&nbsp;→</span>
+                <span class="audience-option-detail">Owner, manager, or the person who keeps operations running</span>
+            </button>
+        </div>
+        <button type="submit" value="none" class="audience-skip">Just looking around</button>
+        <button type="submit" value="dismiss" class="audience-dialog-close" aria-label="Close">×</button>
+    </form>
+</dialog>
+<script>
+(function () {
+    var dialog = document.getElementById('audience-dialog');
+
+    // Switch buttons in the page body.
+    Array.prototype.forEach.call(document.querySelectorAll('[data-set-audience]'), function (btn) {
+        btn.addEventListener('click', function () {
+            window.qcSetAudience(btn.getAttribute('data-set-audience'), 'switcher');
+        });
+    });
+
+    if (!dialog || typeof dialog.showModal !== 'function') return;
+    if (window.qcAudience.value) return;
+    try {
+        localStorage.setItem('qc_probe', '1');
+        localStorage.removeItem('qc_probe');
+    } catch (e) { return; }
+
+    dialog.addEventListener('close', function () {
+        var v = dialog.returnValue;
+        if (v === 'public' || v === 'private') {
+            window.qcSetAudience(v, 'popup');
+        } else {
+            window.qcSetAudience('none', v === 'none' ? 'popup_skip' : 'popup_dismiss');
+        }
+    });
+
+    // A click on the backdrop (the dialog element itself, outside the form)
+    // counts as a dismissal.
+    dialog.addEventListener('click', function (e) {
+        if (e.target === dialog) dialog.close('dismiss');
+    });
+
+    window.setTimeout(function () {
+        dialog.returnValue = '';
+        dialog.showModal();
+        window.qcTrack('audience_prompt_shown');
+    }, 600);
+})();
+</script>

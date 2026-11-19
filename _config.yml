@@ -31,6 +31,23 @@ linkedin_url: "https://www.linkedin.com/company/quantify-consulting-llc"
 availability_hours: ""            # e.g. "30 hours/week"
 availability_updated: ""          # e.g. "September 2026"
 
+# ---------------------------------------------------------------------------
+# Analytics. Both are free. Paste an ID to switch a tool on; leave it ""
+# to keep it off. Nothing loads, and the privacy policy's analytics section
+# does not render, until an ID is set here.
+#
+#   google_analytics_id  GA4 measurement ID, e.g. "G-XXXXXXXXXX"
+#                        (analytics.google.com > Admin > Data streams > Web).
+#   clarity_id           Microsoft Clarity project ID, e.g. "abcd1234ef"
+#                        (clarity.microsoft.com > Settings > Overview).
+#                        Optional: heatmaps and session recordings.
+#
+# Both receive the visitor's homepage audience choice (public / private /
+# none). See _includes/analytics-head.html for every event the site sends.
+# ---------------------------------------------------------------------------
+google_analytics_id: ""
+clarity_id: ""
+
 # Collections
 collections:
   case_studies:

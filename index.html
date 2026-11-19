@@ -6,6 +6,15 @@ description: "Data, systems, finance, and IT help for counties, agencies, nonpro
 active_nav: home
 ---
 {%- assign home = site.data.home -%}
+{%- comment -%}
+  Audience versions. The homepage has three: default (first visit, "Just
+  looking", no JavaScript), public, and private. Elements tagged data-aud
+  show only for the audiences listed, e.g. data-aud="public" or
+  data-aud="default public". Untagged elements show for everyone. The
+  switching itself is CSS on <html data-audience>, set in
+  _includes/analytics-head.html before the page paints, and the first-visit
+  prompt that asks lives in _includes/audience-prompt.html.
+{%- endcomment -%}
 <!-- 1. Hero: copy and CTAs left; video, then the place line with its small
      map, right. The pieces are separate grid items so the phone order can
      differ from the desktop columns: eyebrow to credentials, CTAs, video,
@@ -17,15 +26,36 @@ active_nav: home
 <section class="hero home-hero">
     <div class="hero-content home-hero-grid">
         <div class="home-hero-intro">
-            <span class="eyebrow">New York's North Country</span>
-            <h1>You need an analytics director, an IT director, and a director of finance and operations.</h1>
-            <p class="home-hero-sub">Hiring all three isn't realistic. Hiring us is.</p>
-            <p class="lead">We do the work those hires would do, at a price that fits an organization your size. We build the reports, the systems, and the financial models, then we stay to keep them running.</p>
+            <div data-aud="default">
+                <span class="eyebrow">New York's North Country</span>
+                <h1>You need an analytics director, an IT director, and a director of finance and operations.</h1>
+                <p class="home-hero-sub">Hiring all three isn't realistic. Hiring us is.</p>
+                <p class="lead">We do the work those hires would do, at a price that fits an organization your size. We build the reports, the systems, and the financial models, then we stay to keep them running.</p>
+            </div>
+            <div data-aud="public">
+                <span class="eyebrow">For counties, towns, authorities, and schools</span>
+                <h1>We've worked inside county government. We build for how it actually runs.</h1>
+                <p class="home-hero-sub">Budgets, boards, audits, grants, and the resolution that has to be ready by Tuesday.</p>
+                <p class="lead">We build the reporting, systems, and financial models a county, town, or authority needs, on the software you already own and at a price that fits a public budget. Then we stay to keep them running.</p>
+            </div>
+            <div data-aud="private">
+                <span class="eyebrow">For North Country businesses and nonprofits</span>
+                <h1>Your business outgrew its spreadsheets. We build what comes next.</h1>
+                <p class="home-hero-sub">No six-figure software. No eighteen-month rollout.</p>
+                <p class="lead">We replace the pile of spreadsheets and group texts with one system your team actually runs the work in, then add the reporting so you see the numbers without chasing them. Most systems are live in weeks, not quarters.</p>
+            </div>
             <p class="home-hero-credentials">Between us: former IT Director for Lewis County, business intelligence at Amazon Web Services, credit and compliance analytics at a regulated lender, and a Carnegie Mellon MBA in finance.</p>
         </div>
-        <div class="hero-cta-row home-hero-ctas">
-            <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Talk to us</a>
-            <a href="{{ '/case-studies.html' | relative_url }}" class="btn btn-ghost">See our work</a>
+        <div class="home-hero-ctas">
+            <div class="hero-cta-row">
+                <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Talk to us</a>
+                <a href="{{ '/case-studies.html' | relative_url }}" class="btn btn-ghost" data-aud="default">See our work</a>
+                <a href="{{ '/case-studies.html' | relative_url }}?sector=public" class="btn btn-ghost" data-aud="public">See our public sector work</a>
+                <a href="{{ '/case-studies.html' | relative_url }}?sector=private" class="btn btn-ghost" data-aud="private">See our business work</a>
+            </div>
+            <p class="audience-switch" data-aud="default">Tailor this page for: <button type="button" data-set-audience="public">Public sector</button> · <button type="button" data-set-audience="private">Business or nonprofit</button></p>
+            <p class="audience-switch" data-aud="public">Showing our public sector version. <button type="button" data-set-audience="private">Switch to business</button></p>
+            <p class="audience-switch" data-aud="private">Showing our business version. <button type="button" data-set-audience="public">Switch to public sector</button></p>
         </div>
         <div class="home-hero-media">
             <figure class="home-hero-video">
@@ -107,26 +137,44 @@ active_nav: home
         <div class="section-heading">
             <h2>Recent work</h2>
         </div>
-        <p class="lead">Counties, towns, and villages. Authorities and development agencies. School districts and BOCES. Healthcare providers, nonprofits, and the local employers who keep the region running.</p>
-        <nav class="sector-links" aria-label="Browse work by sector">
-            <a class="filter-chip" href="{{ '/case-studies.html' | relative_url }}?sector=public">Public sector work →</a>
-            <a class="filter-chip" href="{{ '/case-studies.html' | relative_url }}?sector=private">Local business work →</a>
-        </nav>
-        <div class="card-grid case-grid">
-            {%- for item in home.featured_work %}
+        <div data-aud="default">
+            <p class="lead">Counties, towns, and villages. Authorities and development agencies. School districts and BOCES. Healthcare providers, nonprofits, and the local employers who keep the region running.</p>
+            <nav class="sector-links" aria-label="Browse work by sector">
+                <a class="filter-chip" href="{{ '/case-studies.html' | relative_url }}?sector=public">Public sector work →</a>
+                <a class="filter-chip" href="{{ '/case-studies.html' | relative_url }}?sector=private">Local business work →</a>
+            </nav>
+        </div>
+        <p class="lead" data-aud="public">Counties, towns, and villages. Authorities and development agencies. Built for the people who answer to a board and the public.</p>
+        <p class="lead" data-aud="private">Trades businesses, food safety teams, community centers, and the local employers who keep the region running.</p>
+        {%- assign public_count = site.case_studies | where: "sector", "public" | size %}
+        {%- assign private_count = site.case_studies | where: "sector", "private" | size %}
+        {%- assign variants = "default,public,private" | split: "," %}
+        {%- for aud in variants %}
+        {%- if aud == "public" %}{% assign featured = home.featured_work_public %}{% elsif aud == "private" %}{% assign featured = home.featured_work_private %}{% else %}{% assign featured = home.featured_work %}{% endif %}
+        <div class="card-grid case-grid" data-aud="{{ aud }}">
+            {%- for item in featured %}
             {%- assign path = "_case_studies/" | append: item.slug | append: ".md" %}
             {%- assign study = site.case_studies | where: "path", path | first %}
             {%- if study %}{% include case-study-card.html study=study title=item.headline summary=item.summary %}{% endif %}
             {%- endfor %}
         </div>
-        <p class="section-footnote u-center">
+        {%- endfor %}
+        <p class="section-footnote u-center" data-aud="default">
             <a href="{{ '/case-studies.html' | relative_url }}" class="card-link">See all {{ site.case_studies.size }} projects</a>
+        </p>
+        <p class="section-footnote u-center" data-aud="public">
+            <a href="{{ '/case-studies.html' | relative_url }}?sector=public" class="card-link">See all {{ public_count }} public sector projects</a>
+        </p>
+        <p class="section-footnote u-center" data-aud="private">
+            <a href="{{ '/case-studies.html' | relative_url }}?sector=private" class="card-link">See all {{ private_count }} business and nonprofit projects</a>
         </p>
     </div>
 </section>
 
-<!-- 6. Testimonial. Renders nothing until _data/home.yml has a real quote. -->
-{% include testimonial.html %}
+<!-- 6. Testimonial. Renders nothing until _data/home.yml has a real quote.
+     Business visitors get a business client's quote. -->
+{% include testimonial.html aud="default public" %}
+{% include testimonial.html t=home.testimonial_private aud="private" %}
 
 <!-- 7. Capabilities: a menu of ideas, problem first -->
 <section class="section">
@@ -145,10 +193,22 @@ active_nav: home
 <!-- 8. Closing CTA -->
 <section class="cta-banner">
     <div class="container">
-        <h2>Start with a conversation, not a contract.</h2>
-        <p>The first one is free, and we lead with something useful whether or not you hire us. Tell us where the pain is and we'll tell you straight whether we're the right people to fix it.</p>
+        <div data-aud="default">
+            <h2>Start with a conversation, not a contract.</h2>
+            <p>The first one is free, and we lead with something useful whether or not you hire us. Tell us where the pain is and we'll tell you straight whether we're the right people to fix it.</p>
+        </div>
+        <div data-aud="public">
+            <h2>Start with a conversation, not an RFP.</h2>
+            <p>The first one is free, and we lead with something useful whether or not you hire us. Tell us what your board keeps asking for and we'll tell you straight whether we're the right people to build it.</p>
+        </div>
+        <div data-aud="private">
+            <h2>Start with a conversation, not a contract.</h2>
+            <p>The first one is free, and we lead with something useful whether or not you hire us. Show us the spreadsheet everyone's afraid to touch and we'll tell you straight what it would take to replace it.</p>
+        </div>
         <p>Anywhere in the North Country, we can be in your building this week. Coffee's on us.</p>
         <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Talk to us</a>
         {% include direct-contact.html class="direct-contact--on-dark" %}
     </div>
 </section>
+
+{% include audience-prompt.html %}

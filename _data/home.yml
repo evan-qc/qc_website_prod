@@ -18,6 +18,43 @@ featured_work:
     summary: "A global food safety team now schedules and reports out of one connected platform instead of a stack of fragile files."
 
 # ---------------------------------------------------------------------------
+# Audience versions of Recent work. A visitor who answers the homepage prompt
+# (or arrives on an ?audience=public / ?audience=private link) sees these
+# three instead of featured_work above. "Just looking" and first-time
+# visitors see featured_work. Same fields, same rules.
+# ---------------------------------------------------------------------------
+featured_work_public:
+  - slug: north-country-landfill-financial-model
+    headline: "A 50-year plan for the landfill that serves the North Country"
+    summary: "We turned a fragile Excel workbook into a planning model the Authority's leadership runs together, in the room."
+  - slug: lewis-county-financial-transparency
+    headline: "Lewis County's budget reports went from five days to real time"
+    summary: "Staff and the public can now see the county's financial picture the moment it changes, built on top of the ERP the county already had."
+  - slug: lewis-county-grant-funding-transparency
+    headline: "Lewis County can now prove its grant office brings home $5M a year"
+    summary: "Thirty-plus grant trackers became one system and a public dashboard that shows residents and legislators where every dollar goes."
+
+featured_work_private:
+  - slug: commercial-food-sanitation-core-business-platform
+    headline: "Six spreadsheets became one system, run from the plant floor"
+    summary: "A global food safety team now schedules and reports out of one connected platform instead of a stack of fragile files."
+  - slug: nch-case-study
+    headline: "A local trades business got 12 to 15 hours a week back"
+    summary: "Intake, invoicing, and project tracking now run in one system instead of a scatter of apps, texts, and paper."
+  - slug: double-play-grant-reporting
+    headline: "A community center's grant reports now build themselves"
+    summary: "Program data from Mindbody and Squarespace feeds one dashboard, so the numbers funders ask for are ready the moment they ask."
+
+# ---------------------------------------------------------------------------
+# Capability tile order per audience. Every slug in _data/capabilities.yml
+# should appear once in each list. A slug left out drops to the end.
+# First-time and "Just looking" visitors see the capabilities.yml order.
+# ---------------------------------------------------------------------------
+capability_order:
+  public: [dashboards, grants, assessments, modeling, automation, custom-apps]
+  private: [custom-apps, automation, dashboards, modeling, grants, assessments]
+
+# ---------------------------------------------------------------------------
 # Testimonial (pull quote under Recent work).
 #
 # The section renders ONLY when `quote` and `name` are both set. Empty them
@@ -38,6 +75,17 @@ testimonial:
   title: "County Manager"
   organization: "Lewis County"
   town: "Lowville"
+
+# Shown instead of `testimonial` to visitors who chose "Business or
+# nonprofit". Same rules: verbatim from a published case study, and it
+# renders only with both quote and name set. From
+# _case_studies/commercial-food-sanitation-core-business-platform.md.
+testimonial_private:
+  quote: "We chose Quantify because they brought the right combination of agility, curiosity, and partnership. They were willing to take the time to understand our business, ask thoughtful questions, and tailor their approach to our needs rather than offering a one-size-fits-all solution."
+  name: "Darin Zehr"
+  title: "General Manager"
+  organization: "Commercial Food Sanitation"
+  town: ""
 
 # ---------------------------------------------------------------------------
 # Hero video. A plain Descript embed, so it shows Descript's own thumbnail

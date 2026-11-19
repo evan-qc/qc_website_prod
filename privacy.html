@@ -2,21 +2,24 @@
 layout: default
 title: Privacy Policy
 seo_title: "Privacy Policy | Quantify"
-description: "What quantify.fyi collects, what it doesn't, and who it shares information with. Short, because the site does very little."
+description: "What quantify.fyi collects, what it doesn't, and who it shares information with."
 active_nav: none
 
 # Bump this by hand when the policy text changes, and only then. It is
 # deliberately not {{ site.time }}: a build should not be able to claim the
 # policy was revised on a day nobody touched it.
-updated: "September 2026"
+updated: "November 2026"
 ---
 {%- comment -%}
   This page describes what the site actually does, and every claim in it is
-  checkable against this repository. Three of them are load-bearing. If one of
-  these changes, this page is wrong until it is updated:
+  checkable against this repository. These are load-bearing. If one of them
+  changes, this page is wrong until it is updated:
 
-    1. "No analytics, no pixels, no cookies set by us." True only while no
-       tracking script is added to _layouts/default.html or any page.
+    1. Analytics. The Analytics section and the short version switch on
+       automatically when google_analytics_id or clarity_id is set in
+       _config.yml (see _includes/analytics-head.html). With both empty the
+       page says there is no analytics, which is then true. Adding any other
+       tracking script means editing this page by hand.
     2. The Google Fonts paragraph names /assessment/ because that is the only
        page requesting fonts.googleapis.com. Grep before trusting it.
     3. The video paragraph covers the YouTube embed in the North Country
@@ -29,11 +32,14 @@ updated: "September 2026"
   client data under HIPAA, CJIS, or a state contract's security schedule, that
   is a different document and this one does not reach it.
 {%- endcomment -%}
+{%- assign ga_on = false %}{% if site.google_analytics_id and site.google_analytics_id != "" %}{% assign ga_on = true %}{% endif %}
+{%- assign clarity_on = false %}{% if site.clarity_id and site.clarity_id != "" %}{% assign clarity_on = true %}{% endif %}
+{%- assign analytics_on = false %}{% if ga_on or clarity_on %}{% assign analytics_on = true %}{% endif %}
 <section class="hero hero-compact">
     <div class="hero-content">
         <span class="eyebrow">Privacy Policy</span>
         <h1>Privacy <span class="accent-word">Policy</span>.</h1>
-        <p class="lead">Short, because this site does very little. Last updated {{ page.updated }}.</p>
+        <p class="lead">{% if analytics_on %}Short and plain{% else %}Short, because this site does very little{% endif %}. Last updated {{ page.updated }}.</p>
     </div>
 </section>
 
@@ -42,8 +48,31 @@ updated: "September 2026"
         <div class="section-heading">
             <h2>The short version</h2>
         </div>
+        {%- if analytics_on %}
+        <p>We measure how people use this site: which pages get read, where visitors come from, and which parts of the homepage work. We use that to make the site more useful. We do not run ads, we do not sell anything to anyone, and there is no marketing list to be added to. The only information we get that names you is what you deliberately send us through the contact form or by email.</p>
+        {%- else %}
         <p>This website does not track you. There is no analytics package, no advertising pixel, no cookie banner, and no cookies set by us. We do not build a profile of you, we do not sell anything to anyone, and there is no marketing list to be added to. The only information we receive is what you deliberately send us through the contact form or by email.</p>
         <p>Most privacy policies are long because the site behind them is doing a lot. This one is short for the opposite reason.</p>
+        {%- endif %}
+
+        {%- if analytics_on %}
+
+        <div class="section-heading u-mt-10">
+            <h2>Analytics</h2>
+        </div>
+        {%- if ga_on %}
+        <p>This site uses <a href="https://policies.google.com/privacy">Google Analytics</a>. When you visit, your browser sends Google the pages you view, how long you stay, the site that sent you here, your approximate location (city level), and your device and browser type. Google Analytics sets cookies so it can tell a returning visitor from a new one. We see the results as aggregate reports. They do not tell us who you are by name.</p>
+        {%- endif %}
+        {%- if clarity_on %}
+        <p>We also use <a href="https://privacy.microsoft.com/privacystatement">Microsoft Clarity</a>, which records how visitors scroll, click, and move through our pages so we can find what is confusing. Clarity masks what you type into form fields, and it sets cookies of its own.</p>
+        {%- endif %}
+        <p>To opt out, block cookies for this site in your browser settings or use a content blocker.{% if ga_on %} Google also offers an <a href="https://tools.google.com/dlpage/gaoptout">opt-out browser add-on</a>.{% endif %}</p>
+        {%- endif %}
+
+        <div class="section-heading u-mt-10">
+            <h2>Your homepage preference</h2>
+        </div>
+        <p>The first time you open our homepage, we ask whether you are with a public organization or a business, so we can show you the most relevant work. Your answer is saved in your browser's local storage so we do not ask again. Clear this site's data in your browser to reset it.{% if analytics_on %} The answer is also included in our analytics, so we can see which audiences use the site and what they read.{% endif %}</p>
 
         <div class="section-heading u-mt-10">
             <h2>The contact form</h2>
@@ -87,7 +116,7 @@ updated: "September 2026"
         <div class="section-heading u-mt-10">
             <h2>Changes</h2>
         </div>
-        <p>If this policy changes, the date at the top changes with it. There is no archive of old versions, because this site has never done enough for one to be interesting.</p>
+        <p>If this policy changes, the date at the top changes with it.</p>
 
         <address class="contact-address u-mt-8">
             Quantify Consulting<br>
