@@ -55,7 +55,7 @@ clarity_id: ""
 # a plain download instead, so nobody types an email into a form that goes
 # nowhere. Set it separately in each repo; pre-prod can point at a test Zap.
 # ---------------------------------------------------------------------------
-lead_webhook_url: ""
+lead_webhook_url: "https://hooks.zapier.com/hooks/catch/21697097/45asvzb/"
 
 # Collections
 collections:
