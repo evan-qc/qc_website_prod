@@ -49,7 +49,7 @@ updated: "November 2026"
             <h2>The short version</h2>
         </div>
         {%- if analytics_on %}
-        <p>We measure how people use this site: which pages get read, where visitors come from, and which parts of the homepage work. We use that to make the site more useful. We do not run ads, we do not sell anything to anyone, and there is no marketing list to be added to. The only information we get that names you is what you deliberately send us through the contact form or by email.</p>
+        <p>We measure how people use this site: which pages get read, where visitors come from, and which parts of the homepage work. We use that to make the site more useful. We do not run ads, we do not sell anything to anyone, and there is no mailing list to be added to. The only information we get that names you is what you deliberately send us through a form or by email.</p>
         {%- else %}
         <p>This website does not track you. There is no analytics package, no advertising pixel, no cookie banner, and no cookies set by us. We do not build a profile of you, we do not sell anything to anyone, and there is no marketing list to be added to. The only information we receive is what you deliberately send us through the contact form or by email.</p>
         <p>Most privacy policies are long because the site behind them is doing a lot. This one is short for the opposite reason.</p>
@@ -80,6 +80,14 @@ updated: "November 2026"
         <p>Our contact form is hosted by <a href="https://www.airtable.com/company/privacy">Airtable</a> and embedded on our <a href="{{ '/get-started.html' | relative_url }}">Let's Talk</a> page. It asks who you are, how to reach you, what organization you are with, and what you are trying to solve. When you submit it, what you typed goes to Airtable and into our records.</p>
         <p>We use it to reply to you, and to run the engagement if we end up working together. That is the whole purpose. We do not sell it, we do not rent it, and we do not pass it to anyone who is not working on your inquiry.</p>
         <p>Because the form is an embedded Airtable page rather than something we built ourselves, Airtable receives the submission directly and its own privacy policy applies to it alongside this one.</p>
+
+        {%- if site.lead_webhook_url and site.lead_webhook_url != "" %}
+
+        <div class="section-heading u-mt-10">
+            <h2>Field guide downloads</h2>
+        </div>
+        <p>Before you download our <a href="{{ '/foil/' | relative_url }}">FOIL field guide</a>, we ask for your name, email, organization, and optionally your role. That goes to our records through <a href="https://zapier.com/privacy">Zapier</a> and Airtable. We may follow up once about the guide. We do not add you to a mailing list, and we do not sell or share what you send.</p>
+        {%- endif %}
 
         <div class="section-heading u-mt-10">
             <h2>Email</h2>

@@ -48,6 +48,15 @@ availability_updated: ""          # e.g. "September 2026"
 google_analytics_id: ""
 clarity_id: ""
 
+# ---------------------------------------------------------------------------
+# Lead capture. The FOIL field guide form on /foil/ posts name, email,
+# organization and role to this URL (a Zapier "Catch Hook" that writes to
+# Airtable). Leave it "" and the form is skipped: the page offers the PDF as
+# a plain download instead, so nobody types an email into a form that goes
+# nowhere. Set it separately in each repo; pre-prod can point at a test Zap.
+# ---------------------------------------------------------------------------
+lead_webhook_url: ""
+
 # Collections
 collections:
   case_studies:

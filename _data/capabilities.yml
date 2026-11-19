@@ -1,5 +1,6 @@
 # The capability menu. One source of truth for every rendering:
-#   - the six-tile grid on the homepage (short + tile_line)
+#   - the homepage tiles (short + tile_line). Which six show, and in what
+#     order, is set per audience in _data/home.yml `capability_tiles`.
 #   - the full sections on what-we-do.html (tagline, body, tools, proofs)
 #   - the "What we did" filter chips on case-studies.html (slug + short)
 #
@@ -7,9 +8,11 @@
 # should stay populated. If a capability has no case study behind it, set
 # `proof_note` instead so the gap is visible rather than papered over.
 #
-# List order is display order, on the homepage and on what-we-do.html alike:
-# Dashboards, Custom Applications, Technology & Security Assessments,
-# Financial Modeling, Grant & Compliance Reporting, Automation & Integration.
+# List order is display order on what-we-do.html: Dashboards, Custom
+# Applications, Automation & Integration, FOIL Management, Managed IT,
+# Technology & Security Assessments, Financial Modeling, Grant & Compliance
+# Reporting, Websites & Custom Software. Custom software is new for us, so it
+# stays last until there is a case study behind it.
 #
 # `short` is the canonical label. It must read identically on the homepage,
 # on what-we-do.html, and on the case-study filter chips. Do not paraphrase.
@@ -23,7 +26,11 @@
 #   `tile_problem`     the problem, in the buyer's own voice (rendered italic)
 #   `tile_line`        what we do, one line. Omit it and the tagline is used.
 #   `tile_proofs`      "See it in action" links, in display order: a list of
-#                      { name, url }. Omit for no proof link.
+#                      { name, url }. Omit for no proof link. A url may be an
+#                      external site (https://...).
+#
+# Proofs on what-we-do.html: `proofs` is a list of { text, url, label }.
+# `label` is the link text and defaults to "Read it".
 # Pick a study whose front matter `capabilities` includes this tile's slug.
 
 - slug: dashboards
@@ -63,16 +70,99 @@
   tile_proofs:
     - name: "Commercial Food Sanitation"
       url: "/case-studies/commercial-food-sanitation-core-business-platform/"
+    - name: "Lewis County Building Codes"
+      url: "/case-studies/lewis-county-building-codes-inspection-app/"
   body: >-
     There is a gap between a spreadsheet that has stopped coping and enterprise
     software that costs six figures and eighteen months. Almost every organization we
     meet is stuck in it. We build in that gap: a real relational system, with the
     fields your work actually has, the automations your process actually needs, and a
     screen your team can use on a phone in a truck.
+  body_2: >-
+    For a business, we call it a Core Business Platform: intake, scheduling, projects,
+    invoicing, and reporting in one connected place. For a county, it is usually the
+    project manager that finally lets several departments see the same work, instead
+    of each keeping its own spreadsheet of it.
   tools: "Usually Airtable. Live in weeks."
   proofs:
     - text: "Lewis County Building Codes replaced 24 disconnected spreadsheets with one inspection application. A five-person team now runs fire safety inspections county-wide from one place."
       url: "/case-studies/lewis-county-building-codes-inspection-app/"
+    - text: "North Country Handymen runs intake, invoicing, and project tracking in one Core Business Platform we built, and got 12 to 15 hours a week back."
+      url: "/case-studies/nch-case-study/"
+
+- slug: automation
+  short: "Automation &amp; Integration"
+  title: "Automation &amp; Integration"
+  aliases: [integration]
+  tagline: "Stop entering the same information three times."
+  tile_problem: "You type the same information into three different places."
+  tile_line: "Enter it once, and stop chasing approvals by email."
+  tile_proofs:
+    - name: "North Country Handymen"
+      url: "/case-studies/nch-case-study/"
+    - name: "Lewis County Legislature"
+      url: "/case-studies/lewis-county-legislative-resolution-workflow/"
+  body: >-
+    Double entry is not a discipline problem, it is a plumbing problem. When your ERP,
+    your scale system, and somebody's Excel file have no way to talk, a person becomes
+    the integration. Same with the work itself: forms that get re-keyed, approvals
+    that live in an email chain, a request that has to be chased through four people
+    before anyone knows where it stands.
+  body_2: >-
+    We map how the work really happens, remove the person from the middle, and
+    automate the steps that never needed a human. The data moves on its own, and it
+    matches on both ends.
+  proofs:
+    - text: "We unified the Lewis County Solid Waste Department's scale system, ERP and Excel records into one Azure data warehouse feeding live internal and public dashboards."
+      url: "/case-studies/lewis-county-solid-waste-operations-intelligence/"
+    - text: "We replaced Lewis County's manual, Adobe-form resolution process with an automated workflow that drafts, files and tracks every submission, giving 30 departments real-time visibility into where their requests stand."
+      url: "/case-studies/lewis-county-legislative-resolution-workflow/"
+
+- slug: foil
+  short: "FOIL Management"
+  title: "FOIL Management"
+  tagline: "Every request logged, routed, and answered on the clock."
+  tile_problem: "FOIL requests live in an inbox, and the five-day clock lives in someone's head."
+  tile_line: "One front door, automatic deadlines, and a status board every department can read."
+  tile_proofs:
+    - name: "The Five Rs of FOIL"
+      url: "/foil/"
+  body: >-
+    FOIL rarely breaks inside a tool. It breaks at the handoffs between people: a
+    request lands at the wrong department, the five-business-day clock starts without
+    anyone noticing, and the county attorney sees it last instead of in parallel.
+  body_2: >-
+    We fix the process first, across what we call the Five Rs: receive, route,
+    retrieve, review, and release. Then we build the FOIL manager around it: one
+    intake that sets every deadline automatically, routing and reminders across
+    departments, a shared status board, and turnaround reporting your board can read.
+  proofs:
+    - text: "A northern New York county runs its FOIL requests through a FOIL manager we built this way. The method is public: map your own process with our free field guide."
+      url: "/foil/"
+      label: "Get the field guide"
+
+- slug: managed-it
+  short: "Managed IT"
+  title: "Managed IT"
+  tagline: "IT support from people who have run it for a county."
+  tile_problem: "Your IT department is whoever is best with computers."
+  tile_line: "Help desk, Microsoft 365 or Google Workspace, security, and backups, handled."
+  body: >-
+    Most organizations up here are too small for a full-time IT department and too
+    important to run without one. So IT becomes a side job: someone resets passwords,
+    someone else renews the domain, and nobody is sure the backups work until the day
+    they need them.
+  body_2: >-
+    We take that off your plate: help desk support for your staff, Microsoft 365 or
+    Google Workspace administration, accounts and devices, security, backups, and the
+    network that ties it together, with someone in your building when it needs a
+    person.
+  practitioner_label: "Who does this work"
+  practitioner: >-
+    Conner Biolsi ran IT for Lewis County government for nearly six years: help desk,
+    infrastructure, security, and remote work for every department, on a public-sector
+    budget. Managed IT is that same job, done for organizations that cannot hire a
+    full-time IT director of their own.
 
 - slug: assessments
   short: "Technology &amp; Security Assessments"
@@ -144,30 +234,25 @@
     - text: "We consolidated 30-plus grant-tracking tables into one relational system and built a public dashboard showing that Lewis County's grant office brings home more than $5M a year."
       url: "/case-studies/lewis-county-grant-funding-transparency/"
 
-- slug: automation
-  short: "Automation &amp; Integration"
-  title: "Automation &amp; Integration"
-  aliases: [integration]
-  tagline: "Stop entering the same information three times."
-  tile_problem: "You type the same information into three different places."
-  tile_line: "Enter it once, and stop chasing approvals by email."
+- slug: web
+  short: "Websites &amp; Custom Software"
+  title: "Websites &amp; Custom Software"
+  tagline: "A website you are proud to send people to, and software when nothing off the shelf fits."
+  tile_problem: "Your website was homemade, and it shows."
+  tile_line: "A fast, modern site you can keep current, and custom software when nothing off the shelf fits."
   tile_proofs:
-    - name: "North Country Handymen"
-      url: "/case-studies/nch-case-study/"
-    - name: "County legislative forms"
-      url: "/case-studies/workflow-automation-for-resolution-drafting-in-county-government/"
+    - name: "cccturin.com"
+      url: "https://cccturin.com"
   body: >-
-    Double entry is not a discipline problem, it is a plumbing problem. When your ERP,
-    your scale system, and somebody's Excel file have no way to talk, a person becomes
-    the integration. Same with the work itself: forms that get re-keyed, approvals
-    that live in an email chain, a request that has to be chased through four people
-    before anyone knows where it stands.
+    Your website is the first thing a customer, a funder, or a new hire checks. Most
+    small organizations built theirs once and have been afraid to touch it since. We
+    build sites that load fast, read well on a phone, and connect to the systems behind
+    them, so a form on the site lands in the same place as the rest of your work.
   body_2: >-
-    We map how the work really happens, remove the person from the middle, and
-    automate the steps that never needed a human. The data moves on its own, and it
-    matches on both ends.
+    Custom software is the newest thing we offer. When a business outgrows what a
+    platform like Airtable can do, we build on modern cloud infrastructure, and we
+    scope it small and honestly to start.
   proofs:
-    - text: "We unified the Lewis County Solid Waste Department's scale system, ERP and Excel records into one Azure data warehouse feeding live internal and public dashboards."
-      url: "/case-studies/lewis-county-solid-waste-operations-intelligence/"
-    - text: "We replaced a county's manual, Adobe-form resolution process with an automated workflow that drafts, files and tracks every submission, giving 30 departments real-time visibility into where their requests stand."
-      url: "/case-studies/workflow-automation-for-resolution-drafting-in-county-government/"
+    - text: "We built Christian Community Center's website in Turin, alongside the automation that now runs their building rentals."
+      url: "https://cccturin.com"
+      label: "See the site"

@@ -2,19 +2,19 @@
 layout: default
 title: What We Do
 seo_title: "What We Do | Quantify"
-description: "Dashboards and reporting, custom applications, technology and security assessments, financial modeling and forecasting, grant and compliance reporting, and automation and integration. Every capability backed by work we have actually delivered."
+description: "Dashboards and reporting, custom applications, automation, FOIL management, managed IT, technology assessments, financial modeling, grant reporting, websites, and custom software. Every capability backed by proof."
 active_nav: capabilities
 ---
 <!-- Hero -->
 <section class="hero hero-compact">
     <div class="hero-content">
         <span class="eyebrow">What We Do</span>
-        <h1>Six things, and <span class="accent-word">proof</span> of each.</h1>
-        <p class="lead">Every capability below links to a project where we did it, for a named client, with a result you can read. If we cannot point at proof, it is not on this page.</p>
+        <h1>What we do, and <span class="accent-word">proof</span> of each.</h1>
+        <p class="lead">Every capability below points at proof: a project we delivered, with a result you can read, or the person who does the work. Where something is new for us, we say so. If we cannot point at proof, it is not on this page.</p>
     </div>
 </section>
 
-<!-- The six -->
+<!-- The capabilities, from _data/capabilities.yml -->
 <section class="section">
     <div class="container-narrow">
         {%- for cap in site.data.capabilities %}
@@ -36,7 +36,7 @@ active_nav: capabilities
                 <p class="capability-proof">
                     <span class="capability-proof-label">Proof</span>
                     {{ proof.text }}
-                    <a href="{{ proof.url | relative_url }}" class="card-link">Read it</a>
+                    <a href="{{ proof.url | relative_url }}" class="card-link">{{ proof.label | default: "Read it" }}</a>
                 </p>
                 {%- endfor %}
                 {%- if cap.practitioner %}
@@ -54,6 +54,7 @@ active_nav: capabilities
             </div>
         </article>
         {%- endfor %}
+        <p class="capability-also"><strong>Also on the menu: bookkeeping.</strong> For small businesses that want the books kept by the same people who built their systems, we do that too. Ask us.</p>
     </div>
 </section>
 
@@ -63,7 +64,7 @@ active_nav: capabilities
         <div class="section-heading">
             <h2>Analytics, automation, and AI are the toolkit, not the pitch.</h2>
         </div>
-        <p>Underneath all six of those is the same set of tools: analytics and reporting, process automation, and AI where it genuinely earns its keep. We care much less about which one we reach for than about whether the thing we hand you actually gets used.</p>
+        <p>Underneath all of it is the same set of tools: analytics and reporting, process automation, and AI where it genuinely earns its keep. We care much less about which one we reach for than about whether the thing we hand you actually gets used.</p>
         <p>On AI specifically, our position is simple.</p>
         <blockquote class="pull-quote">Most "AI" is a chatbot bolted onto a broken process.</blockquote>
         <p>The useful version is narrower and more boring: reading documents so nobody re-keys them, triaging requests, surfacing what deserves attention. We will tell you when it fits, and we will tell you when it does not.</p>

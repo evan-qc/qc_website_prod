@@ -3211,8 +3211,12 @@ html[data-audience="private"] [data-aud]:not([data-aud~="private"]) {
     display: none !important;
 }
 
-/* Capability tiles lead with what each audience buys most. Positions come
-   from _data/home.yml `capability_order`. */
+/* Capability tiles: each audience gets its own six, in its own order.
+   Positions come from _data/home.yml `capability_tiles`. */
+html:not([data-audience="public"]):not([data-audience="private"]) .capability-tile {
+    order: var(--order-default, 0);
+}
+
 html[data-audience="public"] .capability-tile {
     order: var(--order-public, 0);
 }
@@ -3402,4 +3406,329 @@ html:not([data-js]) .audience-switch {
 @keyframes audience-dialog-in {
     from { opacity: 0; transform: translateY(8px) scale(0.98); }
     to   { opacity: 1; transform: none; }
+}
+
+/* "One free hour..." line under the hero CTAs. */
+.hero-offer {
+    margin-top: 0.85rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ---------- Homepage proof band (public / private audiences) ---------- */
+.proof-band {
+    background: var(--brand-linen);
+    border-bottom: 1px solid var(--border-soft);
+    padding: 2.25rem 0;
+}
+
+.proof-band-heading {
+    font-size: clamp(1.3rem, 1.1rem + 1vw, 1.7rem);
+    margin-bottom: 1.25rem;
+}
+
+.proof-band-stats {
+    list-style: none;
+    display: grid;
+    gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .proof-band-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+}
+
+.proof-band-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--accent);
+}
+
+.proof-band-number {
+    font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+}
+
+.proof-band-label {
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.proof-band-source {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ---------- FOIL: homepage promo and /foil/ ---------- */
+.foil-promo-grid,
+.foil-download {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+}
+
+.foil-promo-image,
+.foil-download-preview {
+    display: block;
+    max-width: 320px;
+    width: 100%;
+    margin: 0 auto;
+    border: none;
+}
+
+.foil-promo-image img,
+.foil-download-preview {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+}
+
+@media (min-width: 768px) {
+    .foil-promo-grid,
+    .foil-download {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+        gap: 3rem;
+    }
+}
+
+.foil-intro {
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 900px) {
+    .foil-intro {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        align-items: start;
+        gap: 3rem;
+    }
+}
+
+.foil-clock {
+    padding: 1.25rem 1.4rem;
+    background: var(--surface-1);
+    border: 1px solid var(--border-subtle);
+    border-top: 4px solid var(--accent);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.foil-clock-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+}
+
+.foil-clock p + p {
+    margin-top: 0.5rem;
+}
+
+.foil-clock strong {
+    color: var(--accent);
+}
+
+.five-rs {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+}
+
+.five-r {
+    background: var(--surface-1);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+}
+
+.five-r-head {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.9rem;
+}
+
+.five-r-num {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--brand-white);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.five-r--key .five-r-num {
+    background: var(--brand-ochre);
+}
+
+.five-r-head h3 {
+    margin: 0;
+    color: var(--accent);
+}
+
+.five-r-head h3 span {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0;
+}
+
+.five-r dl {
+    display: grid;
+    gap: 0.25rem 1.25rem;
+}
+
+.five-r dt {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+
+.five-r dd {
+    line-height: 1.55;
+}
+
+.five-r dd:last-of-type {
+    font-weight: 600;
+    color: var(--text-heading);
+}
+
+@media (min-width: 900px) {
+    .five-r {
+        display: grid;
+        grid-template-columns: 12rem minmax(0, 1fr);
+        gap: 1.5rem;
+        align-items: start;
+    }
+    .five-r-head {
+        margin-bottom: 0;
+    }
+    .five-r dl {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-flow: column;
+        grid-template-rows: auto auto;
+    }
+    .five-r dt {
+        margin-top: 0;
+    }
+}
+
+.foil-principles {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+    .foil-principles {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.foil-principles > div {
+    border-top: 2px solid var(--accent);
+    padding-top: 0.85rem;
+}
+
+.foil-principles h3 {
+    color: var(--accent);
+    font-size: 1.05rem;
+}
+
+/* ---------- Lead form (field guide download) ---------- */
+.lead-form {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1.25rem;
+    max-width: 28rem;
+}
+
+.lead-form-row {
+    display: grid;
+    gap: 0.3rem;
+}
+
+.lead-form label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-heading);
+}
+
+.lead-form-optional {
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.lead-form input {
+    width: 100%;
+    min-height: var(--tap-target);
+    padding: 0.6rem 0.85rem;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--text-primary);
+    background: var(--surface-1);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+}
+
+.lead-form input:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 1px;
+    border-color: var(--accent);
+}
+
+.lead-form .btn {
+    justify-self: start;
+}
+
+.lead-form .btn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.lead-form-error {
+    color: #A3261B;
+    font-size: 0.9rem;
+}
+
+.lead-form-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+}
+
+.lead-form-done {
+    margin-top: 1.25rem;
+}
+
+.lead-form-done p {
+    margin-bottom: 0.75rem;
+}
+
+/* what-we-do.html: the one-line bookkeeping mention after the list. */
+.capability-also {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-soft);
+    color: var(--text-secondary);
 }

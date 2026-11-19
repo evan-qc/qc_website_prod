@@ -1,5 +1,5 @@
 <!-- Homepage capability menu, from _data/capabilities.yml. Six problem-first
-     tiles: capability name, the buyer's problem in their own words, what we
+     tiles per audience: capability name, the buyer's problem in their own words, what we
      do, then one or more proof links to case studies. The full sections live on
      what-we-do.html.
 
@@ -8,17 +8,22 @@
      ::after, and the proof links sit above that layer as their own, separate
      links. No anchor inside an anchor.
 
-     Each tile carries its position in _data/home.yml `capability_order`
-     for each audience as --order-public / --order-private. shared.css turns
-     those into CSS `order` once a visitor has picked an audience, so the
-     grid leads with what that audience buys most. -->
-{%- assign order = site.data.home.capability_order %}
+     Which tiles show, and in what order, depends on the homepage audience:
+     _data/home.yml `capability_tiles` lists six slugs each for default,
+     public and private. A tile shows for every audience whose list names
+     it (data-aud), and --order-<audience> carries its position in that list
+     for the CSS `order` rules in shared.css. A capability in no list stays
+     off the homepage and lives on what-we-do.html only. -->
+{%- assign lists = site.data.home.capability_tiles %}
+{%- assign tile_auds = "default,public,private" | split: "," %}
 <ul class="capability-tiles">
     {%- for cap in site.data.capabilities %}
-    {%- assign op = 99 %}{% assign opv = 99 %}
-    {%- for slug in order.public %}{% if slug == cap.slug %}{% assign op = forloop.index %}{% endif %}{% endfor %}
-    {%- for slug in order.private %}{% if slug == cap.slug %}{% assign opv = forloop.index %}{% endif %}{% endfor %}
-    <li class="capability-tile" style="--order-public: {{ op }}; --order-private: {{ opv }};">
+    {%- assign auds = "" %}{% assign styles = "" %}
+    {%- for aud in tile_auds %}
+    {%- for slug in lists[aud] %}{% if slug == cap.slug %}{% assign auds = auds | append: " " | append: aud %}{% capture st %}--order-{{ aud }}: {{ forloop.index }}; {% endcapture %}{% assign styles = styles | append: st %}{% endif %}{% endfor %}
+    {%- endfor %}
+    {%- if auds == "" %}{% continue %}{% endif %}
+    <li class="capability-tile" data-aud="{{ auds | strip }}" style="{{ styles | strip }}">
         <h3><a class="capability-tile-link" href="{{ '/what-we-do.html' | relative_url }}#{{ cap.slug }}">{{ cap.short }}</a></h3>
         {%- if cap.tile_problem %}
         <p class="capability-tile-problem">{{ cap.tile_problem }}</p>
