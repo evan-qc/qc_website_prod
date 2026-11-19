@@ -1,9 +1,11 @@
 <!-- Pull-quote testimonial. Content comes from `testimonial` in
-     _data/home.yml. Renders nothing at all unless a real quote and a named
-     person are both set, so no placeholder can ship. -->
-{%- assign t = site.data.home.testimonial %}
+     _data/home.yml, or from whatever is passed as include.t. Renders nothing
+     at all unless a real quote and a named person are both set, so no
+     placeholder can ship. include.aud is passed through as data-aud, which
+     limits the section to those homepage audiences (see shared.css). -->
+{%- assign t = include.t | default: site.data.home.testimonial %}
 {%- if t.quote and t.quote != "" and t.name and t.name != "" %}
-<section class="section section-tight" aria-label="What clients say">
+<section class="section section-tight" aria-label="What clients say"{% if include.aud %} data-aud="{{ include.aud }}"{% endif %}>
     <div class="container-narrow">
         <figure class="testimonial">
             <blockquote>

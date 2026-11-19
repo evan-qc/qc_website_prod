@@ -1,0 +1,103 @@
+<!-- Audience + analytics. Loaded in <head> on every page.
+
+     1. Audience. Reads the visitor's homepage choice (public / private /
+        none) from localStorage, or from ?audience= on any URL, and sets
+        <html data-audience="..."> before the page paints, so the homepage
+        never flashes the wrong version. ?audience=public is meant for
+        outreach links: it skips the homepage prompt and records the choice.
+
+     2. Analytics. GA4 and Microsoft Clarity, each only if its ID is set in
+        _config.yml. With neither set, qcTrack() is a no-op and nothing
+        leaves the browser.
+
+     Events sent (GA4 event name, parameters):
+       audience_prompt_shown                       homepage prompt opened
+       audience_selected   audience, method        popup | popup_skip |
+                                                   popup_dismiss | switcher | link
+       cta_click           link_text, link_url,    any click to the Let's Talk page
+                           page_path
+     The audience is also set as the GA4 user property `audience` and the
+     Clarity tag `audience`, so every page view can be split by it. -->
+<script>
+(function () {
+    var KEY = 'qc_audience';
+    var VALID = { 'public': 1, 'private': 1, 'none': 1 };
+    var root = document.documentElement;
+    var value = null;
+    var fromLink = false;
+
+    root.setAttribute('data-js', '');
+
+    try {
+        var param = new URLSearchParams(window.location.search).get('audience');
+        if (param && VALID[param]) {
+            value = param;
+            fromLink = true;
+            localStorage.setItem(KEY, param);
+        } else {
+            var stored = localStorage.getItem(KEY);
+            if (stored && VALID[stored]) value = stored;
+        }
+    } catch (e) { /* storage blocked: treat as a first visit, prompt stays off */ }
+
+    if (value) root.setAttribute('data-audience', value);
+
+    window.qcAudience = { key: KEY, valid: VALID, value: value, fromLink: fromLink };
+})();
+</script>
+{%- if site.google_analytics_id and site.google_analytics_id != "" %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_id }}"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+gtag('js', new Date());
+if (window.qcAudience.value) gtag('set', 'user_properties', { audience: window.qcAudience.value });
+gtag('config', '{{ site.google_analytics_id }}');
+</script>
+{%- endif %}
+{%- if site.clarity_id and site.clarity_id != "" %}
+<script>
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "{{ site.clarity_id }}");
+if (window.qcAudience.value) clarity('set', 'audience', window.qcAudience.value);
+</script>
+{%- endif %}
+<script>
+(function () {
+    // Send an event to whichever analytics tools are switched on.
+    window.qcTrack = function (name, params) {
+        try {
+            if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+            if (typeof window.clarity === 'function') window.clarity('event', name);
+        } catch (e) {}
+    };
+
+    // Record an audience choice: browser storage, the page, and analytics.
+    window.qcSetAudience = function (value, method) {
+        var a = window.qcAudience;
+        if (!a.valid[value]) return;
+        a.value = value;
+        try { localStorage.setItem(a.key, value); } catch (e) {}
+        document.documentElement.setAttribute('data-audience', value);
+        try {
+            if (typeof window.gtag === 'function') window.gtag('set', 'user_properties', { audience: value });
+            if (typeof window.clarity === 'function') window.clarity('set', 'audience', value);
+        } catch (e) {}
+        window.qcTrack('audience_selected', { audience: value, method: method });
+    };
+
+    if (window.qcAudience.fromLink) {
+        window.qcTrack('audience_selected', { audience: window.qcAudience.value, method: 'link' });
+    }
+
+    // Every click through to the Let's Talk page, wherever it sits.
+    document.addEventListener('click', function (e) {
+        var link = e.target.closest && e.target.closest('a[href]');
+        if (!link || link.getAttribute('href').indexOf('get-started') === -1) return;
+        window.qcTrack('cta_click', {
+            link_text: (link.textContent || '').trim().slice(0, 100),
+            link_url: link.getAttribute('href'),
+            page_path: window.location.pathname
+        });
+    });
+})();
+</script>
