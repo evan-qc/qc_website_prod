@@ -24,35 +24,88 @@ featured_work:
 # visitors see featured_work. Same fields, same rules.
 # ---------------------------------------------------------------------------
 featured_work_public:
-  - slug: north-country-landfill-financial-model
-    headline: "A 50-year plan for the landfill that serves the North Country"
-    summary: "We turned a fragile Excel workbook into a planning model the Authority's leadership runs together, in the room."
   - slug: lewis-county-financial-transparency
     headline: "Lewis County's budget reports went from five days to real time"
-    summary: "Staff and the public can now see the county's financial picture the moment it changes, built on top of the ERP the county already had."
-  - slug: lewis-county-grant-funding-transparency
-    headline: "Lewis County can now prove its grant office brings home $5M a year"
-    summary: "Thirty-plus grant trackers became one system and a public dashboard that shows residents and legislators where every dollar goes."
+    summary: "Built on the Tyler Munis ERP the county already ran, so staff and the public see the financial picture the moment it changes."
+  - slug: lewis-county-legislative-resolution-workflow
+    headline: "30 Lewis County departments, one tracked resolution workflow"
+    summary: "Department heads submit once. Drafting, filing, tracking, and notifications happen on their own, and everyone can see where a request stands."
+  - slug: lewis-county-building-codes-inspection-app
+    headline: "24 spreadsheets became one inspection system for Lewis County"
+    summary: "A five-person codes team now runs fire safety inspections for 755 occupancies across the county from one place."
 
 featured_work_private:
   - slug: commercial-food-sanitation-core-business-platform
     headline: "Six spreadsheets became one system, run from the plant floor"
-    summary: "A global food safety team now schedules and reports out of one connected platform instead of a stack of fragile files."
+    summary: "A global food safety team now schedules and reports out of one Core Business Platform instead of a stack of fragile files."
   - slug: nch-case-study
     headline: "A local trades business got 12 to 15 hours a week back"
-    summary: "Intake, invoicing, and project tracking now run in one system instead of a scatter of apps, texts, and paper."
-  - slug: double-play-grant-reporting
-    headline: "A community center's grant reports now build themselves"
-    summary: "Program data from Mindbody and Squarespace feeds one dashboard, so the numbers funders ask for are ready the moment they ask."
+    summary: "Intake, invoicing, and project tracking now run in one Core Business Platform instead of a scatter of apps, texts, and paper."
+  - slug: christian-community-center-rental-automation
+    headline: "A church took its building rentals off the phone, and got a new website"
+    summary: "Requests, calendar, and access codes now run on their own, saving 7.5 staff hours a month. We built cccturin.com too."
 
 # ---------------------------------------------------------------------------
-# Capability tile order per audience. Every slug in _data/capabilities.yml
-# should appear once in each list. A slug left out drops to the end.
-# First-time and "Just looking" visitors see the capabilities.yml order.
+# Homepage capability tiles per audience: six slugs each from
+# _data/capabilities.yml, in display order. A capability in none of these
+# lists stays off the homepage (it is still on what-we-do.html).
 # ---------------------------------------------------------------------------
-capability_order:
-  public: [dashboards, grants, assessments, modeling, automation, custom-apps]
-  private: [custom-apps, automation, dashboards, modeling, grants, assessments]
+capability_tiles:
+  default: [dashboards, custom-apps, automation, managed-it, modeling, assessments]
+  public: [foil, dashboards, custom-apps, automation, managed-it, grants]
+  private: [custom-apps, automation, dashboards, managed-it, web, modeling]
+
+# ---------------------------------------------------------------------------
+# Proof band: three numbers right under the hero, public and private only.
+# Every stat needs a source. `url` links the source line; leave it "" for a
+# stat whose source is our own published work and `link` points at it.
+#
+# Public, Tyler count: 35 of 57 counties outside NYC confirmed on a Tyler
+# financial ERP (21 Munis, 11 New World, 3 Tyler product unnamed) from
+# public county records (resolutions, minutes, budgets, job postings)
+# reviewed November 2026. "More than half" needs 29, so it holds if a few
+# records go stale. Recheck yearly; several counties are mid-migration.
+#
+# Private: QuickBooks and Salesforce are vendor surveys, so the source line
+# names them. Avoid untraceable stats (e.g. "McKinsey 1.8 hours a day").
+# ---------------------------------------------------------------------------
+proof_band:
+  public:
+    heading: "Built for how New York local government actually runs."
+    stats:
+      - stat: "Over half"
+        label: "of New York's counties run their finances on Tyler Munis or New World. We build reporting on both."
+        source: "Quantify review of public county records, 2026"
+        url: ""
+        link: ""
+      - stat: "5 days → live"
+        label: "Lewis County's budget reporting, rebuilt on the Munis system the county already owned."
+        source: "Lewis County case study"
+        url: ""
+        link: "/case-studies/lewis-county-financial-transparency/"
+      - stat: "30"
+        label: "Lewis County departments now send resolutions through one tracked, automated workflow."
+        source: "Lewis County case study"
+        url: ""
+        link: "/case-studies/lewis-county-legislative-resolution-workflow/"
+  private:
+    heading: "The back office is costing you now, not later."
+    stats:
+      - stat: "25 hrs"
+        label: "a week: what businesses with 10 to 99 employees spend on manual data entry and reconciling data across apps."
+        source: "Intuit QuickBooks survey of 630 US businesses, 2024"
+        url: "https://erp.intuit.com/blog/research/business-solutions-survey-2024/"
+        link: ""
+      - stat: "53%"
+        label: "of small business leaders say their data is often inconsistent across their business tools."
+        source: "Salesforce Small & Medium Business Trends, 2024"
+        url: "https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/resources/smb-trends-report-6th-edition_Salesforce.pdf"
+        link: ""
+      - stat: "12 to 15 hrs"
+        label: "a week given back to North Country Handymen once its business ran on one Core Business Platform."
+        source: "North Country Handymen case study"
+        url: ""
+        link: "/case-studies/nch-case-study/"
 
 # ---------------------------------------------------------------------------
 # Testimonial (pull quote under Recent work).

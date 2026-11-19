@@ -28,31 +28,32 @@ active_nav: home
         <div class="home-hero-intro">
             <div data-aud="default">
                 <span class="eyebrow">New York's North Country</span>
-                <h1>You need an analytics director, an IT director, and a director of finance and operations.</h1>
-                <p class="home-hero-sub">Hiring all three isn't realistic. Hiring us is.</p>
-                <p class="lead">We do the work those hires would do, at a price that fits an organization your size. We build the reports, the systems, and the financial models, then we stay to keep them running.</p>
+                <h1>We want the North Country to be the best-run region in New York.</h1>
+                <p class="home-hero-sub">Modern systems for every county, town, and business up here, built by people who live down the road.</p>
+                <p class="lead">We're the systems, data, and IT team most organizations here can't hire full time. We figure out where to start, build it with you, and stay to keep it running.</p>
             </div>
             <div data-aud="public">
                 <span class="eyebrow">For counties, towns, authorities, and schools</span>
-                <h1>We've worked inside county government. We build for how it actually runs.</h1>
-                <p class="home-hero-sub">Budgets, boards, audits, grants, and the resolution that has to be ready by Tuesday.</p>
-                <p class="lead">We build the reporting, systems, and financial models a county, town, or authority needs, on the software you already own and at a price that fits a public budget. Then we stay to keep them running.</p>
+                <h1>You know it's time to modernize. We'll show you where to start.</h1>
+                <p class="home-hero-sub">Then we build it with you, and stay to keep it running.</p>
+                <p class="lead">We're an innovation partner for North Country local government: FOIL, finance reporting, cross-department workflows, and IT, modernized one practical step at a time. People and process first. Then technology.</p>
             </div>
             <div data-aud="private">
                 <span class="eyebrow">For North Country businesses and nonprofits</span>
-                <h1>Your business outgrew its spreadsheets. We build what comes next.</h1>
-                <p class="home-hero-sub">No six-figure software. No eighteen-month rollout.</p>
-                <p class="lead">We replace the pile of spreadsheets and group texts with one system your team actually runs the work in, then add the reporting so you see the numbers without chasing them. Most systems are live in weeks, not quarters.</p>
+                <h1>Your business outgrew the spreadsheets, the inbox, and the homemade website.</h1>
+                <p class="home-hero-sub">We fix the back office now, and build it to hold when you're ten times bigger.</p>
+                <p class="lead">One partner for operations and business systems: a Core Business Platform your team runs the work in, reporting that shows you the numbers without chasing them, and the IT, website, and bookkeeping support to keep it all running.</p>
             </div>
             <p class="home-hero-credentials">Between us: former IT Director for Lewis County, business intelligence at Amazon Web Services, credit and compliance analytics at a regulated lender, and a Carnegie Mellon MBA in finance.</p>
         </div>
         <div class="home-hero-ctas">
             <div class="hero-cta-row">
-                <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Talk to us</a>
+                <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Book a free session</a>
                 <a href="{{ '/case-studies.html' | relative_url }}" class="btn btn-ghost" data-aud="default">See our work</a>
                 <a href="{{ '/case-studies.html' | relative_url }}?sector=public" class="btn btn-ghost" data-aud="public">See our public sector work</a>
                 <a href="{{ '/case-studies.html' | relative_url }}?sector=private" class="btn btn-ghost" data-aud="private">See our business work</a>
             </div>
+            <p class="hero-offer">One free hour with us, then a written assessment you keep, whether or not you hire us.</p>
             <p class="audience-switch" data-aud="default">Tailor this page for: <button type="button" data-set-audience="public">Public sector</button> · <button type="button" data-set-audience="private">Business or nonprofit</button></p>
             <p class="audience-switch" data-aud="public">Showing our public sector version. <button type="button" data-set-audience="private">Switch to business</button></p>
             <p class="audience-switch" data-aud="private">Showing our business version. <button type="button" data-set-audience="public">Switch to public sector</button></p>
@@ -71,6 +72,27 @@ active_nav: home
         </div>
     </div>
 </section>
+
+<!-- 1b. Proof band: three sourced numbers for the visitor's audience, from
+     _data/home.yml `proof_band`. Nothing for the default audience. -->
+{%- assign band_auds = "public,private" | split: "," %}
+{%- for aud in band_auds %}
+{%- assign band = home.proof_band[aud] %}
+<section class="proof-band" data-aud="{{ aud }}" aria-label="By the numbers">
+    <div class="container">
+        <h2 class="proof-band-heading">{{ band.heading }}</h2>
+        <ul class="proof-band-stats">
+            {%- for item in band.stats %}
+            <li class="proof-band-stat">
+                <span class="proof-band-number">{{ item.stat }}</span>
+                <span class="proof-band-label">{{ item.label }}</span>
+                <span class="proof-band-source">{% if item.url != "" %}Source: <a href="{{ item.url }}" rel="noopener">{{ item.source }}</a>{% elsif item.link != "" %}<a href="{{ item.link | relative_url }}">{{ item.source }}&nbsp;→</a>{% else %}Source: {{ item.source }}{% endif %}</span>
+            </li>
+            {%- endfor %}
+        </ul>
+    </div>
+</section>
+{%- endfor %}
 
 <!-- 2. Logo marquee -->
 {% include client-logos.html %}
@@ -176,6 +198,23 @@ active_nav: home
 {% include testimonial.html aud="default public" %}
 {% include testimonial.html t=home.testimonial_private aud="private" %}
 
+<!-- 6b. FOIL field guide, public audience only. -->
+<section class="section foil-promo" data-aud="public">
+    <div class="container">
+        <div class="foil-promo-grid">
+            <a class="foil-promo-image" href="{{ '/foil/' | relative_url }}">
+                <img src="{{ '/assets/foil/five-rs-preview.webp' | relative_url }}" alt="The Five Rs of FOIL field guide: receive, route, retrieve, review, release" width="800" height="1035" loading="lazy">
+            </a>
+            <div>
+                <span class="eyebrow">Free field guide</span>
+                <h2>Don't let FOIL waste staff time.</h2>
+                <p>FOIL rarely breaks inside a tool. It breaks at the handoffs between people. Our Five Rs field guide walks through receive, route, retrieve, review, and release, so you can map your own process before anyone buys software.</p>
+                <a href="{{ '/foil/' | relative_url }}" class="btn btn-primary">Get the field guide</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- 7. Capabilities: a menu of ideas, problem first -->
 <section class="section">
     <div class="container">
@@ -195,18 +234,18 @@ active_nav: home
     <div class="container">
         <div data-aud="default">
             <h2>Start with a conversation, not a contract.</h2>
-            <p>The first one is free, and we lead with something useful whether or not you hire us. Tell us where the pain is and we'll tell you straight whether we're the right people to fix it.</p>
+            <p>Your first session is free: one hour on where the pain is, then a written assessment you keep, whether or not you hire us. If we're the right fit, most clients start with Foundations, a short first engagement that maps how the work runs today and what to fix first.</p>
         </div>
         <div data-aud="public">
             <h2>Start with a conversation, not an RFP.</h2>
-            <p>The first one is free, and we lead with something useful whether or not you hire us. Tell us what your board keeps asking for and we'll tell you straight whether we're the right people to build it.</p>
+            <p>One free hour with your team, then a written assessment of where to start, yours to keep whether or not you hire us. From there, most counties begin with Foundations, a short first engagement that maps how the work runs today and what to modernize first.</p>
         </div>
         <div data-aud="private">
             <h2>Start with a conversation, not a contract.</h2>
-            <p>The first one is free, and we lead with something useful whether or not you hire us. Show us the spreadsheet everyone's afraid to touch and we'll tell you straight what it would take to replace it.</p>
+            <p>Bring the spreadsheet everyone's afraid to touch. One free hour, then a written assessment of what to fix first, yours to keep whether or not you hire us. If we're the right fit, the next step is Foundations, a short first engagement that maps how your business runs today.</p>
         </div>
         <p>Anywhere in the North Country, we can be in your building this week. Coffee's on us.</p>
-        <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Talk to us</a>
+        <a href="{{ '/get-started.html' | relative_url }}" class="btn btn-amber">Book your free session</a>
         {% include direct-contact.html class="direct-contact--on-dark" %}
     </div>
 </section>

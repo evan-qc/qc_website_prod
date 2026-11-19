@@ -1,11 +1,11 @@
 ---
-title: "Workflow Automation for Resolution Drafting in County Government"
-client: "Anonymous County"
+title: "How Lewis County Put 30 Departments on One Automated Resolution Workflow"
+client: "Lewis County Government"
 sector: public
 rank: 40
 capabilities: [automation]
-summary: "We replaced a county's manual, Adobe-form resolution process with an automated workflow that drafts resolutions, files and tracks every submission, and gives 30 departments real-time visibility into where their requests stand."
-description: "How we automated resolution drafting for a county government, turning a slow, error-prone paper process serving 30 departments into a faster, fully tracked workflow built on Microsoft Forms, OpenAI, Zapier, and Power Automate."
+summary: "We replaced Lewis County's manual, Adobe-form resolution process with an automated workflow that drafts resolutions, files and tracks every submission, and gives 30 departments real-time visibility into where their requests stand."
+description: "How Quantify automated resolution drafting for Lewis County, turning a slow, error-prone paper process serving 30 departments into a faster, fully tracked workflow built on Microsoft Forms, OpenAI, Zapier, and Power Automate."
 hero_image: "/assets/case-studies/legislators_hero.webp"
 hero_image_width: 1024
 hero_image_height: 681
@@ -23,11 +23,11 @@ results:
 
 Most counties can't simply hire their way out of a backlog. Headcount is capped, budgets are tight, and the work still has to get done. The most realistic lever isn't adding people, it's freeing the people you already have from low-value drudgery so they can spend their time on work that actually requires their judgment.
 
-That was the goal of this engagement with a county government we've partnered with across multiple projects: take one of their most manual, most error-prone internal processes and automate the parts that never needed a human in the first place.
+That was the goal of this engagement with Lewis County, a county we've partnered with across multiple projects: take one of their most manual, most error-prone internal processes and automate the parts that never needed a human in the first place.
 
 ## The challenge
 
-Before a county legislature can take action, someone has to draft a resolution, and getting there meant running a long relay of hand-offs.
+Before the Lewis County legislature can take action, someone has to draft a resolution. Any of the county's 30 departments can need one, and getting there meant running a long relay of hand-offs across offices.
 
 A department head would fill out an Adobe form, printed or on-screen, with the details the legal department needed. That form went to the clerk of the board, who forwarded it to legal. The county attorney would review it, almost always discover gaps or missing information, and kick off an email exchange to chase down the rest. Only then could the attorney draft the resolution and route it back to the clerk to be placed on the right committee and legislative agendas.
 
@@ -60,4 +60,4 @@ On efficiency, the gains come from cutting the back-and-forth. A redesigned form
 
 But the bigger story is the internal customer experience. For the 30 departments feeding this process, and for the clerk of the board who sits at the center of it, the experience is dramatically better. Every submission is automatically acknowledged, filed in its own folder, and logged to a shared tracker, so nothing is lost and nothing is a mystery. No one has to wonder whether their request was received, where it stands, or whether it will make the agenda in time. That certainty, more than any single saved hour, is what people notice.
 
-It also sets the county up for what's next. With a clean, automated, fully tracked workflow in place, the same pattern, better intake plus automation around it, can be pointed at the next manual process, and the next. For a county that can't hire its way to more capacity, that's how you create it instead.
+It also sets Lewis County up for what's next. With a clean, automated, fully tracked workflow in place, the same pattern, better intake plus automation around it, can be pointed at the next manual process, and the next. For a county that can't hire its way to more capacity, that's how you create it instead.
